@@ -13,6 +13,18 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        include: path.resolve(__dirname, '../src'),
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[hash].[ext]'
+            }
+          }
+        ]
       }
     ]
   }

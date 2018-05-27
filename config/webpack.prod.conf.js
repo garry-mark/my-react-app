@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') //webpack4开始使用MiniCssExtractPlugin
 // const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const merge = require('webpack-merge')
 const baseConf = require('./webpack.base.conf.js')
@@ -30,6 +31,10 @@ module.exports = merge(baseConf, {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].css'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './index.tepl.html'
     })
   ],
   optimization: {
