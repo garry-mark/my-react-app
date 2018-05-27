@@ -4,9 +4,9 @@
   "description": "The blog of Garry",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --config ./config/webpack.dev.conf.js",
+    "start": "npm run dev",
     "build": "webpack --config ./config/webpack.prod.conf.js",
-    "dev": "webpack --config ./config/webpack.dev.conf.js"
+    "dev": "webpack-dev-server --open --config ./config/webpack.dev.conf.js"
   },
   "keywords": ["blog"],
   "author": "garry",
