@@ -8,8 +8,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const merge = require('webpack-merge')
 const baseConf = require('./webpack.base.conf.js')
 
+const ENV = 'production'
+
 module.exports = merge(baseConf, {
-  mode: 'production',
+  mode: ENV,
   module: {
     rules: [
       {

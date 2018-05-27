@@ -1,8 +1,10 @@
 const merge = require('webpack-merge')
 const baseConf = require('./webpack.base.conf.js')
 
+const ENV = 'development'
+
 module.exports = merge(baseConf, {
-  mode: 'development',
+  mode: ENV,
   devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
