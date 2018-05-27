@@ -1,3 +1,6 @@
+const path = require('path')
+
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') //webpack4开始使用MiniCssExtractPlugin
 // const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -28,6 +31,9 @@ module.exports = merge(baseConf, {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(['dist/*.*'], {
+      root: baseConf.context
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].css'
