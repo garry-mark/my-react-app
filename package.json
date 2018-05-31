@@ -8,11 +8,10 @@
     "build": "webpack --config ./config/webpack.prod.conf.js",
     "dev": "webpack-dev-server --open --config ./config/webpack.dev.conf.js"
   },
-  "keywords": [
-    "blog"
-  ],
+  "keywords": ["blog"],
   "author": "garry",
   "license": "ISC",
+
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -42,9 +41,5 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
 }
