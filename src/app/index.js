@@ -9,6 +9,7 @@ class App extends Component {
         <img src={logo} alt="logo" />
         <h1>Hello world!</h1>
         <p>This is Garry blog starting.</p>
+        <div className="bg-image" />
       </div>
     )
   }

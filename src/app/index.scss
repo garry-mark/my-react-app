@@ -1,6 +1,14 @@
+$color: yellow;
+$blue: blue;
 .header {
   background-color: lightblue;
   h1 {
-    color: yellow;
+    color: $color;
+  }
+  .bg-image {
+    width: 100px;
+    height: 100px;
+    background: no-repeat center center / cover;
+    background-image: url('./logo.svg');
   }
 }

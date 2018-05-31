@@ -8,6 +8,11 @@ const ENV = 'development'
 
 module.exports = merge(baseConf, {
   mode: ENV,
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].js',
+    publicPath: '/'
+  },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: false,

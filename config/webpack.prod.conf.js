@@ -12,6 +12,11 @@ const ENV = 'production'
 
 module.exports = merge(baseConf, {
   mode: ENV,
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].[chunkhash].js',
+    publicPath: '/assets'
+  },
   module: {
     rules: [
       {
