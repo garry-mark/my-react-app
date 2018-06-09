@@ -1,17 +1,25 @@
-@import '../styles/var';
+@import '@/styles/var';
+@import '@/styles/tool';
+
 $color: yellow;
 $blue: blue;
 
 .header {
   display: flex;
-  background-color: $red;
+  background-color: $themeColor;
   h1 {
     color: $color;
   }
-  .bgImage {
-    width: 100px;
-    height: 100px;
-    background: no-repeat center center / cover;
-    background-image: url('./logo.svg');
+}
+.bgImage {
+  width: 100px;
+  height: 100px;
+  background: no-repeat center center / cover;
+  background-image: url('./logo.svg');
+}
+.floatBox {
+  @include clearfix;
+  p {
+    float: left;
   }
 }

@@ -10,6 +10,9 @@ class App extends Component {
         <h1> world!</h1>
         <p>Tshis is Garry blog starting.</p>
         <div className={styles.bgImage} />
+        <div className={styles.floatBox}>
+          <p>123123</p>
+        </div>
       </div>
     )
   }
