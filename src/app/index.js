@@ -14,5 +14,6 @@ class App extends Component {
     )
   }
 }
+export const a = 'demo1'
 
 export default App

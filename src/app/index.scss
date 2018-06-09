@@ -1,7 +1,10 @@
+@import '../var';
 $color: yellow;
 $blue: blue;
+
 .header {
-  background-color: lightblue;
+  display: flex;
+  background-color: $red;
   h1 {
     color: $color;
   }

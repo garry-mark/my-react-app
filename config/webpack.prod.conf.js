@@ -30,9 +30,8 @@ module.exports = merge(baseConf, {
               minimize: true
             }
           },
-          {
-            loader: 'sass-loader'
-          }
+          'postcss-loader',
+          'sass-loader'
         ]
       }
     ]
