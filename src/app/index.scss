@@ -1,4 +1,4 @@
-@import '../var';
+@import '../styles/var';
 $color: yellow;
 $blue: blue;
 
@@ -8,7 +8,7 @@ $blue: blue;
   h1 {
     color: $color;
   }
-  .bg-image {
+  .bgImage {
     width: 100px;
     height: 100px;
     background: no-repeat center center / cover;

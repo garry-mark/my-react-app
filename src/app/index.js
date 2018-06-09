@@ -5,11 +5,11 @@ import logo from './logo.svg'
 class App extends Component {
   render() {
     return (
-      <div className="header">
+      <div className={styles.header}>
         <img src={logo} alt="logo" />
         <h1> world!</h1>
         <p>Tshis is Garry blog starting.</p>
-        <div className="bg-image" />
+        <div className={styles.bgImage} />
       </div>
     )
   }

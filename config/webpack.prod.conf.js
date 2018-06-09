@@ -26,8 +26,10 @@ module.exports = merge(baseConf, {
           {
             loader: 'css-loader',
             options: {
-              //   modules: true,
-              minimize: true
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+              minimize: true,
+              importLoaders: 2
             }
           },
           'postcss-loader',

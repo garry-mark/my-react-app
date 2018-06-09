@@ -4,6 +4,14 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: { app: './src/index.js' },
 
+  resolve: {
+    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
+    extensions: ['.js', '.json', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, '../src')
+    }
+  },
+
   module: {
     rules: [
       {
