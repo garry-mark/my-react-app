@@ -1,3 +1,14 @@
+// 浏览器样式兼容处理
 @import '../../node_modules/normalize.css';
 
-@import 'var.scss';
+// 全局样式定义
+
+p {
+  margin: 0;
+}
+
+:global {
+  .test {
+    background-color: teal;
+  }
+}

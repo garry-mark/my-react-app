@@ -2,6 +2,10 @@
 
 - react 环境配置问题，每个组件都应用 React 类，但是没有代码上面的调用，删除后报错："React is not defined"
 - 样式表内不能使用 @import '#/normalize.css'导入 node_modules 里的文件
+- 暂时解决方案：使用相对路径
+- [x] 由于使用了 babel-react-css-module @import '@/styles/index.scss';无法在 src/index.js 单独导入
+  - 暂时解决方案：放到 app 的 scss 里面@import
+  - 解决方案：由于无法使用别名处理，所以./styles/index.scss 即可
 
 ### webpack 相关处理
 
@@ -30,16 +34,16 @@
 #### css 处理
 
 - [x] autoprefix 处理
-- [] sass 环境支持
-- [] cssNext 环境支持（优于 sass）
-- [] css 模块化（css-loader）
-- [] react 组件，样式高阶函数处理
+- [x] sass 环境支持
+- [] sass 升级到 cssNext
+- [x] css 模块化（css-loader）
+- [x] react 组件，样式高阶函数处理（babel-react-css-modules 处理）
 - [] BEM 规范
-- [] normalize 处理
-- [] 样式工具、函数、以及变量提取
+- [x] normalize 集成
+- [x] 样式工具、函数、以及变量提取
 - [] 样式按需加载
 - [x] MiniCssExtractPlugin 样式文件提取处理
-- [] css 压缩优化（css-loader）
+- [x] css 压缩优化（css-loader）
 - [x] 样式缓存处理，并且文件名根据内容决定
 
 #### html 处理

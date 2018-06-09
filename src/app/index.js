@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import styles from './index.scss'
+import './index.scss'
 import logo from './logo.svg'
 
 class App extends Component {
   render() {
     return (
-      <div className={styles.header}>
+      <div styleName="header">
         <img src={logo} alt="logo" />
         <h1> world!</h1>
-        <p>Tshis is Garry blog starting.</p>
-        <div className={styles.bgImage} />
-        <div className={styles.floatBox}>
-          <p>123123</p>
+        <p className="test">Tshis is Garry blog starting.</p>
+        <div styleName="bgImage" />
+        <div styleName="floatBox">
+          <p className="test">123123</p>
         </div>
       </div>
     )

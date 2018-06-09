@@ -19,6 +19,9 @@ $blue: blue;
 }
 .floatBox {
   @include clearfix;
+  :global(.test) {
+    background-color: saddlebrown;
+  }
   p {
     float: left;
   }

@@ -12,5 +12,18 @@
     "react",
     "stage-3"
   ],
-  "plugins": ["transform-runtime"]
+  "plugins": [
+    "transform-runtime",
+    [
+      "react-css-modules",
+      {
+        "generateScopedName": "[name]__[local]--[hash:base64:5]",
+        "filetypes": {
+          ".scss": {
+            "syntax": "postcss-scss"
+          }
+        }
+      }
+    ]
+  ]
 }
