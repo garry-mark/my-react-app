@@ -1,20 +1,10 @@
 import React, { Component } from 'react'
 import './index.scss'
-import logo from './logo.svg'
+import Demo from '../demo'
 
 class App extends Component {
   render() {
-    return (
-      <div styleName="header">
-        <img src={logo} alt="logo" />
-        <h1> world!</h1>
-        <p className="test">Tshis is Garry blog starting.</p>
-        <div styleName="bgImage" />
-        <div styleName="floatBox">
-          <p className="test">123123</p>
-        </div>
-      </div>
-    )
+    return <Demo />
   }
 }
 export const a = 'demo1'

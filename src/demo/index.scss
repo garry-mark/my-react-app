@@ -1,0 +1,37 @@
+@import '@/styles/var.scss';
+@import '@/styles/tool.scss';
+
+$color: salmon;
+
+.demo {
+  background-color: $themeColor;
+  h1 {
+    color: $color;
+    margin: 0;
+  }
+}
+.unUseGlobal {
+  &:global(.test) {
+    background-color: saddlebrown;
+  }
+}
+.floatBox {
+  @include clearfix;
+
+  p {
+    float: left;
+  }
+}
+.flexBox {
+  display: flex;
+  height: 100px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bgImage {
+  width: 100px;
+  height: 100px;
+  background: no-repeat center center / cover;
+  background-image: url('./logo.svg');
+}
