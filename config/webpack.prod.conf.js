@@ -1,8 +1,7 @@
 const path = require('path')
 
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin') //webpack4开始使用MiniCssExtractPlugin
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const merge = require('webpack-merge')
@@ -15,7 +14,8 @@ module.exports = merge(baseConf, {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[chunkhash].js',
-    publicPath: '/assets'
+    chunkFilename: '[name].[chunkhash].js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -59,7 +59,6 @@ module.exports = merge(baseConf, {
         parallel: true,
         sourceMap: true
       })
-      //   new OptimizeCSSAssetsPlugin({})
     ]
   }
 })

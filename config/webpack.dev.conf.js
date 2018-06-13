@@ -11,6 +11,7 @@ module.exports = merge(baseConf, {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
+    chunkFilename: '[name].[chunkhash].js',
     publicPath: '/'
   },
   devtool: 'cheap-module-eval-source-map',

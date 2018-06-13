@@ -25,7 +25,7 @@ module.exports = {
         include: path.resolve(__dirname, '../src'),
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 1000,
           name: 'img/[name].[hash:7].[ext]'
         }
       },
@@ -34,7 +34,7 @@ module.exports = {
         include: path.resolve(__dirname, '../src'),
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 1000,
           name: 'media/[name].[hash:7].[ext]'
         }
       },
@@ -43,7 +43,7 @@ module.exports = {
         include: path.resolve(__dirname, '../src'),
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 1000,
           name: 'fonts/[name].[hash:7].[ext]'
         }
       }
