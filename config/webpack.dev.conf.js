@@ -63,6 +63,9 @@ module.exports = merge(baseConf, {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"development"'
+    }),
     new webpack.NamedModulesPlugin(), //这个插件,使用模块的相对路径做为模块的id,只要我们不重命名一个模块文件,那么它的id就不会发生改变
     new HtmlWebpackPlugin({
       filename: 'index.html',

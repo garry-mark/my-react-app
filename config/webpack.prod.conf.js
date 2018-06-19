@@ -39,6 +39,9 @@ module.exports = merge(baseConf, {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
+    }),
     new CleanWebpackPlugin(['dist/*.*'], {
       root: baseConf.context
     }),
