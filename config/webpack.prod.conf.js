@@ -38,6 +38,9 @@ module.exports = merge(baseConf, {
       }
     ]
   },
+  performance: {
+    hints: 'error'
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
