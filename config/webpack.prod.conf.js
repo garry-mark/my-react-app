@@ -59,8 +59,7 @@ module.exports = merge(baseConf, {
       // 会有treeShaking效果，通过在packageJosn中添加sideEffects字段为false，标记项目为无副作用，另外添加数组为有副作用文件
       new UglifyJsPlugin({
         cache: true,
-        parallel: true,
-        sourceMap: true
+        parallel: true
       })
     ]
   }
