@@ -64,11 +64,6 @@ module.exports = merge(baseConf, {
       }
     ]
   },
-  performance: {
-    hints: 'warning'
-    // maxEntrypointSize: 400000,  // defalut:25000,充分利用首次加载时间
-    // maxAssetSize: 100000     // defalut:25000
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"'
