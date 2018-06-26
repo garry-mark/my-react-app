@@ -1,5 +1,5 @@
 const path = require('path')
-
+const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -60,6 +60,7 @@ module.exports = merge(baseConf, {
   optimization: {
     minimizer: [
       // 会有treeShaking效果，通过在packageJosn中添加sideEffects字段为false，标记项目为无副作用，另外添加数组为有副作用文件
+      // 另外需要babel设置modules为false，不编译为commonJs
       new UglifyJsPlugin({
         cache: true,
         parallel: true
