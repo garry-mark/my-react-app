@@ -15,6 +15,7 @@
   ],
   "plugins": [
     "transform-runtime",
+    ["transform-class-properties", { "spec": true }],
     [
       "react-css-modules",
       {

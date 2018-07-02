@@ -3,9 +3,21 @@ import './index.scss'
 import logo from './logo.svg'
 
 class Demo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  getThis = () => {
+    console.log(this)
+  }
   render() {
     return (
       <section styleName="demo">
+        <h1>事件绑定</h1>
+        <button onClick={this.getThis}>点击</button>
+
+        <hr />
+
         <h1>样式例子</h1>
         <p className="test">引用全局样式</p>
         <p styleName="unUseGlobal" className="test">
