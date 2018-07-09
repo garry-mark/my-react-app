@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './index.scss'
 import logo from './logo.svg'
 
 class Demo extends Component {
+  static defaultProps = {
+    text: 'abc'
+  }
   constructor(props) {
     super(props)
     this.state = {}
@@ -11,10 +15,16 @@ class Demo extends Component {
     console.log(this)
   }
   render() {
+    const { text } = this.props
     return (
       <section styleName="demo">
         <h1>事件绑定</h1>
         <button onClick={this.getThis}>点击</button>
+
+        <hr />
+
+        <h1>默认值以及prop类型</h1>
+        <p>{text}</p>
 
         <hr />
 
@@ -45,6 +55,10 @@ class Demo extends Component {
       </section>
     )
   }
+}
+
+Demo.propTypes = {
+  text: PropTypes.string
 }
 
 export default Demo

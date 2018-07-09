@@ -1,6 +1,7 @@
 ### 待续优化
 
 - [] react 环境配置问题，每个组件都应用 React 类，但是没有代码上面的调用，删除后报错："React is not defined"
+  - 由于 JSX 编译后会调用 React.createElement 方法，所以在你的 JSX 代码中必须首先声明 React 变量。
 - [] 样式表内不能使用 @import '#/normalize.css'导入 node_modules 里的文件
   - 暂时解决方案：使用相对路径
 - [x] 由于使用了 babel-react-css-module @import '@/styles/index.scss';无法在 src/index.js 单独导入
