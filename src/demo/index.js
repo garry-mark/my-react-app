@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './index.scss'
 import logo from './logo.svg'
+import FlowDemo from './flow-demo'
 
 class Demo extends Component {
   static defaultProps = {
@@ -52,6 +53,8 @@ class Demo extends Component {
           style={{ width: '100px', height: '100px' }}
         />
         <div styleName="bgImage" />
+
+        <FlowDemo />
       </section>
     )
   }
