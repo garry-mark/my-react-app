@@ -1,67 +1,67 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import './index.scss'
-import logo from './logo.svg'
-import FlowDemo from './flow-demo'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './index.scss';
+import logo from './logo.svg';
+import FlowDemo from './flow-demo';
 
 class Demo extends Component {
-  static defaultProps = {
-    text: 'abc'
-  }
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-  getThis = () => {
-    console.log(this)
-  }
-  render() {
-    const { text } = this.props
-    return (
-      <section styleName="demo">
-        <h1>事件绑定</h1>
-        <button onClick={this.getThis}>点击</button>
+	static defaultProps = {
+		text: 'abc'
+	};
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+	getThis = () => {
+		console.log(this);
+	};
+	render() {
+		const { text } = this.props;
+		return (
+			<section styleName="demo">
+				<h1>事件绑定</h1>
+				<button onClick={this.getThis}>点击</button>
 
-        <hr />
+				<hr />
 
-        <h1>默认值以及prop类型</h1>
-        <p>{text}</p>
+				<h1>默认值以及prop类型</h1>
+				<p>{text}</p>
 
-        <hr />
+				<hr />
 
-        <h1>样式例子</h1>
-        <p className="test">引用全局样式</p>
-        <p styleName="unUseGlobal" className="test">
-          覆盖全局样式
-        </p>
+				<h1>样式例子</h1>
+				<p className="test">引用全局样式</p>
+				<p styleName="unUseGlobal" className="test">
+					覆盖全局样式
+				</p>
 
-        <div styleName="floatBox">
-          <p>引用工具样式clearfix</p>
-        </div>
+				<div styleName="floatBox">
+					<p>引用工具样式clearfix</p>
+				</div>
 
-        <div styleName="flexBox">
-          <span>flexBox1</span>
-          <span>flexBox2</span>
-        </div>
+				<div styleName="flexBox">
+					<span>flexBox1</span>
+					<span>flexBox2</span>
+				</div>
 
-        <hr />
+				<hr />
 
-        <h1>资源例子</h1>
-        <img
-          src={logo}
-          alt="logo"
-          style={{ width: '100px', height: '100px' }}
-        />
-        <div styleName="bgImage" />
+				<h1>资源例子</h1>
+				<img
+					src={logo}
+					alt="logo"
+					style={{ width: '100px', height: '100px' }}
+				/>
+				<div styleName="bgImage" />
 
-        <FlowDemo />
-      </section>
-    )
-  }
+				<FlowDemo />
+			</section>
+		);
+	}
 }
 
 Demo.propTypes = {
-  text: PropTypes.string
-}
+	text: PropTypes.string
+};
 
-export default Demo
+export default Demo;
