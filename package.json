@@ -1,6 +1,9 @@
 {
 	"name": "garry-blog",
-	"sideEffects": ["*.css", "*.scss"],
+	"sideEffects": [
+		"*.css",
+		"*.scss"
+	],
 	"version": "0.0.1",
 	"description": "The blog of Garry",
 	"main": "index.js",
@@ -11,7 +14,11 @@
 		"flow": "flow",
 		"lint": "eslint --ext .js,.jsx src"
 	},
-	"keywords": ["blog", "react", "webpack4"],
+	"keywords": [
+		"blog",
+		"react",
+		"webpack4"
+	],
 	"author": "garry",
 	"license": "ISC",
 	"devDependencies": {
@@ -29,6 +36,7 @@
 		"clean-webpack-plugin": "^0.1.19",
 		"css-loader": "^0.28.11",
 		"eslint": "^5.2.0",
+		"eslint-loader": "^2.1.0",
 		"eslint-plugin-react": "^7.10.0",
 		"file-loader": "^1.1.11",
 		"flow-bin": "^0.76.0",
@@ -54,5 +62,9 @@
 		"react": "^16.4.0",
 		"react-dom": "^16.4.0"
 	},
-	"browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	]
 }
