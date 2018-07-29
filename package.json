@@ -1,9 +1,6 @@
 {
 	"name": "garry-blog",
-	"sideEffects": [
-		"*.css",
-		"*.scss"
-	],
+	"sideEffects": ["*.css", "*.scss"],
 	"version": "0.0.1",
 	"description": "The blog of Garry",
 	"main": "index.js",
@@ -12,11 +9,9 @@
 		"build": "webpack --config ./config/webpack.prod.conf.js",
 		"dev": "webpack-dev-server --open --config ./config/webpack.dev.conf.js",
 		"flow": "flow",
-		"eslint": "eslint"
+		"lint": "eslint --ext .js,.jsx src"
 	},
-	"keywords": [
-		"blog"
-	],
+	"keywords": ["blog"],
 	"author": "garry",
 	"license": "ISC",
 	"devDependencies": {
@@ -59,9 +54,5 @@
 		"react": "^16.4.0",
 		"react-dom": "^16.4.0"
 	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not ie <= 8"
-	]
+	"browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
 }
