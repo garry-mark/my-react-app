@@ -11,7 +11,7 @@
 		"flow": "flow",
 		"lint": "eslint --ext .js,.jsx src"
 	},
-	"keywords": ["blog"],
+	"keywords": ["blog", "react", "webpack4"],
 	"author": "garry",
 	"license": "ISC",
 	"devDependencies": {
