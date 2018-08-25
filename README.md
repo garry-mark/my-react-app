@@ -59,6 +59,7 @@
 - [x] MiniCssExtractPlugin 样式文件提取处理
 - [x] css 压缩优化（css-loader）
 - [x] 样式缓存处理，并且文件名根据内容决定
+- [] 标签选择器的局部处理
 
 #### html 处理
 

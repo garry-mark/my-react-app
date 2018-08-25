@@ -1,0 +1,28 @@
+@import '@/styles/var.scss';
+
+$navHeight: 45px;
+
+.navbar {
+  background-color: $themeColor;
+  height: $navHeight;
+  line-height: $navHeight;
+  & > div {
+    display: flex;
+    width: $contentWidth;
+    margin: 0 auto;
+  }
+  a {
+    cursor: pointer;
+    line-height: $navHeight;
+    height: $navHeight;
+    padding: 0 15px;
+    text-decoration: none;
+    color: #fff;
+  }
+}
+:global {
+  .navbar_navbarItem--selected {
+    background-color: #fff;
+    color: $themeColor !important;
+  }
+}
