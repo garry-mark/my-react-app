@@ -22,6 +22,7 @@ module.exports = merge(baseConf, {
 		// progress: true,
 		// clientLogLevel: 'none',
 		// useLocalIp: true,
+		historyApiFallback: true,
 		compress: true,
 		overlay: true,
 		proxy: {
