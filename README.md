@@ -14,7 +14,7 @@
 #### webpack 工程化处理
 
 - [x] 开发生产环境区分，包括配置文件、环境变量设置等
-- [x] CleanWebpackPlugin 打包前，目录自动清理
+- [] CleanWebpackPlugin 打包前，目录自动清理 dist 目录下的所有文件
 - [] 第三方库提取
 - [] 根据路由实现按需加载
 - [] 缓存处理
@@ -24,6 +24,14 @@
 - [] cdn 处理
 - [] webpack 打包分析
 - [x] 别名处理
+  - [] 删除 node_module 别名处理
+- 开发环境
+  - [] output 删除 chunkhash 操作
+  - [] 同构环境删除 devServer 处理
+  - [] DefinePlugin 使用 ENV
+- 生产环境
+  - [] 生产 html 压缩处理
+  - [] DefinePlugin 使用 ENV
 
 #### js 处理
 
@@ -31,13 +39,17 @@
 - [x] .js 文件支持 ES6(stage-3)语法、jsx 语法
 - [x] 使用 envPreset，是 js 代码能根据环境进行兼容处理
 - [x] 使用 transform-runtime 对 pollify 进行按需加赞
-- [] UglifyJsPlugin 对代码进行压缩、优化、丑化以及 TreeShaking
+- [x] UglifyJsPlugin 对代码进行压缩、优化、丑化以及 TreeShaking
+- [x] eslint 处理
+- [x] flow 处理
+- [x] props-type 处理
 
 #### css 处理
 
+- [] sass 升级到 cssNext
+- [] 免加载全局变量处理
 - [x] autoprefix 处理
 - [x] sass 环境支持
-- [] sass 升级到 cssNext
 - [x] css 模块化（css-loader）
 - [x] react 组件，样式高阶函数处理（babel-react-css-modules 处理）
 - [] BEM 规范

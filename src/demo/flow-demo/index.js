@@ -34,11 +34,11 @@ class FlowDemo extends React.Component<Props, State> {
 	concat = (a: string, b: string): string => a + b;
 
 	componentDidMount() {
-		let a: string = this.concat('A', 'B');
+		// let a: string = this.concat('A', 'B');
 
 		setInterval(() => {
 			this.setState((prevState: State) => ({ isBlue: !prevState.isBlue }));
-		}, 1000);
+		}, 5000);
 	}
 
 	render() {
@@ -46,14 +46,15 @@ class FlowDemo extends React.Component<Props, State> {
 		const { isBlue } = this.state;
 		return (
 			<section>
-				<h1>prop</h1>
+				<h1>flow使用</h1>
+				<h2>prop</h2>
 				<p>{content}</p>
 				<p>{count}</p>
 				<hr />
-				<h1>state</h1>
+				<h2>state</h2>
 				<p>isBlue:{isBlue ? 'Yes' : 'No'}</p>
 				<hr />
-				<h1>function</h1>
+				<h2>function</h2>
 			</section>
 		);
 	}
