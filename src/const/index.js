@@ -1,4 +1,5 @@
-export const PAGE_SIZE = 10;
+// @flow
+export const PAGE_SIZE: number = 10;
 
-export const ORDER_BY_CREATETIME = 'createTime';
-export const ORDER_BY_PAGEVIEW = 'pageview';
+export const ORDER_BY_CREATETIME: string = 'createTime';
+export const ORDER_BY_PAGEVIEW: string = 'pageview';
