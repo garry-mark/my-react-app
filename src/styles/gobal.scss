@@ -2,7 +2,10 @@
 @import '../../node_modules/normalize.css';
 
 // 全局样式定义
-
+html,
+body {
+  height: 100%;
+}
 p {
   margin: 0;
 }
@@ -13,8 +16,11 @@ ul {
   margin: 0;
 }
 
-// 模拟第三方UI样式
+// 模拟第三方UI样式，全局样式定义
 :global {
+  #root {
+    height: 100%;
+  }
   .test {
     background-color: teal;
   }

@@ -1,0 +1,18 @@
+@import '@/styles/var.scss';
+
+$footerHeight: 30px;
+
+.app {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.footer {
+  height: $footerHeight;
+  line-height: $footerHeight;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background-color: $themeColor;
+}
