@@ -1,4 +1,4 @@
-import './style.scss';
+import './articles-list.scss';
 // @flow
 import * as React from 'react';
 import type { Articles } from '@/model/Articles';

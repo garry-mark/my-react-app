@@ -1,4 +1,4 @@
-import './style.scss';
+import './app.scss';
 // @flow
 import * as React from 'react';
 import { Route } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import './style.scss';
+import './articles-list.scss';
 // @flow
 import * as React from 'react';
 import ArticlesListItem from '../list/list-item/';

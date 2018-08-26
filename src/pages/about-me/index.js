@@ -1,4 +1,4 @@
-import './style.scss';
+import './about-me.scss';
 // @flow
 import * as React from 'react';
 

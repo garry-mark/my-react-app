@@ -1,4 +1,4 @@
-import './style.scss';
+import './articles-list.scss';
 // @flow
 import * as React from 'react';
 import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/const';
