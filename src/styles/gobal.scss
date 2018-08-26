@@ -1,10 +1,16 @@
 // 浏览器样式兼容处理
 @import '../../node_modules/normalize.css';
-
+@import '@/styles/var.scss';
 // 全局样式定义
+
 html,
 body {
   height: 100%;
+  color: $primaryFontColor;
+}
+
+html {
+  background-color: $rootBgColor;
 }
 
 @for $i from 1 through 6 {
@@ -15,6 +21,16 @@ body {
 
 p {
   margin: 0;
+}
+
+button {
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  color: $themeColor;
 }
 
 ul {
