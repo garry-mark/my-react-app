@@ -1,0 +1,43 @@
+@import '@/styles/var.scss';
+@import '@/styles/tool.scss';
+
+.articles-list-item {
+  padding: 15px 15px 0;
+  border: 1px solid $themeColor;
+  margin-bottom: 15px;
+  background-color: #fff;
+  h3 {
+    margin-bottom: 15px;
+    @include singleEllipsis;
+  }
+  .articles-content {
+    margin-bottom: 15px;
+    color: $secondFontColor;
+    @include multipleEllipsis(3);
+  }
+}
+.articles-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  color: $secondFontColor;
+  em {
+    color: $primaryFontColor;
+  }
+}
+.articles-bottom {
+  margin: 0 -15px;
+  display: flex;
+  height: 45px;
+  line-height: 45px;
+  button {
+    flex: 1;
+    border: none;
+    border-top: 1px solid $themeColor;
+    text-align: center;
+    color: $secondFontColor;
+    & + button {
+      border-left: 1px solid $themeColor;
+    }
+  }
+}
