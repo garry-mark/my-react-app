@@ -3,12 +3,12 @@ import './style.scss';
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 
-import Demo from '@/demo';
-import AboutMe from '@/about-me';
-import Header from '@/layout/header/';
-import NavBar from '@/layout/navbar/';
-import Main from '@/layout/main/';
-import Footer from '@/layout/footer/';
+import ArticlesList from '@/pages/articles/list/';
+import AboutMe from '@/pages/about-me';
+import Header from '@/components/layout/header/';
+import NavBar from '@/components/layout/navbar/';
+import Main from '@/components/layout/main/';
+import Footer from '@/components/layout/footer/';
 
 type Props = {};
 
@@ -28,7 +28,7 @@ class App extends React.Component<Props, State> {
 					<NavBar />
 				</Header>
 				<Main>
-					<Route exact path="/" component={Demo} />
+					<Route exact path="/" component={ArticlesList} />
 					<Route path="/aboutme" component={AboutMe} />
 				</Main>
 				<Footer>
