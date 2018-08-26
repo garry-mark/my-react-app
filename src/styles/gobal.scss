@@ -6,6 +6,13 @@ html,
 body {
   height: 100%;
 }
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    margin: 0;
+  }
+}
+
 p {
   margin: 0;
 }

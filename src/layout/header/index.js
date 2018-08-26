@@ -17,7 +17,6 @@ class Header extends React.Component<Props, State> {
 	componentDidMount() {}
 	render() {
 		const { children } = this.props;
-		const {} = this.state;
 		return <header>{children}</header>;
 	}
 }

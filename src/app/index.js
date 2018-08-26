@@ -22,8 +22,6 @@ class App extends React.Component<Props, State> {
 	}
 	componentDidMount() {}
 	render() {
-		const {} = this.props;
-		const {} = this.state;
 		return (
 			<div styleName="app">
 				<Header>
