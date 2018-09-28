@@ -69,13 +69,9 @@ class ArticlesList extends React.Component<Props, State> {
 		return (
 			<section>
 				<ArticlesListFilter getArticlesList={this.getArticlesList} />
-				<ul>
-					{articlesList.map(item => (
-						<li key={item.id}>
-							<ArticlesListItem data={item} />
-						</li>
-					))}
-				</ul>
+				{articlesList.map(item => (
+					<ArticlesListItem key={item.id} data={item} />
+				))}
 				<button onClick={this.getMore} styleName="more">
 					查看更多
 				</button>
