@@ -1,10 +1,11 @@
 import './app.scss';
 // @flow
 import * as React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import ArticlesList from '@/pages/articles/list/';
 import AboutMe from '@/pages/about-me';
+import Articles from '@/pages/articles/details/';
 import Header from '@/components/layout/header/';
 import NavBar from '@/components/layout/navbar/';
 import Main from '@/components/layout/main/';
@@ -28,9 +29,12 @@ class App extends React.Component<Props, State> {
 					<NavBar />
 				</Header>
 				<Main>
-					<Redirect exact from="/" to="/home" />
-					<Route exact path="/home" component={ArticlesList} />
-					<Route path="/aboutme" component={AboutMe} />
+					<Switch>
+						<Redirect exact from="/" to="/home" />
+						<Route path="/home" component={ArticlesList} />
+						<Route path="/aboutme" component={AboutMe} />
+						<Route path="/articles/:id" component={Articles} />
+					</Switch>
 				</Main>
 				<Footer>
 					<p>备案号：XXXX</p>
