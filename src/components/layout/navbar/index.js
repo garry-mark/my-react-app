@@ -20,7 +20,7 @@ class NavBar extends React.Component<Props, State> {
 		navbar: [
 			{
 				name: 'Home',
-				to: '/',
+				to: '/home',
 				isExact: true
 			},
 			{

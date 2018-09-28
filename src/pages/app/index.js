@@ -1,7 +1,7 @@
 import './app.scss';
 // @flow
 import * as React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import ArticlesList from '@/pages/articles/list/';
 import AboutMe from '@/pages/about-me';
@@ -28,11 +28,12 @@ class App extends React.Component<Props, State> {
 					<NavBar />
 				</Header>
 				<Main>
-					<Route exact path="/" component={ArticlesList} />
+					<Redirect exact from="/" to="/home" />
+					<Route exact path="/home" component={ArticlesList} />
 					<Route path="/aboutme" component={AboutMe} />
 				</Main>
 				<Footer>
-					<p styleName="footer">备案号：XXXX</p>
+					<p>备案号：XXXX</p>
 				</Footer>
 			</div>
 		);
