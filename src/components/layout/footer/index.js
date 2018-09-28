@@ -17,7 +17,7 @@ class Footer extends React.Component<Props, State> {
 	componentDidMount() {}
 	render() {
 		const { children } = this.props;
-		return <footer>{children}</footer>;
+		return <footer styleName="footer">{children}</footer>;
 	}
 }
 
