@@ -1,4 +1,4 @@
-import './style.scss';
+import './navbar.scss';
 // @flow
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';

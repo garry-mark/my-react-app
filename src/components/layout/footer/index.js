@@ -1,4 +1,4 @@
-import './style.scss';
+import './footer.scss';
 // @flow
 import * as React from 'react';
 
