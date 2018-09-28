@@ -5,7 +5,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import ArticleList from '@/pages/article/list/';
 import AboutMe from '@/pages/about-me';
-import Article from '@/pages/article/';
+import ArticleDetails from '@/pages/article/';
 import Header from '@/components/layout/header/';
 import NavBar from '@/components/layout/navbar/';
 import Main from '@/components/layout/main/';
@@ -33,7 +33,7 @@ class App extends React.Component<Props, State> {
 						<Redirect exact from="/" to="/home" />
 						<Route path="/home" component={ArticleList} />
 						<Route path="/aboutme" component={AboutMe} />
-						<Route path="/article/:id" component={Article} />
+						<Route path="/article/:id" component={ArticleDetails} />
 					</Switch>
 				</Main>
 				<Footer>
