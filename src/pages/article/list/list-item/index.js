@@ -1,15 +1,15 @@
-import './articles-item.scss';
+import './article-item.scss';
 // @flow
 import * as React from 'react';
-import type { Articles } from '@/model/Articles';
+import type { Article } from '@/model/Article';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
-	data: Articles
+	data: Article
 };
 
-class ArticlesListItem extends React.Component<Props> {
+class ArticleListItem extends React.Component<Props> {
 	constructor(props: Props) {
 		super(props);
 	}
@@ -27,18 +27,18 @@ class ArticlesListItem extends React.Component<Props> {
 			updateTime
 		} = data;
 		return (
-			<div styleName="articles-list-item">
-				<div styleName="articles-top">
+			<div styleName="article-list-item">
+				<div styleName="article-top">
 					<span>
 						来自分类 <em>{category.name}</em>
 					</span>
 					<time>{new Date(createTime).toLocaleString()}</time>
 				</div>
 				<h3>
-					<Link to={`/articles/${id}`}> {title}</Link>
+					<Link to={`/article/${id}`}> {title}</Link>
 				</h3>
-				<div styleName="articles-content">{content}</div>
-				<div styleName="articles-bottom">
+				<div styleName="article-content">{content}</div>
+				<div styleName="article-bottom">
 					<button>
 						<FontAwesomeIcon icon="thumbs-up" /> 赞 ({like > 999
 							? '999+'
@@ -58,4 +58,4 @@ class ArticlesListItem extends React.Component<Props> {
 	}
 }
 
-export default ArticlesListItem;
+export default ArticleListItem;

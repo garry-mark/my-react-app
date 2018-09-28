@@ -1,7 +1,7 @@
 @import '@/styles/var.scss';
 @import '@/styles/tool.scss';
 
-.articles-list-item {
+.article-list-item {
   padding: 15px 15px 0;
   border: 1px solid $themeColor;
   margin-bottom: 15px;
@@ -10,13 +10,13 @@
     margin-bottom: 15px;
     @include singleEllipsis;
   }
-  .articles-content {
+  .article-content {
     margin-bottom: 15px;
     color: $secondFontColor;
     @include multipleEllipsis(3);
   }
 }
-.articles-top {
+.article-top {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
@@ -25,7 +25,7 @@
     color: $primaryFontColor;
   }
 }
-.articles-bottom {
+.article-bottom {
   margin: 0 -15px;
   display: flex;
   height: 45px;

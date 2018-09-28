@@ -1,4 +1,4 @@
-import './articles-filter.scss';
+import './article-filter.scss';
 // @flow
 import * as React from 'react';
 import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/const';
@@ -9,7 +9,7 @@ type State = {
 	activeOrder: string
 };
 
-class ArticlesListFilter extends React.Component<Props, State> {
+class ArticleListFilter extends React.Component<Props, State> {
 	static defaultProps: Props = {};
 	state: State = {
 		activeOrder: ORDER_BY_CREATETIME
@@ -27,7 +27,7 @@ class ArticlesListFilter extends React.Component<Props, State> {
 		const {} = this.props;
 		const { activeOrder } = this.state;
 		return (
-			<div styleName="articles-list-filter">
+			<div styleName="article-list-filter">
 				<button
 					styleName={activeOrder === ORDER_BY_CREATETIME ? 'avtive' : ''}
 					onClick={e => this.changeListOrder(ORDER_BY_CREATETIME, e)}>
@@ -43,4 +43,4 @@ class ArticlesListFilter extends React.Component<Props, State> {
 	}
 }
 
-export default ArticlesListFilter;
+export default ArticleListFilter;

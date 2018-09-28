@@ -1,23 +1,23 @@
-import './articles-list.scss';
+import './article-list.scss';
 // @flow
 import * as React from 'react';
-import ArticlesListItem from '../list/list-item/';
-import ArticlesListFilter from '../list/list-filter/';
-import type { Articles } from '@/model/Articles';
+import ArticleListItem from '../list/list-item/';
+import ArticleListFilter from '../list/list-filter/';
+import type { Article } from '@/model/Article';
 import { PAGE_SIZE } from '@/const';
 
 type Props = {};
 
 type State = {
-	articlesList: Array<Articles>,
+	articleList: Array<Article>,
 	pageSize: number,
 	pageCurrent: number
 };
 
-class ArticlesList extends React.Component<Props, State> {
+class ArticleList extends React.Component<Props, State> {
 	static defaultProps: Props = {};
 	state: State = {
-		articlesList: [
+		articleList: [
 			{
 				id: 1,
 				category: { id: 1, name: 'JS' },
@@ -49,11 +49,11 @@ class ArticlesList extends React.Component<Props, State> {
 
 	getMore = () => {
 		const newPageNumber = this.state.pageCurrent + 1;
-		this.getArticlesList({ pageCurrent: newPageNumber });
+		this.getArticleList({ pageCurrent: newPageNumber });
 		this.setState({ pageCurrent: newPageNumber });
 	};
 
-	getArticlesList(options = {}) {
+	getArticleList(options = {}) {
 		options = {
 			pageSize: options.pageSize,
 			pageCurrent: options.pageCurrent,
@@ -65,13 +65,11 @@ class ArticlesList extends React.Component<Props, State> {
 
 	render() {
 		const {} = this.props;
-		const { articlesList } = this.state;
+		const { articleList } = this.state;
 		return (
 			<section>
-				<ArticlesListFilter getArticlesList={this.getArticlesList} />
-				{articlesList.map(item => (
-					<ArticlesListItem key={item.id} data={item} />
-				))}
+				<ArticleListFilter getArticleList={this.getArticleList} />
+				{articleList.map(item => <ArticleListItem key={item.id} data={item} />)}
 				<button onClick={this.getMore} styleName="more">
 					查看更多
 				</button>
@@ -80,4 +78,4 @@ class ArticlesList extends React.Component<Props, State> {
 	}
 }
 
-export default ArticlesList;
+export default ArticleList;

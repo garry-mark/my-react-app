@@ -1,7 +1,7 @@
 // @flow
 import type { Category } from './Category';
 
-export type Articles = {
+export type Article = {
 	id: number,
 	category: Category,
 	title: string,

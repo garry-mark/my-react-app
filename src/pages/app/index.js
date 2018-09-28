@@ -3,9 +3,9 @@ import './app.scss';
 import * as React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import ArticlesList from '@/pages/articles/list/';
+import ArticleList from '@/pages/article/list/';
 import AboutMe from '@/pages/about-me';
-import Articles from '@/pages/articles/details/';
+import Article from '@/pages/article/details/';
 import Header from '@/components/layout/header/';
 import NavBar from '@/components/layout/navbar/';
 import Main from '@/components/layout/main/';
@@ -31,9 +31,9 @@ class App extends React.Component<Props, State> {
 				<Main>
 					<Switch>
 						<Redirect exact from="/" to="/home" />
-						<Route path="/home" component={ArticlesList} />
+						<Route path="/home" component={ArticleList} />
 						<Route path="/aboutme" component={AboutMe} />
-						<Route path="/articles/:id" component={Articles} />
+						<Route path="/article/:id" component={Article} />
 					</Switch>
 				</Main>
 				<Footer>
