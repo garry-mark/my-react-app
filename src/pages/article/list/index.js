@@ -53,23 +53,25 @@ class ArticleList extends React.Component<Props, State> {
 		this.setState({ pageCurrent: newPageNumber });
 	};
 
-	getArticleList(options = {}) {
-		options = {
-			pageSize: options.pageSize,
-			pageCurrent: options.pageCurrent,
-			order: options.order || '',
-			categoryId: options.categoryId || ''
-		};
-		// dispatch
-	}
+	// getArticleList(options = {}) {
+	// 	options = {
+	// 		pageSize: options.pageSize,
+	// 		pageCurrent: options.pageCurrent,
+	// 		order: options.order || '',
+	// 		categoryId: options.categoryId || ''
+	// 	};
+	// 	// dispatch
+	// }
 
 	render() {
-		const {} = this.props;
+		// const {} = this.props;
 		const { articleList } = this.state;
 		return (
 			<section>
 				<ArticleListFilter getArticleList={this.getArticleList} />
-				{articleList.map(item => <ArticleListItem key={item.id} data={item} />)}
+				{articleList.map(item => (
+					<ArticleListItem key={item.id} article={item} />
+				))}
 				<button onClick={this.getMore} styleName="more">
 					查看更多
 				</button>

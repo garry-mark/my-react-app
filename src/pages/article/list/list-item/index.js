@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
-	data: Article
+	article: Article
 };
 
 class ArticleListItem extends React.Component<Props> {
@@ -15,7 +15,7 @@ class ArticleListItem extends React.Component<Props> {
 	}
 	componentDidMount() {}
 	render() {
-		const { data } = this.props;
+		const { article } = this.props;
 		const {
 			id,
 			category,
@@ -23,9 +23,8 @@ class ArticleListItem extends React.Component<Props> {
 			content,
 			pageview,
 			like,
-			createTime,
-			updateTime
-		} = data;
+			createTime
+		} = article;
 		return (
 			<div styleName="article-list-item">
 				<div styleName="article-top">
@@ -35,7 +34,9 @@ class ArticleListItem extends React.Component<Props> {
 					<time>{new Date(createTime).toLocaleString()}</time>
 				</div>
 				<h3>
-					<Link to={`/article/${id}`}> {title}</Link>
+					<Link to={{ pathname: `/article/${id}`, state: { article } }}>
+						{title}
+					</Link>
 				</h3>
 				<div styleName="article-content">{content}</div>
 				<div styleName="article-bottom">

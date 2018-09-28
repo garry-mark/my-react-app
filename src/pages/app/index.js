@@ -5,7 +5,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import ArticleList from '@/pages/article/list/';
 import AboutMe from '@/pages/about-me';
-import Article from '@/pages/article/details/';
+import Article from '@/pages/article/';
 import Header from '@/components/layout/header/';
 import NavBar from '@/components/layout/navbar/';
 import Main from '@/components/layout/main/';

@@ -24,7 +24,7 @@ class ArticleListFilter extends React.Component<Props, State> {
 	};
 
 	render() {
-		const {} = this.props;
+		// const {} = this.props;
 		const { activeOrder } = this.state;
 		return (
 			<div styleName="article-list-filter">
