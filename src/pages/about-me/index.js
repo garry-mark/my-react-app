@@ -68,7 +68,7 @@ class AboutMe extends React.Component<Props, State> {
 				<h3>Base Info</h3>
 				<p>
 					My name is{' '}
-					<a href={avatar} target="_blank">
+					<a href={avatar} target="_blank" rel="noopener noreferrer">
 						{lastName} {firstName}
 					</a>{' '}
 					({chineseName}). You can call me {lastName}. I was born in{' '}
