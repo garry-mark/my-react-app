@@ -12,11 +12,10 @@
     ],
     "flow",
     "react",
-    "stage-3"
+    "stage-2"
   ],
   "plugins": [
     "transform-runtime",
-    ["transform-class-properties", { "spec": true }],
     [
       "react-css-modules",
       {
