@@ -3,6 +3,7 @@ import './article.scss';
 import type { Article } from '@/model/Article';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
+import Loading from '@/components/loading';
 
 type Props = {
 	location: Object
@@ -57,7 +58,7 @@ class ArticleDetails extends React.Component<Props, State> {
 			updateTime
 		} = article;
 		return loading ? (
-			'Loading...'
+			<Loading />
 		) : (
 			<article styleName="article">
 				<h2>
