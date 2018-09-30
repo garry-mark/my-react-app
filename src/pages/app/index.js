@@ -4,9 +4,9 @@ import * as React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
-import ArticleList from '@/pages/article/list/';
-import AboutMe from '@/pages/about-me';
-import ArticleDetails from '@/pages/article/';
+// import ArticleList from '@/pages/article/list/';
+// import AboutMe from '@/pages/about-me';
+// import ArticleDetails from '@/pages/article/';
 import Header from '@/components/layout/header/';
 import Loading from '@/components/loading';
 import NavBar from '@/components/layout/navbar/';
@@ -17,20 +17,20 @@ type Props = {};
 
 type State = {};
 
-// const ArticleList = Loadable({
-// 	loader: () => import('@/pages/article/list'),
-// 	loading: Loading
-// });
+const ArticleList = Loadable({
+	loader: () => import('@/pages/article/list'),
+	loading: Loading
+});
 
-// const AboutMe = Loadable({
-// 	loader: () => import('@/pages/about-me'),
-// 	loading: Loading
-// });
+const AboutMe = Loadable({
+	loader: () => import('@/pages/about-me'),
+	loading: Loading
+});
 
-// const ArticleDetails = Loadable({
-// 	loader: () => import('@/pages/article'),
-// 	loading: Loading
-// });
+const ArticleDetails = Loadable({
+	loader: () => import('@/pages/article'),
+	loading: Loading
+});
 
 class App extends React.Component<Props, State> {
 	state: State = {};

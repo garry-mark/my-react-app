@@ -16,7 +16,7 @@
 - [x] 开发生产环境区分，包括配置文件、环境变量设置等
 - [] CleanWebpackPlugin 打包前，目录自动清理 dist 目录下的所有文件
 - [] 第三方库提取
-- [] 根据路由实现按需加载
+- [x] 根据路由实现按需加载
 - [] 缓存处理
 - [] dll 处理
 - [x] sourceMap:cheap-module-eval-source-map 处理 开发环境下，可以定位报错
@@ -24,7 +24,7 @@
 - [] cdn 处理
 - [] webpack 打包分析
 - [x] 别名处理
-  - [] 删除 node_module 别名处理
+  - [x] 删除 node_module 别名处理
 - 开发环境
   - [] output 删除 chunkhash 操作
   - [] 同构环境删除 devServer 处理
