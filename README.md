@@ -13,6 +13,7 @@
 
 #### webpack 工程化处理
 
+- [] DefinePlugin 使用 ENV 变量比使用字符串字面量，打包要多 200k？？
 - [x] 开发生产环境区分，包括配置文件、环境变量设置等
 - [] CleanWebpackPlugin 打包前，目录自动清理 dist 目录下的所有文件
 - [] 第三方库提取

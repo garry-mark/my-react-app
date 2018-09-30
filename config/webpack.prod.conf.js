@@ -9,6 +9,17 @@ const baseConf = require('./webpack.base.conf.js');
 
 const ENV = 'production';
 
+// isOpenBundleAnalyzerPlugin
+if (true) {
+	const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+		.BundleAnalyzerPlugin;
+	if (baseConf.plugins) {
+		baseConf.plugins.push(new BundleAnalyzerPlugin());
+	} else {
+		baseConf.plugins = [new BundleAnalyzerPlugin()];
+	}
+}
+
 module.exports = merge(baseConf, {
 	mode: ENV,
 	output: {
