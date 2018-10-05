@@ -58,7 +58,7 @@ module.exports = merge(baseConf, {
 		}),
 		new CleanWebpackPlugin(['dist'], {
 			root: baseConf.context,
-			exclude: ['assets`']
+			exclude: ['assets']
 		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].[contenthash].css',
