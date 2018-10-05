@@ -10,6 +10,7 @@
   "scripts": {
     "start": "npm run dev",
     "build": "webpack --config ./config/webpack.prod.conf.js",
+    "build:dll": "webpack --config ./config/webpack.dll.conf.js",
     "dev": "webpack-dev-server --open --config ./config/webpack.dev.conf.js",
     "flow": "flow",
     "lint": "eslint --ext .js,.jsx src"

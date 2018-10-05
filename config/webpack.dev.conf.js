@@ -16,9 +16,8 @@ module.exports = merge(baseConf, {
 	},
 	devtool: 'cheap-module-eval-source-map',
 	devServer: {
-		contentBase: false,
 		// 静态资源路径
-		// contentBase: path.resolve(baseConf.context, 'dist'),
+		contentBase: path.resolve(baseConf.context, 'dist'),
 		// progress: true,
 		// clientLogLevel: 'none',
 		// useLocalIp: true,

@@ -10,7 +10,7 @@ const baseConf = require('./webpack.base.conf.js');
 const ENV = 'production';
 
 // isOpenBundleAnalyzerPlugin
-if (true) {
+if (false) {
 	const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 		.BundleAnalyzerPlugin;
 	if (baseConf.plugins) {
@@ -57,7 +57,8 @@ module.exports = merge(baseConf, {
 			'process.env.NODE_ENV': '"production"'
 		}),
 		new CleanWebpackPlugin(['dist'], {
-			root: baseConf.context
+			root: baseConf.context,
+			exclude: ['assets`']
 		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].[contenthash].css',
