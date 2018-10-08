@@ -7,6 +7,7 @@
         "targets": {
           "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
         },
+        "useBuiltIns": true,
         "debug": false
       }
     ],
@@ -15,7 +16,6 @@
     "stage-2"
   ],
   "plugins": [
-    "transform-runtime",
     [
       "react-css-modules",
       {
