@@ -4,31 +4,31 @@ import * as React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
-// import ArticleList from '@/pages/article/list/';
-// import AboutMe from '@/pages/about-me';
-// import ArticleDetails from '@/pages/article/';
-import Header from '@/components/layout/header/';
-import Loading from '@/components/loading';
-import NavBar from '@/components/layout/navbar/';
-import Main from '@/components/layout/main/';
-import Footer from '@/components/layout/footer/';
+// import ArticleList from '@/browser/pages/article/list/';
+// import AboutMe from '@/browser/pages/about-me';
+// import ArticleDetails from '@/browser/pages/article/';
+import Header from '@/browser/components/layout/header/';
+import Loading from '@/browser/components/loading';
+import NavBar from '@/browser/components/layout/navbar/';
+import Main from '@/browser/components/layout/main/';
+import Footer from '@/browser/components/layout/footer/';
 
 type Props = {};
 
 type State = {};
 
 const ArticleList = Loadable({
-	loader: () => import('@/pages/article/list'),
+	loader: () => import('@/browser/pages/article/list'),
 	loading: Loading
 });
 
 const AboutMe = Loadable({
-	loader: () => import('@/pages/about-me'),
+	loader: () => import('@/browser/pages/about-me'),
 	loading: Loading
 });
 
 const ArticleDetails = Loadable({
-	loader: () => import('@/pages/article'),
+	loader: () => import('@/browser/pages/article'),
 	loading: Loading
 });
 

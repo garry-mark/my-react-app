@@ -1,7 +1,7 @@
 import './article-item.scss';
 // @flow
 import * as React from 'react';
-import type { Article } from '@/model/Article';
+import type { Article } from '@/browser/model/Article';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

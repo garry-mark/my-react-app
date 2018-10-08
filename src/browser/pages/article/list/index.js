@@ -3,8 +3,8 @@ import './article-list.scss';
 import * as React from 'react';
 import ArticleListItem from '../list/list-item/';
 import ArticleListFilter from '../list/list-filter/';
-import type { Article } from '@/model/Article';
-import { PAGE_SIZE } from '@/const';
+import type { Article } from '@/browser/model/Article';
+import { PAGE_SIZE } from '@/browser/const';
 
 type Props = {};
 

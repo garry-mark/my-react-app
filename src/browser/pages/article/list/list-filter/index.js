@@ -1,7 +1,7 @@
 import './article-filter.scss';
 // @flow
 import * as React from 'react';
-import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/const';
+import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/browser/const';
 
 type Props = {};
 

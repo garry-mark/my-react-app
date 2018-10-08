@@ -1,9 +1,9 @@
 import './article.scss';
 // @flow
-import type { Article } from '@/model/Article';
+import type { Article } from '@/browser/model/Article';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
-import Loading from '@/components/loading';
+import Loading from '@/browser/components/loading';
 
 type Props = {
 	location: Object

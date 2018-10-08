@@ -4,7 +4,7 @@
   - 由于 JSX 编译后会调用 React.createElement 方法，所以在你的 JSX 代码中必须首先声明 React 变量。
 - [] 样式表内不能使用 @import '#/normalize.css'导入 node_modules 里的文件
   - 暂时解决方案：使用相对路径
-- [x] 由于使用了 babel-react-css-module @import '@/styles/index.scss';无法在 src/index.js 单独导入
+- [x] 由于使用了 babel-react-css-module @import '@/browser/styles/index.scss';无法在 src/browser/index.js 单独导入
   - 暂时解决方案：放到 app 的 scss 里面@import
   - 解决方案：由于无法使用别名处理，所以./styles/index.scss 即可
 - [] sass 升级到 cssNext
@@ -15,11 +15,11 @@
 
 - [] DefinePlugin 使用 ENV 变量比使用字符串字面量，打包要多 200k？？
 - [x] 开发生产环境区分，包括配置文件、环境变量设置等
-- [] CleanWebpackPlugin 打包前，目录自动清理 dist 目录下的所有文件
-- [] 第三方库提取
+- [x] CleanWebpackPlugin 打包前，目录自动清理 dist 目录下的所有文件
+- [x] 第三方库提取
 - [x] 根据路由实现按需加载
 - [] 缓存处理
-- [] dll 处理
+- [x] dll 处理
 - [x] sourceMap:cheap-module-eval-source-map 处理 开发环境下，可以定位报错
 - [x] devServer 搭建（HRM 热替换模块、服务代理）
 - [] cdn 处理
