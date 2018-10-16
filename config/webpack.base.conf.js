@@ -3,11 +3,11 @@ const webpack = require('webpack');
 
 module.exports = {
 	context: path.resolve(__dirname, '../'),
-	entry: { app: './src/browser/index.js' },
+	entry: { app: './src/browser-ts/index.tsx' },
 
 	resolve: {
 		modules: [path.resolve(__dirname, '../src'), 'node_modules'],
-		extensions: ['.js', '.json', '.jsx'],
+		extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
 		alias: {
 			'@': path.resolve(__dirname, '../src')
 		}
@@ -26,10 +26,15 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader'
+				test: /\.tsx?$/,
+				use: 'ts-loader',
+				exclude: /node_modules/
 			},
+			// {
+			// 	test: /\.js$/,
+			// 	exclude: /node_modules/,
+			// 	loader: 'babel-loader'
+			// },
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 				include: path.resolve(__dirname, '../src'),
