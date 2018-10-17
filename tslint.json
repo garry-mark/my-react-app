@@ -1,0 +1,19 @@
+{
+  "extends": ["tslint:recommended", "tslint-react"],
+  "rulesDirectory": [],
+  "rules": {
+    "indent": {
+      "options": ["tabs"]
+    },
+    "interface-name": [true, "never-prefix"],
+    "quotemark": [true, "single", "jsx-double"],
+    "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
+    "no-console": {
+      "severity": "off",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+    }
+  },
+  "linterOptions": {
+    "exclude": ["dist/*", "config/*", "node_modules/*"]
+  }
+}

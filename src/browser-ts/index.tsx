@@ -1,6 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-const Hello = () => <h1>hello world</h1>;
+interface IhelloProps {
+	compiler: string;
+	framework: string;
+}
 
-ReactDOM.render(<Hello />, document.getElementById('root'));
+const Hello = (props: IhelloProps) => <h1>hello world</h1>;
+
+ReactDOM.render(
+	<Hello compiler="abc" framework="abc" />,
+	document.getElementById('root')
+);
