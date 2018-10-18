@@ -1,9 +1,8 @@
 {
   "extends": ["tslint:recommended", "tslint-react"],
-  "rulesDirectory": [],
   "rules": {
     "indent": {
-      "options": ["tabs"]
+      "options": ["tabs", 2]
     },
     "interface-name": [true, "never-prefix"],
     "quotemark": [true, "single", "jsx-double"],

@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "target": "es6",
+    "jsx": "preserve",
     "sourceMap": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
-    "jsx": "react",
-    "allowJs": true,
+    "strictNullChecks": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "experimentalDecorators": true
   },
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules"]
 }
