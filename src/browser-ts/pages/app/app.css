@@ -1,0 +1,7 @@
+.app {
+  background-color: var(--mainColor);
+  & h1 {
+    color: blue;
+    @mixin multipleEllipsis 2;
+  }
+}

@@ -52,16 +52,10 @@ module.exports = merge(baseConf, {
               modules: true,
               localIdentName: '[local]--[hash:base64:5]',
               namedExport: true,
-              camelCase: true,
-              sass: true
+              camelCase: true
             }
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }
+          'postcss-loader'
         ]
       }
     ]

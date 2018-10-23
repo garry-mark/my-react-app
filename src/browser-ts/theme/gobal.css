@@ -1,0 +1,53 @@
+@import './_var';
+@import './_reset';
+
+/*
+only support :global(）because css unsupport nesting
+
+:global(.test) {
+  background-color: red;
+}
+*/
+
+/*
+override global css example
+
+.app {
+  background-color: var(--mainColor);
+  & :global(.test) {
+    background-color: yellow;
+  }
+}
+*/
+
+/* @import './_mixins'; */
+@define-mixin clearfix {
+  *zoom: 1;
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  &:before {
+    content: '';
+    display: table;
+  }
+}
+
+@define-mixin singleEllipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@define-mixin multipleEllipsis $line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+:global(#root) {
+  height: 100%;
+}

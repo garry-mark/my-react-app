@@ -1,4 +1,10 @@
 module.exports = {
   map: false,
-  plugins: [require('autoprefixer')()]
+  plugins: [
+    require('postcss-mixins'),
+    require('postcss-import')(),
+    require('postcss-preset-env')({
+      stage: 0
+    })
+  ]
 }

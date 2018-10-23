@@ -27,7 +27,7 @@
 - [x] sourceMap:cheap-module-eval-source-map 处理 开发环境下，可以定位报错
 - [x] devServer 搭建（HRM 热替换模块、服务代理）
 - [] cdn 处理
-- [] webpack 打包分析
+- [x] webpack 打包分析
 - [x] 别名处理
   - [x] 删除 node_module 别名处理
 - 开发环境
@@ -51,8 +51,9 @@
 
 #### css 处理
 
-- [] sass 升级到 cssNext
-- [] 免加载全局变量处理
+- [x] sass 升级到 cssNext
+  - [] mixin 不能单独提出来，首次会报错，估计加载顺序有问题
+- [x] 免加载全局变量处理
 - [x] autoprefix 处理
 - [x] sass 环境支持
 - [x] css 模块化（css-loader）
@@ -60,11 +61,10 @@
 - [] BEM 规范
 - [x] normalize 集成
 - [x] 样式工具、函数、以及变量提取
-- [] 样式按需加载
+- [x] 样式按需加载
 - [x] MiniCssExtractPlugin 样式文件提取处理
 - [x] css 压缩优化（css-loader）
 - [x] 样式缓存处理，并且文件名根据内容决定
-- [] 标签选择器的局部处理
 
 #### html 处理
 

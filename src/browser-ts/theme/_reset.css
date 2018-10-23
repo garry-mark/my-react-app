@@ -1,0 +1,37 @@
+@import 'normalize.css';
+
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+html,
+body {
+  height: 100%;
+  color: var(--primaryFontColor);
+}
+
+html {
+  background-color: var(--rootBgColor);
+}
+
+:--heading {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  color: var(--themeColor);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

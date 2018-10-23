@@ -1,0 +1,39 @@
+/* example
+@define-mixin icon $name {
+  padding-left: 16px;
+  &::after {
+    content: '';
+    background-url: url(/icons/$(name).png);
+  }
+}
+
+.search {
+  @mixin icon search;
+}
+*/
+@define-mixin clearfix {
+  *zoom: 1;
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  &:before {
+    content: '';
+    display: table;
+  }
+}
+
+@define-mixin singleEllipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@define-mixin multipleEllipsis $line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}

@@ -56,7 +56,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
+    // new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
     new webpack.DllReferencePlugin({
       manifest: require('../vendor-manifest.json')
     })

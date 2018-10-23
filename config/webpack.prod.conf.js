@@ -35,16 +35,17 @@ module.exports = merge(baseConf, {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: 'typings-for-css-modules-loader',
             options: {
+              sourceMap: true,
               modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-              minimize: true,
-              importLoaders: 2
+              localIdentName: '[local]--[hash:base64:5]',
+              namedExport: true,
+              camelCase: true,
+              sass: true
             }
           },
-          'postcss-loader',
-          'sass-loader'
+          'postcss-loader'
         ]
       }
     ]
