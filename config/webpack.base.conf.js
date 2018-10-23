@@ -9,7 +9,7 @@ module.exports = {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
     extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src/browser')
     }
   },
 
@@ -56,6 +56,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
     new webpack.DllReferencePlugin({
       manifest: require('../vendor-manifest.json')
     })

@@ -1,26 +1,26 @@
-import './styles/gobal.scss';
+import './styles/gobal.scss'
 
-import 'babel-polyfill';
+import 'babel-polyfill'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import App from '@/browser/pages/app';
+import App from '@/pages/app'
 
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-	faThumbsUp,
-	faShareSquare,
-	faEye
-} from '@fortawesome/free-solid-svg-icons';
+  faThumbsUp,
+  faShareSquare,
+  faEye
+} from '@fortawesome/free-solid-svg-icons'
 
-library.add([faThumbsUp, faShareSquare, faEye]);
+library.add([faThumbsUp, faShareSquare, faEye])
 
 const Root = () => (
-	<Router>
-		<App />
-	</Router>
-);
+  <Router>
+    <App />
+  </Router>
+)
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'))

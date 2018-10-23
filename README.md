@@ -8,7 +8,7 @@
   - 由于 JSX 编译后会调用 React.createElement 方法，所以在你的 JSX 代码中必须首先声明 React 变量。
 - [] 样式表内不能使用 @import '#/normalize.css'导入 node_modules 里的文件
   - 暂时解决方案：使用相对路径
-- [x] 由于使用了 babel-react-css-module @import '@/browser/styles/index.scss';无法在 src/browser/index.js 单独导入
+- [x] 由于使用了 babel-react-css-module @import '@/styles/index.scss';无法在 src/browser/index.js 单独导入
   - 暂时解决方案：放到 app 的 scss 里面@import
   - 解决方案：由于无法使用别名处理，所以./styles/index.scss 即可
 - [] sass 升级到 cssNext
