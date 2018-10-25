@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: { app: './src/browser-ts/index.tsx' },
+  entry: { app: './src/browser/index.tsx' },
 
   resolve: {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],

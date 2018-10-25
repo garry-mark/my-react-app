@@ -1,0 +1,14 @@
+.article-list-filter {
+  margin-bottom: 20px;
+  & button {
+    border: 1px solid var(--themeColor);
+    height: 30px;
+    padding: 0 15px;
+    & + button {
+      border-left: none;
+    }
+    &.avtive {
+      color: var(--themeColor);
+    }
+  }
+}
