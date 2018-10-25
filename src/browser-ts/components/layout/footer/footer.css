@@ -1,0 +1,8 @@
+.footer {
+  height: var(--footerHeight);
+  line-height: var(--footerHeight);
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background-color: var(--themeColor);
+}

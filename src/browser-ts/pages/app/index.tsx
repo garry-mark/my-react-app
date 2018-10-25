@@ -1,7 +1,14 @@
 import * as React from 'react';
+// import { Redirect, Route, Switch } from 'react-router-dom';
 import * as style from './app.css';
 
-console.log(style);
+import Header from '../../components/layout/header/';
+
+// import Loading from '@/components/loading'
+import NavBar from '../../components/layout/navbar/';
+
+import Footer from '../../components/layout/footer/';
+import Main from '../../components/layout/main/';
 
 class App extends React.Component<any, any> {
 	public state: any = {};
@@ -13,7 +20,13 @@ class App extends React.Component<any, any> {
 	public render() {
 		return (
 			<div className={style.app}>
-				<h1 className="test">abc</h1>
+				<Header>
+					<NavBar />
+				</Header>
+				<Main />
+				<Footer>
+					<p>备案号：XXXX</p>
+				</Footer>
 			</div>
 		);
 	}

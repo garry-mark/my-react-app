@@ -1,7 +1,6 @@
 .app {
-  background-color: var(--mainColor);
-  & h1 {
-    color: blue;
-    @mixin multipleEllipsis 2;
-  }
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }

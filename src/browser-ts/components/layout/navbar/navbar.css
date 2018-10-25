@@ -1,0 +1,22 @@
+.navbar {
+  --navHeight: 45px;
+  background-color: var(--themeColor);
+  height: var(--navHeight);
+  line-height: var(--navHeight);
+  & > div {
+    display: flex;
+    width: var(--contentWidth);
+    margin: 0 auto;
+  }
+  & a {
+    padding: 0 15px;
+    line-height: var(--navHeight);
+    height: var(--navHeight);
+    text-decoration: none;
+    color: #fff;
+  }
+}
+:global(.navbar_navbarItem--selected) {
+  background-color: #fff;
+  color: var(--themeColor) !important;
+}

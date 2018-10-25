@@ -37,12 +37,11 @@ module.exports = merge(baseConf, {
           {
             loader: 'typings-for-css-modules-loader',
             options: {
-              sourceMap: true,
               modules: true,
               localIdentName: '[local]--[hash:base64:5]',
               namedExport: true,
               camelCase: true,
-              sass: true
+              minimize: true
             }
           },
           'postcss-loader'
