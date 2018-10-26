@@ -1,5 +1,13 @@
 {
   "name": "garry-blog",
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 9",
+    "iOS >= 8",
+    "Android >= 4"
+  ],
   "sideEffects": [
     "*.css",
     "*.scss"
@@ -13,13 +21,14 @@
     "build": "webpack --config ./config/webpack.prod.conf.js",
     "build:dll": "webpack --config ./config/webpack.dll.conf.js",
     "dev": "webpack-dev-server --open --config ./config/webpack.dev.conf.js",
-    "flow": "flow",
-    "eslint": "eslint --ext .ts,.tsx src"
+    "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'"
   },
   "keywords": [
     "blog",
     "react",
-    "webpack4"
+    "webpack4",
+    "koa",
+    "node"
   ],
   "author": "garry",
   "license": "ISC",
@@ -60,7 +69,6 @@
     "postcss-loader": "^2.1.5",
     "postcss-mixins": "^6.2.0",
     "postcss-preset-env": "^6.2.0",
-    "postcss-scss": "^1.0.5",
     "style-loader": "^0.21.0",
     "ts-loader": "^5.2.2",
     "tslint": "^5.11.0",
@@ -76,13 +84,5 @@
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "Firefox ESR",
-    "> 1%",
-    "ie >= 9",
-    "iOS >= 8",
-    "Android >= 4"
-  ]
+  }
 }
