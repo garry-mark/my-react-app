@@ -11,6 +11,7 @@
     "jsx-no-multiline-js": false,
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
+    "no-var-requires": false,
     "no-console": {
       "severity": "off",
       "options": ["debug", "info", "log", "time", "timeEnd", "trace"]

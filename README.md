@@ -1,9 +1,16 @@
 ### 思考
 
 - typescript 与 babel 和 eslint 的区别
+  - ts 是一种语法，tslint 对其进行风格限制，但是 ts 可以静态检测某些错误
+  - ts 可以生成 es5 或 es6，但是依然需要 babel 进行 polifill
+  - lib 编译选项只是编译时定义，但是还需要 polifill
 
 ### 待续优化
 
+- [] babel-polifill 根据环境动态加载
+  - 方案一：require，多 30k，估计没有 treeshaking
+  - 方案二：import 'babel-polifill',但是不能更具环境区分动态加载
+  - 方案三：import('babel-polifill'),无@types/babel-polyfill
 - [x] react 环境配置问题，每个组件都应用 React 类，但是没有代码上面的调用，删除后报错："React is not defined"
   - 由于 JSX 编译后会调用 React.createElement 方法，所以在你的 JSX 代码中必须首先声明 React 变量。
 - [x] 样式表内不能使用 @import '#/normalize.css'导入 node_modules 里的文件
@@ -48,6 +55,9 @@
 - [x] eslint 处理
 - [x] flow 处理
 - [x] props-type 处理
+- [x] 升级 typescript
+  - ts 可以统一前后端的静态类型语言
+  - 升级后打包结果略大于 js，几 k
 
 #### react 处理
 
@@ -56,6 +66,7 @@
 #### css 处理
 
 - [x] sass 升级到 cssNext
+  - 升级后打包结果略大于 sass，并且只支持 IE12 以上，而且语法尚不成熟
 - [x] 免加载全局变量处理
   - 解决方案：postcss 处理
 - [x] autoprefix 处理
