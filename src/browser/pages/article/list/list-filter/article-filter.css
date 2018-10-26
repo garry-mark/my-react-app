@@ -7,7 +7,7 @@
     & + button {
       border-left: none;
     }
-    &.avtive {
+    &.active {
       color: var(--themeColor);
     }
   }

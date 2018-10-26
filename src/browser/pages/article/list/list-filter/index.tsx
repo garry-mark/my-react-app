@@ -14,6 +14,7 @@ class ArticleListFilter extends React.Component<any, ArticleListFilterState> {
 	};
 
 	public changeListOrder = (newOrder: any) => {
+		console.log(newOrder);
 		this.setState({ activeOrder: newOrder });
 	}
 
@@ -23,13 +24,13 @@ class ArticleListFilter extends React.Component<any, ArticleListFilterState> {
 		return (
 			<div className={style.articleListFilter}>
 				<button
-					className={activeOrder === ORDER_BY_CREATETIME ? 'avtive' : ''}
+					className={activeOrder === ORDER_BY_CREATETIME ? style.active : ''}
 					onClick={() => this.changeListOrder(ORDER_BY_CREATETIME)}
 				>
 					最新
 				</button>
 				<button
-					className={activeOrder === ORDER_BY_PAGEVIEW ? 'avtive' : ''}
+					className={activeOrder === ORDER_BY_PAGEVIEW ? style.active : ''}
 					onClick={() => this.changeListOrder(ORDER_BY_PAGEVIEW)}
 				>
 					最Top
