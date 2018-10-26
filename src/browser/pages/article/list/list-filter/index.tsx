@@ -2,7 +2,7 @@ import * as style from './article-filter.css';
 
 import * as React from 'react';
 
-import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '../../../../const';
+import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/const';
 
 interface ArticleListFilterState {
 	activeOrder: string;
@@ -14,7 +14,6 @@ class ArticleListFilter extends React.Component<any, ArticleListFilterState> {
 	};
 
 	public changeListOrder = (newOrder: any) => {
-		console.log(newOrder);
 		this.setState({ activeOrder: newOrder });
 	}
 

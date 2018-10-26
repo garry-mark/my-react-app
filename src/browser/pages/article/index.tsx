@@ -1,10 +1,10 @@
-import { Article } from '../../model/Articles';
+import { Article } from '@/model/Articles';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as React from 'react';
 
-import Loading from '../../components/loading';
+import Loading from '@/components/loading';
 
 import * as style from './article.css';
 

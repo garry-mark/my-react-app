@@ -6,9 +6,9 @@ import ArticleListItem from './list-item';
 
 import ArticleListFilter from './list-filter';
 
-import { Article } from '../../../model/Articles';
+import { Article } from '@/model/Articles';
 
-import { PAGE_SIZE } from '../../../const';
+import { PAGE_SIZE } from '@/const';
 
 interface State {
 	articleList: Article[];

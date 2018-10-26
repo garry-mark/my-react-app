@@ -4,9 +4,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import './theme/global.css';
+import '@/theme/global.css';
 
-import App from './pages/app';
+import App from '@/pages/app';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {

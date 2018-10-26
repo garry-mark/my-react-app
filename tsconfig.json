@@ -10,7 +10,12 @@
     "strictNullChecks": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/browser/*"],
+      "#/*": ["./src/server/*"]
+    }
   },
   "exclude": ["node_modules"]
 }

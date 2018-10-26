@@ -1,12 +1,10 @@
-import * as style from './article-item.css';
-
 import * as React from 'react';
 
-import { Article } from '../../../../model/Articles';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Article } from '@/model/Articles';
+import * as style from './article-item.css';
 
 interface ArticleListItemProps {
 	article: Article;

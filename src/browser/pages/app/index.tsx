@@ -4,27 +4,27 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import * as Loadable from 'react-loadable';
 import * as style from './app.css';
 
-import Header from '../../components/layout/header/';
+import Header from '@/components/layout/header/';
 
-import Loading from '../../components/loading/';
+import Loading from '@/components/loading/';
 
-import NavBar from '../../components/layout/navbar/';
+import NavBar from '@/components/layout/navbar/';
 
-import Footer from '../../components/layout/footer/';
-import Main from '../../components/layout/main/';
+import Footer from '@/components/layout/footer/';
+import Main from '@/components/layout/main/';
 
 const ArticleList = Loadable({
-	loader: () => import('../article/list'),
+	loader: () => import('@/pages/article/list'),
 	loading: Loading
 });
 
 const AboutMe = Loadable({
-	loader: () => import('../about-me'),
+	loader: () => import('@/pages/about-me'),
 	loading: Loading
 });
 
 const ArticleDetails = Loadable({
-	loader: () => import('../article'),
+	loader: () => import('@/pages/article'),
 	loading: Loading
 });
 
