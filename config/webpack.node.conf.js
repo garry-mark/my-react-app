@@ -1,15 +1,22 @@
 const path = require('path')
 const webpack = require('webpack')
 
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const StartServerPlugin = require('start-server-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   mode: 'development',
+
   context: path.resolve(__dirname, '../'),
-  entry: {
-    app: './src/server/index.ts',
-    'webpack/hot/signal': 'webpack/hot/signal'
+  entry: [
+    path.resolve(__dirname, '../src/server/index.ts'),
+    'webpack/hot/signal'
+  ],
+  output: {
+    path: path.resolve(__dirname, '../dist/server'),
+    filename: '[name].js',
+    publicPath: '/'
   },
 
   resolve: {
@@ -21,6 +28,10 @@ module.exports = {
     }
   },
   target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
   module: {
     rules: [
       {
@@ -42,10 +53,13 @@ module.exports = {
     })
   ],
   plugins: [
+    new CleanWebpackPlugin(['dist/server'], {
+      root: path.resolve(__dirname, '../')
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new StartServerPlugin({
       // 启动的文件
-      name: 'app.js',
+      name: 'main.js',
       // 开启signal模式的热加载
       signal: true,
       // 为调试留接口

@@ -1,3 +1,5 @@
+import './utils/handleTsAlias';
+
 import * as http from 'http';
 
 import app from '#/app';

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "es6",
-    "module": "commonjs",
+    "module": "esnext",
     "jsx": "preserve",
     "sourceMap": true,
     "moduleResolution": "node",
@@ -12,7 +12,7 @@
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    "baseUrl": "../",
     "paths": {
       "@/*": ["./src/browser/*"],
       "#/*": ["./src/server/*"]

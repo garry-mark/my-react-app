@@ -16,12 +16,12 @@
   "description": "The blog of Garry",
   "main": "index.js",
   "scripts": {
-    "start": "npm run dev",
+    "start": "npm run dev:node",
     "serve": "nodemon ./src/server/index.js ",
     "build": "webpack --config ./config/webpack.prod.conf.js",
     "build:dll": "webpack --config ./config/webpack.dll.conf.js",
     "dev": "webpack-dev-server --open --config ./config/webpack.dev.conf.js",
-    "dev:node": "webpack --watch --config ./config/webpack.node.conf.js",
+    "dev:node": "nodemon --watch 'src/server/**/*.ts' --exec 'ts-node' src/server/index.ts",
     "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'"
   },
   "keywords": [
@@ -77,6 +77,9 @@
     "start-server-webpack-plugin": "^2.2.5",
     "style-loader": "^0.21.0",
     "ts-loader": "^5.2.2",
+    "ts-node": "^7.0.1",
+    "ts-node-dev": "^1.0.0-pre.30",
+    "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.5.4",
     "tslint-react": "^3.6.0",
