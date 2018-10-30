@@ -4,6 +4,9 @@
   - ts 是一种语法，tslint 对其进行风格限制，但是 ts 可以静态检测某些错误
   - ts 可以生成 es5 或 es6，但是依然需要 babel 进行 polifill
   - lib 编译选项只是编译时定义，但是还需要 polifill
+- node 环境下，实现 generator 方案的差异？
+  - TSconfig target:es5 lib:es2015 无需 babel-polyfill 实现 generator
+  - TSconfig target:es6 lib:无 需要 babel-polyfill 实现 generator（即 regenerator）
 
 ### 待续优化
 
