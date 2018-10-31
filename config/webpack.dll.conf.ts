@@ -1,10 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
-// const packageJson = require('../package.json');
+import * as path from 'path';
+import * as webpack from 'webpack';
 
-// const vendorArr = Object.keys(packageJson.dependencies);
-
-const dllConfig = {
+const dllConfig: webpack.Configuration = {
 	mode: 'production',
 	context: path.resolve(__dirname, '../'),
 
@@ -31,4 +28,4 @@ if (false) {
 	dllConfig.plugins = [new BundleAnalyzerPlugin()];
 }
 
-module.exports = dllConfig;
+export default dllConfig;

@@ -16,7 +16,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faThumbsUp, faShareSquare, faEye);
-
 const Root = () => (
 	<Router>
 		<App />
