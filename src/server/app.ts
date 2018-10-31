@@ -8,7 +8,7 @@ import * as KoaStatic from 'koa-static';
 
 import ssrMiddleware from './middleware/serverSideRender';
 
-// import routes from './router/';
+import apiRoutes from './router/';
 
 const app = new Koa();
 const router = new Router();
@@ -16,8 +16,8 @@ const router = new Router();
 const staticPath = '../../dist';
 app.use(KoaStatic(path.join(__dirname, staticPath)));
 
-// routes for '/api/*'
-// app.use(routes);
+// apiRfor '/api/*'
+app.use(apiRoutes.routes());
 
 router.get('/*', ssrMiddleware);
 
