@@ -7,6 +7,7 @@
 - node 环境下，实现 generator 方案的差异？
   - TSconfig target:es5 lib:es2015 无需 babel-polyfill 实现 generator
   - TSconfig target:es6 lib:无 需要 babel-polyfill 实现 generator（即 regenerator）
+- [] babel 是否可以考虑移出开发环境？
 
 ### 待续优化
 
@@ -26,12 +27,18 @@
 - [] mixin 不能单独提出来，首次会报错，估计加载顺序有问题
 - [] DefinePlugin 使用 ENV 变量比使用字符串字面量，打包要多 200k？？
 - [] 根据打包内容，如果大于 160k 采用按需加载方案，否则只出一个包
+- [] eslint-loader 在 webpack 的 nodeAPI 中无法使用
+  - Module build failed: TypeError: Cannot read property 'VERSION' of undefined at Object.module.exports (/Users/garry/myworkspace/blog/node_modules/tslint-loader/index.js:135:37)
 
 ### node 相关
 
-- [] typescript 升级处理
+- [x] typescript 升级处理
   - webpack 有 node 热修复插件？
+  - 解决方案：使用 nodemon 的 runtime 方案，由于 webpackHRM 方案，但是有资源读取问题
 - [] 服务器端渲染同构方案
+  - [] 开发环境：对 css 等资源的处理
+  - [] 开发环境：HRM 实现
+  - [] 开发环境：模版耦合
 - [] 开发环境服务器
 - [] docker 容器化
 - [] 测试用例规范
@@ -63,6 +70,7 @@
 ### TS 处理
 
 - [] ts-loader,transpileOnly 的利弊
+- [] typeRoots 与 noImplicitAny 为 false 处理，自定义@types
 
 #### js 处理
 
@@ -82,6 +90,13 @@
 
 - [] 样式加载使用装饰器处理
 - [] react 热加载
+- [] 服务器端渲染的优点
+  - SEO
+  - 预加载数据
+  - 错误以及重定向的可控性，如 401，404，302
+- [] 服务器端渲染的缺点
+  - [x] 渲染了两次页面，考虑如何节省首次访问的前端渲染?实际上不会渲染两次，因为 react 有判断
+  - [x] 首次渲染无样式？仅限开发环境，生产环境整个导入可以解决（分开导入？）
 
 #### css 处理
 
@@ -111,3 +126,7 @@
 
 - [x] 小于 10k 文件 base64 化
 - [x] 资源文件缓存处理
+
+#### 其他
+
+- [] 路径正则规则

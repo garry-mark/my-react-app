@@ -58,9 +58,6 @@ const prodConfig: webpack.Configuration = merge(baseConf, {
 		hints: 'error'
 	},
 	plugins: [
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': '"production"'
-		}),
 		new CleanWebpackPlugin(['dist'], {
 			root: baseConf.context,
 			exclude: ['assets']
@@ -71,7 +68,7 @@ const prodConfig: webpack.Configuration = merge(baseConf, {
 		}),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: './index.tepl.html'
+			template: './src/views/index.html'
 		})
 	],
 	optimization: {

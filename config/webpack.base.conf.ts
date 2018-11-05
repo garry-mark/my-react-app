@@ -3,7 +3,7 @@ import * as webpack from 'webpack';
 
 const config: webpack.Configuration = {
 	context: path.resolve(__dirname, '../'),
-	entry: { app: './src/browser/index.tsx' },
+	entry: ['./src/browser/index.tsx'],
 
 	resolve: {
 		modules: [path.resolve(__dirname, '../src'), 'node_modules'],
@@ -16,12 +16,12 @@ const config: webpack.Configuration = {
 
 	module: {
 		rules: [
-			{
-				enforce: 'pre',
-				test: /\.tsx?$/,
-				exclude: /node_modules/,
-				loader: 'tslint-loader'
-			},
+			// {
+			// 	enforce: 'pre',
+			// 	test: /\.tsx?$/,
+			// 	exclude: /node_modules/,
+			// 	loader: 'tslint-loader'
+			// },
 			{
 				test: /\.tsx?$/,
 				use: [
@@ -61,6 +61,10 @@ const config: webpack.Configuration = {
 					limit: 10000,
 					name: 'fonts/[name].[hash:7].[ext]'
 				}
+			},
+			{
+				test: /\.html$/,
+				loader: 'html-loader'
 			}
 		]
 	},

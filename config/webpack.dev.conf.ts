@@ -1,10 +1,10 @@
-import * as path from 'path';
-
 import * as webpack from 'webpack';
 
 import * as merge from 'webpack-merge';
 
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+
+// import * as BrowserSyncPlugin from 'browser-sync-webpack-plugin';
 
 import baseConf from './webpack.base.conf';
 
@@ -13,31 +13,30 @@ const ENV = 'development';
 const devConfig: webpack.Configuration = merge(baseConf, {
 	mode: ENV,
 	output: {
-		path: path.resolve(__dirname, '../dist'),
 		filename: '[name].js',
 		chunkFilename: '[name].[chunkhash].js',
 		publicPath: '/'
 	},
 	devtool: 'cheap-module-eval-source-map',
-	devServer: {
-		// 静态资源路径
-		contentBase: path.resolve(baseConf.context || '../', 'dist'),
-		// progress: true,
-		// clientLogLevel: 'none',
-		// useLocalIp: true,
-		historyApiFallback: true,
-		compress: true,
-		overlay: true,
-		proxy: {
-			// 如果你不想始终传递 /api ，则需要重写路径为"",即请求http://localhost:3000/**
-			// "/api": {
-			//     target: "http://localhost:3000",
-			//     pathRewrite: {"^/api" : ""}
-			//   }
-		},
-		port: 8081,
-		hot: true
-	},
+	// devServer: {
+	// 	// 静态资源路径
+	// 	contentBase: path.resolve(baseConf.context || '../', 'dist'),
+	// 	// progress: true,
+	// 	// clientLogLevel: 'none',
+	// 	// useLocalIp: true,
+	// 	historyApiFallback: true,
+	// 	compress: true,
+	// 	overlay: true,
+	// 	proxy: {
+	// 		// 如果你不想始终传递 /api ，则需要重写路径为"",即请求http://localhost:3000/**
+	// 		// "/api": {
+	// 		//     target: "http://localhost:3000",
+	// 		//     pathRewrite: {"^/api" : ""}
+	// 		//   }
+	// 	},
+	// 	port: 8081,
+	// 	hot: true
+	// },
 	module: {
 		rules: [
 			{
@@ -66,11 +65,22 @@ const devConfig: webpack.Configuration = merge(baseConf, {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			filename: 'index.html',
-			template: './index.tepl.html'
+			filename: '../views/index.html',
+			template: './src/views/index.tmpl.html'
 		}),
 		new webpack.HotModuleReplacementPlugin()
+		// new BrowserSyncPlugin({
+		// 	// browse to http://localhost:3000/ during development,
+		// 	// ./public directory is being served
+		// 	host: 'localhost',
+		// 	port: 3000,
+		// 	proxy: 'http://localhost:3000/'
+		// })
 	]
 });
+
+devConfig.entry &&
+	Array.isArray(devConfig.entry) &&
+	devConfig.entry.push('webpack-hot-middleware/client');
 
 export default devConfig;
