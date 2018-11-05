@@ -1,6 +1,3 @@
-// import * as fs from 'fs';
-// import * as path from 'path';
-
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
@@ -9,10 +6,6 @@ import { StaticRouter } from 'react-router-dom';
 import { matchRoutes, renderRoutes } from 'react-router-config';
 
 import RouteConfig from '@/pages/router.config';
-
-// import App from '@/pages/app';
-// import Router from '@/routers/';
-// import RouterConfig from '@/routers/';
 
 function matchRouteConifg(url: string) {
 	if (url === '/') {
