@@ -1,22 +1,54 @@
 import './utils/handleTsAlias';
 
-import * as http from 'http';
+import './utils/handleStyleInNode';
+
+import './utils/handleAssetsInNode';
+
+import * as fs from 'fs';
+import * as path from 'path';
 
 import app from '#/app';
 
-// app.callback() 会返回一个能够通过http.createServer创建server的函数，类似express和connect。
-let currentApp = app.callback();
-// 创建server
-const server = http.createServer(currentApp);
-server.listen(3000);
+import * as webpack from 'webpack';
+import devConfig from '../../config/webpack.dev.conf';
 
-// 热加载
-if (module.hot) {
-	// 监听./app.ts
-	module.hot.accept('./app.ts', () => {
-		// 如果有改动，就使用新的app来处理请求
-		server.removeListener('request', currentApp);
-		currentApp = app.callback();
-		server.on('request', currentApp);
+import * as views from 'koa-views';
+import ssrMiddleware from './middleware/serverSideRender';
+
+import * as koaWebpackDevMiddleware from 'koa-webpack-dev-middleware';
+
+import * as koaWebpackHotMiddleware from 'koa-webpack-hot-middleware';
+
+const convert = require('koa-convert');
+
+const compiler = webpack(devConfig);
+
+compiler.hooks.emit.tapAsync('emit', (compilation, callback) => {
+	const assets = compilation.assets;
+	let file;
+	let data;
+	Object.keys(assets).forEach((key) => {
+		if (key.match(/\.html$/)) {
+			file = path.resolve(__dirname, key);
+			data = assets[key].source();
+			fs.writeFileSync(file, data);
+		}
 	});
-}
+	callback();
+});
+
+app.use(views(path.resolve(__dirname, '../views'), { map: { html: 'ejs' } }));
+
+app.use(ssrMiddleware);
+
+app.use(
+	convert(
+		koaWebpackDevMiddleware(compiler, {
+			publicPath: devConfig.output && devConfig.output.publicPath
+		})
+	)
+);
+
+app.use(convert(koaWebpackHotMiddleware(compiler)));
+
+app.listen(4000);
