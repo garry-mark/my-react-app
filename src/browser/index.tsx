@@ -6,8 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import '@/theme/global.css';
 
-import App from '@/pages/app';
-import Router from '@/routers/';
+import { renderRoutes } from 'react-router-config';
+
+import RouteConfig from '@/pages/router.config';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -18,12 +19,6 @@ import {
 
 library.add(faThumbsUp, faShareSquare, faEye);
 
-const Root = () => (
-	<BrowserRouter>
-		<App>
-			<Router />
-		</App>
-	</BrowserRouter>
-);
+const Root = () => <BrowserRouter>{renderRoutes(RouteConfig)}</BrowserRouter>;
 
 ReactDOM.render(<Root />, document.getElementById('root'));

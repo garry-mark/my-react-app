@@ -9,6 +9,10 @@ import NavBar from '@/components/layout/navbar/';
 import Footer from '@/components/layout/footer/';
 import Main from '@/components/layout/main/';
 
+import { Redirect, Switch } from 'react-router-dom';
+
+import { renderRoutes } from 'react-router-config';
+
 class App extends React.Component<any, any> {
 	public state: any = {};
 
@@ -17,12 +21,18 @@ class App extends React.Component<any, any> {
 	}
 
 	public render() {
+		const { route } = this.props;
 		return (
 			<div className={style.app}>
 				<Header>
 					<NavBar />
 				</Header>
-				<Main>{this.props.children}</Main>
+				<Main>
+					<Switch>
+						<Redirect exact={true} from="/" to="/home" />
+						{renderRoutes(route.routes)}
+					</Switch>
+				</Main>
 				<Footer>
 					<p>备案号：XXXX</p>
 				</Footer>
