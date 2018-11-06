@@ -19,6 +19,7 @@ import {
 
 library.add(faThumbsUp, faShareSquare, faEye);
 
-const Root = () => <BrowserRouter>{renderRoutes(RouteConfig)}</BrowserRouter>;
-
-ReactDOM.render(<Root />, document.getElementById('root'));
+ReactDOM.render(
+	<BrowserRouter>{renderRoutes(RouteConfig)}</BrowserRouter>,
+	document.getElementById('root')
+);
