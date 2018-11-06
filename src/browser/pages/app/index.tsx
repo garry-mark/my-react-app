@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import '@/theme/global.css';
+
 import * as style from './app.css';
 
 import Header from '@/components/layout/header/';

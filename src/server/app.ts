@@ -9,15 +9,18 @@ import ssrMiddleware from './middleware/serverSideRender';
 
 import apiRoutes from './router/';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const app = new Koa();
 
-const staticPath = '../../dist';
+const staticPath = isProd ? '../' : '../../dist';
 app.use(KoaStatic(path.join(__dirname, staticPath)));
 
 // apiRfor '/api/*'
 app.use(apiRoutes.routes());
 
-app.use(views(path.resolve(__dirname, '../views'), { map: { html: 'ejs' } }));
+const viewsPath = isProd ? '../browser' : '../views';
+app.use(views(path.resolve(__dirname, viewsPath), { map: { html: 'ejs' } }));
 
 app.use(ssrMiddleware);
 

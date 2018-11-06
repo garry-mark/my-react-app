@@ -1,28 +1,30 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
-import { StaticRouter } from 'react-router-dom';
+import { Route, StaticRouter } from 'react-router-dom';
 
-import { matchRoutes, renderRoutes } from 'react-router-config';
+import { matchRoutes } from 'react-router-config';
 
 import RouteConfig from '@/pages/router.config';
 
 function matchRouteConifg(url: string) {
-	if (url === '/') {
-		return true;
-	}
 	const branch = matchRoutes(RouteConfig, url);
-	return branch.length !== 1;
+	if (url === '/') {
+		return branch[0].route.component;
+	} else if (branch.length !== 1) {
+		return branch[branch.length - 1].route.component;
+	}
+	return null;
 }
 
 export default async (ctx: any, next: any) => {
-	const isMatch = matchRouteConifg(ctx.url);
+	const matchComp = matchRouteConifg(ctx.url);
 
-	if (isMatch) {
+	if (matchComp && typeof matchComp === 'function') {
 		const context: { url?: string } = {};
 		const markup = ReactDOMServer.renderToString(
 			<StaticRouter location={ctx.url} context={context}>
-				{renderRoutes(RouteConfig)}
+				<Route component={matchComp} />
 			</StaticRouter>
 		);
 

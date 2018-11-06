@@ -17,10 +17,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
-    "serve": "nodemon --watch 'src/server/**/*.*' --exec 'ts-node' src/server/index.ts",
+    "dev": "nodemon --watch 'src/server/**/*.*' --exec 'ts-node' src/server/index.dev.ts",
     "build": "webpack --config ./config/webpack.prod.conf.ts",
     "build:dll": "webpack --config ./config/webpack.dll.conf.ts",
-    "dev": "webpack-dev-server --open --config ./config/webpack.dev.conf.ts",
     "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'"
   },
   "keywords": [

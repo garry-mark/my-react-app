@@ -4,8 +4,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import '@/theme/global.css';
-
 import { renderRoutes } from 'react-router-config';
 
 import RouteConfig from '@/pages/router.config';

@@ -37,6 +37,6 @@ koaWebpack({
 
 		rs.pipe(ws);
 	});
-
-	app.listen(4000);
 });
+
+app.listen(4000);
