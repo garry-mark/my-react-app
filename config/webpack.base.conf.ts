@@ -29,7 +29,7 @@ const config: webpack.Configuration = {
 					{
 						loader: 'ts-loader',
 						options: {
-							configFile: path.resolve(__dirname, '../tsconfig.webpack.json')
+							configFile: path.resolve(__dirname, './tsconfig.webpack.json')
 						}
 					}
 				],
@@ -69,7 +69,7 @@ const config: webpack.Configuration = {
 		]
 	},
 	plugins: [
-		// new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
+		new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
 		new webpack.DllReferencePlugin({
 			context: path.resolve(__dirname, '../'),
 			manifest: require('../vendor-manifest.json')

@@ -4,41 +4,39 @@ import './utils/handleStyleInNode';
 
 import './utils/handleAssetsInNode';
 
-import * as fs from 'fs';
 import * as path from 'path';
 
-import * as webpack from 'webpack';
-import devConfig from '../../config/webpack.dev.conf';
+import * as fs from 'fs';
 
-import * as koaWebpackDevMiddleware from 'koa-webpack-dev-middleware';
-import * as koaWebpackHotMiddleware from 'koa-webpack-hot-middleware';
+import * as koaWebpack from 'koa-webpack';
+
+import devConfig from '../../config/webpack.dev.conf';
 
 import app from '#/app';
 
-const convert = require('koa-convert');
+const publicPath = (devConfig.output && devConfig.output.publicPath) || '';
+const pathName = (devConfig.output && devConfig.output.path) || '';
 
-const compiler = webpack(devConfig);
+koaWebpack({
+	config: devConfig,
+	devMiddleware: {
+		publicPath,
+		serverSideRender: true
+	}
+}).then((middleware) => {
+	app.use(middleware);
 
-compiler.hooks.emit.tapAsync('emit', (compilation, callback) => {
-	const assets = compilation.assets;
-	let file;
-	let data;
-	Object.keys(assets).forEach((key) => {
-		if (key.match(/\.html$/)) {
-			file = path.resolve(__dirname, key);
-			data = assets[key].source();
-			fs.writeFileSync(file, data);
-		}
+	app.use(async () => {
+		const rs = middleware.devMiddleware.fileSystem.createReadStream(
+			path.resolve(pathName, 'index.html')
+		);
+
+		const ws = fs.createWriteStream(
+			path.resolve(__dirname, '../views/index.html')
+		);
+
+		rs.pipe(ws);
 	});
-	callback();
+
+	app.listen(4000);
 });
-
-app.use(
-	koaWebpackDevMiddleware(compiler, {
-		publicPath: devConfig.output && devConfig.output.publicPath
-	})
-);
-
-app.use(convert(koaWebpackHotMiddleware(compiler)));
-
-app.listen(4000);
