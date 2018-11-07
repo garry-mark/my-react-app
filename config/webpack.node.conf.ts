@@ -21,6 +21,11 @@ const nodeConfig: webpack.Configuration = merge(baseConf, {
 	module: {
 		rules: [
 			{
+				test: /\.tsx?$/,
+				use: ['babel-loader', 'ts-loader'],
+				exclude: /node_modules/
+			},
+			{
 				test: /\.css$/,
 				use: [
 					{
@@ -40,8 +45,8 @@ const nodeConfig: webpack.Configuration = merge(baseConf, {
 	},
 	target: 'node',
 	node: {
-		__dirname: false,
-		__filename: false
+		__filename: true,
+		__dirname: true
 	},
 
 	externals: [nodeExternals()],

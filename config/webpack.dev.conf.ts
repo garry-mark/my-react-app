@@ -22,6 +22,19 @@ const devConfig: webpack.Configuration = merge(baseConf, {
 	module: {
 		rules: [
 			{
+				test: /\.tsx?$/,
+				use: [
+					{ loader: 'babel-loader' },
+					{
+						loader: 'ts-loader',
+						options: {
+							configFile: path.resolve(__dirname, './tsconfig.webpack.json')
+						}
+					}
+				],
+				exclude: /node_modules/
+			},
+			{
 				test: /\.(s)?css$/,
 				use: [
 					{

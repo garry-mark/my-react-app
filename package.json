@@ -18,6 +18,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "nodemon --watch 'src/server/**/*.*' --exec 'ts-node' src/server/index.dev.ts",
+    "serve": "node ./dist/server/main.js",
     "build": "webpack --config ./config/webpack.prod.conf.ts",
     "build:dll": "webpack --config ./config/webpack.dll.conf.ts",
     "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'"
@@ -35,9 +36,11 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@fortawesome/react-fontawesome": "^0.1.2",
+    "@types/koa-logger": "^3.1.1",
     "babel-polyfill": "^6.26.0",
     "ejs": "^2.6.1",
     "koa": "^2.5.3",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",

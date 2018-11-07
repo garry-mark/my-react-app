@@ -16,6 +16,7 @@ import app from '#/app';
 
 const publicPath = (devConfig.output && devConfig.output.publicPath) || '';
 const pathName = (devConfig.output && devConfig.output.path) || '';
+const port = 4000;
 
 koaWebpack({
 	config: devConfig,
@@ -38,5 +39,7 @@ koaWebpack({
 		rs.pipe(ws);
 	});
 });
-
-app.listen(4000);
+console.log(
+	`\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`
+);
+app.listen(port);

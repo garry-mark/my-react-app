@@ -22,19 +22,7 @@ const config: webpack.Configuration = {
 			// 	exclude: /node_modules/,
 			// 	loader: 'tslint-loader'
 			// },
-			{
-				test: /\.tsx?$/,
-				use: [
-					{ loader: 'babel-loader' },
-					{
-						loader: 'ts-loader',
-						options: {
-							configFile: path.resolve(__dirname, './tsconfig.webpack.json')
-						}
-					}
-				],
-				exclude: /node_modules/
-			},
+
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 				include: path.resolve(__dirname, '../src'),
