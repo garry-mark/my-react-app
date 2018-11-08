@@ -20,9 +20,11 @@ const config: webpack.Configuration = {
 			// 	enforce: 'pre',
 			// 	test: /\.tsx?$/,
 			// 	exclude: /node_modules/,
-			// 	loader: 'tslint-loader'
+			// 	loader: 'tslint-loader',
+			// 	options: {
+			// 		configFile: path.resolve(__dirname, '../tslint.json')
+			// 	}
 			// },
-
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 				include: path.resolve(__dirname, '../src'),
