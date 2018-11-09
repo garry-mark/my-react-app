@@ -18,7 +18,9 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "nodemon --watch 'src/server/**/*.*' --exec 'ts-node' src/server/index.dev.ts",
-    "serve": "node ./dist/server/main.js",
+    "serve": "pm2 start ./dist/server/main.js",
+    "stop": "pm2 stop ./dist/server/main.js",
+    "pm2": "pm2",
     "build": "webpack --config ./config/webpack.prod.conf.ts",
     "build:dll": "webpack --config ./config/webpack.dll.conf.ts",
     "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'"
@@ -45,6 +47,7 @@
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",
     "normalize.css": "^8.0.0",
+    "pm2": "^3.2.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
