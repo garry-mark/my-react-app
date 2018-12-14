@@ -1,1 +1,1 @@
-declare module 'browser-sync-webpack-plugin.d';
+declare module 'browser-sync-webpack-plugin';
