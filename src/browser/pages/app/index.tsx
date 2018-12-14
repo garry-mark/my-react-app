@@ -15,32 +15,45 @@ import { Redirect, Switch } from 'react-router-dom';
 
 import { renderRoutes } from 'react-router-config';
 
+import actions from '@/actions/aboutme';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 class App extends React.Component<any, any> {
-	public state: any = {};
+  public state: any = {};
 
-	constructor(props: any) {
-		super(props);
-	}
+  constructor(props: any) {
+    super(props);
+  }
 
-	public render() {
-		const { route } = this.props;
-		return (
-			<div className={style.app}>
-				<Header>
-					<NavBar />
-				</Header>
-				<Main>
-					<Switch>
-						<Redirect exact={true} from="/" to="/home" />
-						{renderRoutes(route.routes)}
-					</Switch>
-				</Main>
-				<Footer>
-					<p>备案号：XXXX</p>
-				</Footer>
-			</div>
-		);
-	}
+  public render() {
+    const { route } = this.props;
+    return (
+      <div className={style.app}>
+        <Header>
+          <NavBar />
+        </Header>
+        <Main>
+          <Switch>
+            <Redirect exact={true} from="/" to="/home" />
+            {renderRoutes(route.routes, { ...this.props })}
+          </Switch>
+        </Main>
+        <Footer>
+          <p>备案号：XXXX</p>
+        </Footer>
+      </div>
+    );
+  }
 }
 
-export default App;
+function mapStateToProps(state: any) {
+  return state;
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return { actions: bindActionCreators(actions, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
