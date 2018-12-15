@@ -1,23 +1,52 @@
 {
-  "extends": ["tslint:recommended", "tslint-react"],
+  "extends": [
+    "tslint:recommended",
+    "tslint-react"
+  ],
   "rules": {
-    "indent": {
-      "options": ["tabs", 2]
-    },
+    "indent": [
+      true,
+      "space",
+      2
+    ],
     "no-namespace": false,
-    "interface-name": [true, "never-prefix"],
-    "quotemark": [true, "single", "jsx-double"],
-    "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    ],
     "jsx-no-multiline-js": false,
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
     "no-var-requires": false,
     "no-console": {
       "severity": "off",
-      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+      "options": [
+        "debug",
+        "info",
+        "log",
+        "time",
+        "timeEnd",
+        "trace"
+      ]
     }
   },
   "linterOptions": {
-    "exclude": ["dist/*", "config/*", "node_modules/*"]
+    "exclude": [
+      "dist/*",
+      "config/*",
+      "node_modules/*"
+    ]
   }
 }

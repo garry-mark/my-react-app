@@ -130,3 +130,6 @@
 #### 其他
 
 - [] 路径正则规则
+- [x] tslint自动格式化失效
+    - 原因：vscode 自动判断制表符设置导致报错tslint失效
+    - 解决：引入editorconfig
