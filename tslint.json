@@ -6,7 +6,7 @@
   "rules": {
     "indent": [
       true,
-      "space",
+      "spaces",
       2
     ],
     "no-namespace": false,

@@ -22,7 +22,7 @@ library.add(faThumbsUp, faShareSquare, faEye);
 const preloadedState = (window as any).REDUX_STATE || {};
 const store = getStore(preloadedState);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>{renderRoutes(RouteConfig)}</BrowserRouter>
   </Provider>,

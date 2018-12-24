@@ -19,29 +19,29 @@ const pathName = (devConfig.output && devConfig.output.path) || '';
 const port = process.env.PORT || 4000;
 
 koaWebpack({
-	config: devConfig,
-	devMiddleware: {
-		publicPath,
-		serverSideRender: true
-	}
+  config: devConfig,
+  devMiddleware: {
+    publicPath,
+    serverSideRender: true
+  }
 }).then((middleware) => {
-	app.use(middleware);
+  app.use(middleware);
 
-	app.use(async () => {
-		const rs = middleware.devMiddleware.fileSystem.createReadStream(
-			path.resolve(pathName, 'index.html')
-		);
+  app.use(async () => {
+    const rs = middleware.devMiddleware.fileSystem.createReadStream(
+      path.resolve(pathName, 'index.html')
+    );
 
-		const ws = fs.createWriteStream(
-			path.resolve(__dirname, '../views/index.html')
-		);
+    const ws = fs.createWriteStream(
+      path.resolve(__dirname, '../views/index.html')
+    );
 
-		rs.pipe(ws);
-	});
+    rs.pipe(ws);
+  });
 });
 
 app.listen(port, () => {
-	console.log(
-		`\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`
-	);
+  console.log(
+    `\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`
+  );
 });

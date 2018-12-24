@@ -24,72 +24,72 @@ import baseConf from './webpack.base.conf';
 // }
 
 const browserConfig: webpack.Configuration = merge(baseConf, {
-	mode: 'production',
-	output: {
-		path: path.resolve(__dirname, '../dist/browser'),
-		filename: '[name].[chunkhash].js',
-		chunkFilename: '[name].[chunkhash].js',
-		publicPath: '/browser/'
-	},
-	module: {
-		rules: [
-			{
-				test: /\.tsx?$/,
-				use: [
-					{ loader: 'babel-loader' },
-					{
-						loader: 'ts-loader',
-						options: {
-							configFile: path.resolve(__dirname, './tsconfig.webpack.json')
-						}
-					}
-				],
-				exclude: /node_modules/
-			},
-			{
-				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					{
-						loader: 'typings-for-css-modules-loader',
-						options: {
-							modules: true,
-							localIdentName: '[local]--[hash:base64:5]',
-							namedExport: true,
-							camelCase: true,
-							minimize: true
-						}
-					},
-					'postcss-loader'
-				]
-			}
-		]
-	},
-	performance: {
-		hints: 'error'
-	},
-	plugins: [
-		new CleanWebpackPlugin(['dist'], {
-			root: baseConf.context,
-			exclude: ['assets', 'server']
-		}),
-		new MiniCssExtractPlugin({
-			filename: '[name].[contenthash].css',
-			chunkFilename: '[id].css'
-		}),
-		new HtmlWebpackPlugin({
-			filename: 'index.html',
-			template: './src/views/index.tmpl.html'
-		})
-	],
-	optimization: {
-		minimizer: [
-			new UglifyJsPlugin({
-				cache: true,
-				parallel: true
-			})
-		]
-	}
+  mode: 'production',
+  output: {
+    path: path.resolve(__dirname, '../dist/browser'),
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
+    publicPath: '/browser/'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          { loader: 'babel-loader' },
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.resolve(__dirname, './tsconfig.webpack.json')
+            }
+          }
+        ],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]--[hash:base64:5]',
+              namedExport: true,
+              camelCase: true,
+              minimize: true
+            }
+          },
+          'postcss-loader'
+        ]
+      }
+    ]
+  },
+  performance: {
+    hints: 'error'
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist'], {
+      root: baseConf.context,
+      exclude: ['assets', 'server']
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].css'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/views/index.tmpl.html'
+    })
+  ],
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true
+      })
+    ]
+  }
 });
 
 export default browserConfig;
