@@ -6,22 +6,29 @@ import Loading from '@/components/loading/';
 
 import App from '@/pages/app';
 
+import AboutMe from '@/pages/about-me';
+
+export interface DigitizedRouteConfig extends RouteConfig {
+  loadData?: (store: any) => void;
+  routes?: DigitizedRouteConfig[];
+}
+
 const ArticleList = Loadable({
   loader: () => import('@/pages/article/list'),
   loading: Loading
 });
 
-const AboutMe = Loadable({
-  loader: () => import('@/pages/about-me'),
-  loading: Loading
-});
+// const AboutMe = Loadable({
+//   loader: () => import('@/pages/about-me'),
+//   loading: Loading
+// });
 
 const ArticleDetails = Loadable({
   loader: () => import('@/pages/article'),
   loading: Loading
 });
 
-const RouteConfig: RouteConfig[] = [
+const RouteConfig: DigitizedRouteConfig[] = [
   {
     component: App,
     routes: [
@@ -31,7 +38,8 @@ const RouteConfig: RouteConfig[] = [
       },
       {
         component: AboutMe,
-        path: '/aboutme'
+        path: '/aboutme',
+        loadData: AboutMe.loadData
       },
       {
         component: ArticleDetails,

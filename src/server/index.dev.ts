@@ -16,7 +16,7 @@ import app from '#/app';
 
 const publicPath = (devConfig.output && devConfig.output.publicPath) || '';
 const pathName = (devConfig.output && devConfig.output.path) || '';
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
 
 koaWebpack({
   config: devConfig,

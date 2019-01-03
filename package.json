@@ -18,7 +18,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "nodemon --watch 'src/server/**/*.*' --exec 'ts-node' src/server/index.dev.ts",
-    "serve": "pm2 start ./dist/server/main.js",
+    "serve": "node ./dist/server/main.js",
     "stop": "pm2 stop ./dist/server/main.js",
     "pm2": "pm2",
     "build": "webpack --config ./config/webpack.prod.conf.ts",
@@ -38,6 +38,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@fortawesome/react-fontawesome": "^0.1.2",
+    "@types/axios": "^0.14.0",
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "cross-fetch": "^2.2.3",
     "ejs": "^2.6.1",

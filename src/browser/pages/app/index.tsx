@@ -15,10 +15,7 @@ import { Redirect, Switch } from 'react-router-dom';
 
 import { renderRoutes } from 'react-router-config';
 
-import actions from '@/actions/aboutme';
-
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 class App extends React.Component<any, any> {
   public state: any = {};
@@ -37,7 +34,7 @@ class App extends React.Component<any, any> {
         <Main>
           <Switch>
             <Redirect exact={true} from="/" to="/home" />
-            {renderRoutes(route.routes, { ...this.props })}
+            {renderRoutes(route.routes)}
           </Switch>
         </Main>
         <Footer>
@@ -52,8 +49,4 @@ function mapStateToProps(state: any) {
   return state;
 }
 
-function mapDispatchToProps(dispatch: any) {
-  return { actions: bindActionCreators(actions, dispatch) };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

@@ -1,7 +1,10 @@
 import types from '@/const/actionTypes';
-import fetch from 'cross-fetch';
 
 import Me from '@/model/Me';
+
+import { getAgent } from '../../agent/';
+
+const agent = getAgent();
 
 function replaceAboutme(aboutme: Me) {
   return {
@@ -12,13 +15,10 @@ function replaceAboutme(aboutme: Me) {
 
 function fetchAboutme() {
   return (dispatch: any) => {
-    fetch('/api/aboutme/', {
-      method: 'GET'
-    })
-      .then((res) => res.json())
-      .then((data: any) => {
-        dispatch(replaceAboutme(data));
-      });
+    return agent.get('/api/aboutme/').then((resp: any) => {
+      dispatch(replaceAboutme(resp.data));
+      return resp;
+    });
   };
 }
 
