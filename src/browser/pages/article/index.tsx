@@ -1,98 +1,38 @@
-import { Article } from '@/model/Articles';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import * as React from 'react';
+import * as Loadable from 'react-loadable';
 
-import Loading from '@/components/loading';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import * as style from './article.css';
+import Loading from '@/components/loading/';
 
-interface ArticleDetailsProps {
-  location: { state: any };
-}
+import actions from '@/actions/article';
 
-interface ArticleDetailsState {
-  article: Article;
-  loading: boolean;
-}
+const LoadableArticleDetails = Loadable({
+  loader: () => import('@/pages/article/article'),
+  loading: Loading
+});
 
-class ArticleDetails extends React.Component<
-  ArticleDetailsProps,
-  ArticleDetailsState
-  > {
-  public state: ArticleDetailsState = {
-    article: {
-      id: -1,
-      category: { id: -1, name: 'string' },
-      title: 'string',
-      content: 'string',
-      pageview: 0,
-      like: 0,
-      createTime: 0,
-      updateTime: 0
-    },
-    loading: true
-  };
+const ConnectArticleDetails = connect(mapStateToProps, mapDispatchToProps)(LoadableArticleDetails);
 
-  public componentDidMount() {
-    const { location } = this.props;
-    if (location.state) {
-      this.setState({ article: location.state.article, loading: false });
-    } else {
-      setTimeout(() => {
-        this.setState({
-          article: {
-            id: 1,
-            category: { id: 1, name: 'JS' },
-            title: 'Hello world',
-            content: 'Hello world',
-            pageview: 2,
-            like: 11,
-            createTime: Date.now(),
-            updateTime: Date.now()
-          },
-          loading: false
-        });
-      }, 2000);
-    }
+class ArticleDetails extends React.Component {
+  public static loadData(store: any, params: any): void {
+    console.log(params);
+    const { id } = params;
+    return store.dispatch(actions.getArticleById(id));
   }
+
   public render() {
-    const { article, loading } = this.state;
-    const {
-      category,
-      title,
-      content,
-      pageview,
-      like,
-      createTime,
-      updateTime
-    } = article;
-    return loading ? (
-      <Loading />
-    ) : (
-        <article className={style.article}>
-          <h2>
-            [{category && category.name}] {title}
-          </h2>
-          <ul>
-            <li>
-              <time>创建时间：{new Date(createTime).toLocaleString()}</time>
-            </li>
-            <li>
-              <time>最后更新：{new Date(updateTime).toLocaleString()}</time>
-            </li>
-            <li>
-              <FontAwesomeIcon icon="thumbs-up" /> {like}
-            </li>
-            <li>
-              <FontAwesomeIcon icon="eye" /> {pageview}
-            </li>
-          </ul>
-          <div>{content}</div>
-        </article>
-      );
+    return <ConnectArticleDetails />;
   }
+}
+
+function mapStateToProps(state: any) {
+  return { article: state.article };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return { actions: bindActionCreators(actions, dispatch) };
 }
 
 export default ArticleDetails;

@@ -12,17 +12,23 @@ import { Provider } from 'react-redux';
 
 function matchRouteConifg(url: string) {
   const branch = matchRoutes(RouteConfig, url);
-  return branch.map((route: any) => route.route.loadData).filter((dataLoader) => dataLoader);
+  const withParamsDataLoaders = branch
+    .map((route: any) => {
+      return route.route.loadData ? { loadData: route.route.loadData, params: route.match.params } : null;
+    })
+    .filter((route) => route);
+  return withParamsDataLoaders;
 }
 
 export default async (ctx: any, next: any) => {
-  const dataLoaders = matchRouteConifg(ctx.url);
+  const withParamsDataLoaders = matchRouteConifg(ctx.url);
   const regexp = /\w+\.\w+$/;
   const store = getStore();
 
   if (!regexp.test(ctx.url)) {
     // set preload data in store
-    const promiseifyDataLoaders = dataLoaders.map((dataLoader: any) => dataLoader(store));
+    const promiseifyDataLoaders = withParamsDataLoaders
+      .map((dataLoader: any) => dataLoader.loadData(store, dataLoader.params));
 
     const context: StaticRouterContext = {};
     const template = await Promise.all(promiseifyDataLoaders).then(() => {

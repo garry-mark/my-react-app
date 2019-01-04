@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import Loading from '@/components/loading/';
 import * as Loadable from 'react-loadable';
 
-import action from '@/actions/aboutme';
 
 const LoadableAboutMe = Loadable({
   loader: () => import('@/pages/about-me/about-me'),
@@ -19,7 +18,7 @@ const ConnectAboutMe = connect(mapStateToProps, mapDispatchToProps)(LoadableAbou
 
 class AboutMe extends React.Component {
   public static loadData(store: any): void {
-    return store.dispatch(action.fetchAboutme());
+    return store.dispatch(actions.getAboutme());
   }
 
   public render() {

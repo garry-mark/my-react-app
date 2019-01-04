@@ -5,7 +5,7 @@ class AboutMe extends React.Component<any, any> {
 
   public componentDidMount() {
     console.log(this.props.aboutme === null)
-    if (this.props && this.props.aboutme === null) { this.fetchAboutme() };
+    if (this.props && this.props.aboutme === null) { this.getAboutme() };
   }
 
   public render() {
@@ -60,9 +60,9 @@ class AboutMe extends React.Component<any, any> {
       </section>
     );
   }
-  private fetchAboutme = () => {
+  private getAboutme = () => {
     const { actions } = this.props;
-    actions.fetchAboutme();
+    actions.getAboutme();
   }
 }
 

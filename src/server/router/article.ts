@@ -3,9 +3,14 @@ const router = new Router({ prefix: '/article' });
 
 router.get('/:id', (ctx: any) => {
   ctx.body = {
-    name: 'Chikara Chan',
-    gender: 'male',
-    age: 21
+    id: 1,
+    category: { id: 1, name: 'JS' },
+    title: 'Hello world',
+    content: 'Hello world',
+    pageview: 2,
+    like: 11,
+    createTime: Date.now(),
+    updateTime: Date.now()
   };
 });
 

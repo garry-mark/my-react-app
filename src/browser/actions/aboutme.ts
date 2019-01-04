@@ -6,23 +6,23 @@ import { getAgent } from '../../agent/';
 
 const agent = getAgent();
 
-function replaceAboutme(aboutme: Me) {
+function setAboutme(aboutme: Me) {
   return {
-    type: types.REPLACE_ABOUT_ME,
+    type: types.SET_ABOUT_ME,
     aboutme
   };
 }
 
-function fetchAboutme() {
+function getAboutme() {
   return (dispatch: any) => {
     return agent.get('/api/aboutme/').then((resp: any) => {
-      dispatch(replaceAboutme(resp.data));
+      dispatch(setAboutme(resp.data));
       return resp;
     });
   };
 }
 
 export default {
-  fetchAboutme,
-  replaceAboutme
+  getAboutme,
+  setAboutme
 };
