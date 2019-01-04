@@ -4,7 +4,8 @@ import * as style from './about-me.css';
 class AboutMe extends React.Component<any, any> {
 
   public componentDidMount() {
-    this.fetchAboutme();
+    console.log(this.props.aboutme === null)
+    if (this.props && this.props.aboutme === null) { this.fetchAboutme() };
   }
 
   public render() {

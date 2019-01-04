@@ -10,8 +10,9 @@ import NavBar from '@/components/layout/navbar/';
 
 import Footer from '@/components/layout/footer/';
 import Main from '@/components/layout/main/';
+import Status from '@/components/status/';
 
-import { Redirect, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 import { renderRoutes } from 'react-router-config';
 
@@ -33,7 +34,9 @@ class App extends React.Component<any, any> {
         </Header>
         <Main>
           <Switch>
-            <Redirect exact={true} from="/" to="/home" />
+            {/* <Redirect exact={true} from="/" to="/home" /> */}
+            <Status isRedirect={true} exact={true} code={301} from="/" to="/home" />
+
             {renderRoutes(route.routes)}
           </Switch>
         </Main>

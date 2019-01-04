@@ -23,10 +23,11 @@ app.use(KoaStatic(path.resolve(__dirname, staticPath)));
 const viewsPath = isProd ? '../../dist/browser' : '../views';
 app.use(views(path.resolve(__dirname, viewsPath), { map: { html: 'ejs' } }));
 
-// api for '/api/*'
+// ApiMiddleware handle for '/api/*'
 app.use(apiRoutes.routes());
 app.use(apiRoutes.allowedMethods());
 
+// SSR middleware must handle res after ApiMiddleware
 app.use(ssrMiddleware);
 
 export default app;

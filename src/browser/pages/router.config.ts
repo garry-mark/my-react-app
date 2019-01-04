@@ -8,8 +8,11 @@ import App from '@/pages/app';
 
 import AboutMe from '@/pages/about-me';
 
+import NotFound from '@/components/status/notFound';
+
 export interface DigitizedRouteConfig extends RouteConfig {
   loadData?: (store: any) => void;
+  path?: string;
   routes?: DigitizedRouteConfig[];
 }
 
@@ -44,6 +47,9 @@ const RouteConfig: DigitizedRouteConfig[] = [
       {
         component: ArticleDetails,
         path: '/article/:id'
+      },
+      {
+        component: NotFound
       }
     ]
   }
