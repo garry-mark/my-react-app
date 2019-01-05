@@ -3,16 +3,17 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import { Article } from '@/model/Articles';
+import Article from '@/model/Articles';
 import * as style from './article-item.css';
 
 interface ArticleListItemProps {
   article: Article;
+  setCurArticle: (article: Article) => void;
 }
 
-class ArticleListItem extends React.Component<ArticleListItemProps> {
+class ArticleListItem extends React.PureComponent<ArticleListItemProps> {
   public render() {
-    const { article } = this.props;
+    const { article, setCurArticle } = this.props;
     const {
       id,
       category,
@@ -31,7 +32,7 @@ class ArticleListItem extends React.Component<ArticleListItemProps> {
           <time>{new Date(createTime).toLocaleString()}</time>
         </div>
         <h3>
-          <Link to={{ pathname: `/article/${id}`, state: { article } }}>
+          <Link to={{ pathname: `/article/${id}` }} onClick={() => setCurArticle(article)}>
             {title}
           </Link>
         </h3>

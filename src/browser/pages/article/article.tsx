@@ -25,7 +25,7 @@ class ArticleDetails extends React.Component<any, ArticleDetailsState> {
   };
 
   public componentDidMount() {
-    if (this.props && this.props.acticle === null) {
+    if (this.props.article === null) {
       this.getArticle();
     }
   }
@@ -66,12 +66,8 @@ class ArticleDetails extends React.Component<any, ArticleDetailsState> {
   }
 
   private getArticle() {
-    const { actions, location, match } = this.props;
-    if (location.state) {
-      this.setState({ article: location.state.article });
-    } else {
-      actions.getArticle(match.params.id);
-    }
+    const { actions, match } = this.props;
+    actions.getArticleById(match.params.id);
   }
 }
 

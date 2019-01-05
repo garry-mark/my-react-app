@@ -17,18 +17,18 @@ const ConnectArticleDetails = connect(mapStateToProps, mapDispatchToProps)(Loada
 
 class ArticleDetails extends React.Component {
   public static loadData(store: any, params: any): void {
-    console.log(params);
     const { id } = params;
     return store.dispatch(actions.getArticleById(id));
   }
 
   public render() {
-    return <ConnectArticleDetails />;
+    // ...this.props is wrapped route prop
+    return <ConnectArticleDetails {...this.props} />;
   }
 }
 
 function mapStateToProps(state: any) {
-  return { article: state.article };
+  return { article: state.article.curArticle };
 }
 
 function mapDispatchToProps(dispatch: any) {
