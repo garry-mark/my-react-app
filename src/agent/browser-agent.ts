@@ -5,7 +5,7 @@ import axios, {
 } from 'axios';
 
 const browserAgent: AxiosInstance = axios.create({
-  baseURL: '',
+  baseURL: '/api',
   timeout: 1000 * 10
 });
 
