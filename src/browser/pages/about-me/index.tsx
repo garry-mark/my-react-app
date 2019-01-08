@@ -1,16 +1,15 @@
 import * as React from 'react';
 
-import actions from '@/actions/aboutme';
+import actions from '@/browser/actions/aboutme';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Loading from '@/components/loading/';
+import Loading from '@/browser/components/loading/';
 import * as Loadable from 'react-loadable';
 
-
 const LoadableAboutMe = Loadable({
-  loader: () => import('@/pages/about-me/about-me'),
+  loader: () => import('@/browser/pages/about-me/about-me'),
   loading: Loading
 });
 

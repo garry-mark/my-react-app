@@ -4,12 +4,12 @@ import * as Loadable from 'react-loadable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Loading from '@/components/loading/';
+import Loading from '@/browser/components/loading/';
 
-import actions from '@/actions/article';
+import actions from '@/browser/actions/article';
 
 const LoadableArticleDetails = Loadable({
-  loader: () => import('@/pages/article-list/article-list'),
+  loader: () => import('@/browser/pages/article-list/article-list'),
   loading: Loading
 });
 

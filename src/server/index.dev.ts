@@ -1,4 +1,4 @@
-import './utils/handleTsAlias';
+import '@/utils/handleTsAlias';
 
 import * as path from 'path';
 
@@ -8,7 +8,7 @@ import * as koaWebpack from 'koa-webpack';
 
 import devConfig from '../../config/webpack.browser.dev.conf';
 
-import app from '#/app';
+import app from '@/server/app';
 
 const publicPath = (devConfig.output && devConfig.output.publicPath) || '';
 const pathName = (devConfig.output && devConfig.output.path) || '';

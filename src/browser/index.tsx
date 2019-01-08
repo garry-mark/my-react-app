@@ -4,10 +4,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import { getStore } from '@/store';
+import { getStore } from '@/browser/store';
 import { Provider } from 'react-redux';
 
-import RouteConfig from '@/pages/router.config';
+import RouteConfig from '@/browser/pages/router.config';
 import { renderRoutes } from 'react-router-config';
 
 import { library } from '@fortawesome/fontawesome-svg-core';

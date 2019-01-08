@@ -5,9 +5,9 @@ import { StaticRouter, StaticRouterContext } from 'react-router';
 
 import { matchRoutes, renderRoutes } from 'react-router-config';
 
-import RouteConfig from '@/pages/router.config';
+import RouteConfig from '@/browser/pages/router.config';
 
-import { getStore } from '@/store';
+import { getStore } from '@/browser/store';
 import { Provider } from 'react-redux';
 
 function matchRouteConifg(url: string) {

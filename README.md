@@ -76,6 +76,7 @@
 - [] ts-loader,transpileOnly 的利弊
 - [] typeRoots 与 noImplicitAny 为 false 处理，自定义@types
 - [] 样式dts使用全局定义，而不是目前的按照css文件数目定义
+- 由于VScode根据根目录tsconfig进行检查，所以保留。
 
 #### js 处理
 

@@ -13,11 +13,14 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "typeRoots": ["./typings", "./node_modules/@types/"],
+    "typeRoots": [
+      "./typings",
+      "./node_modules/@types/"
+    ],
     "paths": {
-      "@/*": ["./src/browser/*"],
-      "#/*": ["./src/server/*"]
+      "@/*": [
+        "./src/*"
+      ],
     }
-  },
-  "exclude": ["node_modules"]
+  }
 }

@@ -1,16 +1,16 @@
 import * as React from 'react';
 
-import '@/theme/global.css';
+import '@/browser/theme/global.css';
 
 import * as style from './app.css';
 
-import Header from '@/components/layout/header/';
+import Header from '@/browser/components/layout/header/';
 
-import NavBar from '@/components/layout/navbar/';
+import NavBar from '@/browser/components/layout/navbar/';
 
-import Footer from '@/components/layout/footer/';
-import Main from '@/components/layout/main/';
-import Status from '@/components/status/';
+import Footer from '@/browser/components/layout/footer/';
+import Main from '@/browser/components/layout/main/';
+import Status from '@/browser/components/status/';
 
 import { Switch } from 'react-router-dom';
 

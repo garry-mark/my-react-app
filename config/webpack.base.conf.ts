@@ -8,8 +8,7 @@ const config: webpack.Configuration = {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
     extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, '../src/browser'),
-      '#': path.resolve(__dirname, '../src/server')
+      '@': path.resolve(__dirname, '../src')
     }
   },
 

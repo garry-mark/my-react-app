@@ -2,7 +2,7 @@ import * as style from './article-filter.css';
 
 import * as React from 'react';
 
-import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/const';
+import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/browser/const';
 
 class ArticleListFilter extends React.PureComponent<any, any> {
 

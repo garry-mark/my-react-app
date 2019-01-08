@@ -1,8 +1,8 @@
 import types from '../const/actionTypes';
 
-import Action from '@/actions/Action';
+import Action from '@/browser/actions/Action';
 
-import { ORDER_BY_CREATETIME, PAGE_NUM, PAGE_SIZE } from '@/const/';
+import { ORDER_BY_CREATETIME, PAGE_NUM, PAGE_SIZE } from '@/browser/const/';
 
 const initState = {
   curArticle: null,

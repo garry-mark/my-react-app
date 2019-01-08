@@ -1,14 +1,14 @@
 import { RouteConfig } from 'react-router-config';
 
-import App from '@/pages/app';
+import App from '@/browser/pages/app';
 
-import AboutMe from '@/pages/about-me';
+import AboutMe from '@/browser/pages/about-me';
 
-import ArticleDetails from '@/pages/article';
+import ArticleDetails from '@/browser/pages/article';
 
-import ArticleList from '@/pages/article-list';
+import ArticleList from '@/browser/pages/article-list';
 
-import NotFound from '@/components/status/notFound';
+import NotFound from '@/browser/components/status/notFound';
 
 export interface DigitizedRouteConfig extends RouteConfig {
   loadData?: (store: any, params: any) => void;

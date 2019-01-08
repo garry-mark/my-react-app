@@ -1,6 +1,6 @@
 import types from '../const/actionTypes';
 
-import Action from '@/actions/Action';
+import Action from '@/browser/actions/Action';
 
 export default function aboutme(state = null, action: Action) {
   switch (action.type) {

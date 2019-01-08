@@ -1,4 +1,4 @@
-import types from '@/const/actionTypes';
+import types from '@/browser/const/actionTypes';
 
 import Me from '@/model/Me';
 

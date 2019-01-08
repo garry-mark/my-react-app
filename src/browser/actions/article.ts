@@ -1,10 +1,10 @@
-import types from '@/const/actionTypes';
+import types from '@/browser/const/actionTypes';
 
 import Article from '@/model/Articles';
 
 import { getAgent } from '../../agent/';
 
-import { PAGE_NUM, PAGE_SIZE } from '@/const/';
+import { PAGE_NUM, PAGE_SIZE } from '@/browser/const/';
 
 const agent = getAgent();
 
