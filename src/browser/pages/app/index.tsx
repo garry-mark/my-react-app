@@ -25,6 +25,11 @@ class App extends React.Component<any, any> {
     super(props);
   }
 
+  // public componentWillMount() {
+  //   // console.log(this.props.staticContext);
+  //   console.log(style._getCss());
+  // }
+
   public render() {
     const { route } = this.props;
     return (

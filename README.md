@@ -29,6 +29,8 @@
 - [] 根据打包内容，如果大于 160k 采用按需加载方案，否则只出一个包
 - [] eslint-loader 在 webpack 的 nodeAPI 中无法使用
   - Module build failed: TypeError: Cannot read property 'VERSION' of undefined at Object.module.exports (/Users/garry/myworkspace/blog/node_modules/tslint-loader/index.js:135:37)
+- [x] 开发环境：由原定的执行TS到执行JS，即放弃nodemon-tsnode方案改为webpack-nodemon(npm-run-all)方案
+    - 由于运行时对css等其他资源处理不友好
 
 ### node 相关
 
@@ -73,6 +75,7 @@
 
 - [] ts-loader,transpileOnly 的利弊
 - [] typeRoots 与 noImplicitAny 为 false 处理，自定义@types
+- [] 样式dts使用全局定义，而不是目前的按照css文件数目定义
 
 #### js 处理
 
@@ -109,6 +112,7 @@
     - 解决方案：经过matchRoutes中的match获得
 - [] 生产环境服务器渲染CSS问题
 - [] 服务器端渲染后全部都用redux管理？
+    - 暂时使用全面redux管理方案
 - [] 一个容器组件包装过于复杂
 
 #### css 处理
@@ -128,6 +132,8 @@
 - [x] MiniCssExtractPlugin 样式文件提取处理
 - [x] css 压缩优化（css-loader）
 - [x] 样式缓存处理，并且文件名根据内容决定
+- [] typescript样式定义处理
+- [] 服务器端渲染样式跳动问题，理想效果需要css预加载
 
 #### html 处理
 

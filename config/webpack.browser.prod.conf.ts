@@ -10,7 +10,7 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 import * as merge from 'webpack-merge';
-import baseConf from './webpack.base.conf';
+import baseConf, { getScriptRules, getStyleRules } from './webpack.base.conf';
 
 // isOpenBundleAnalyzerPlugin
 // if (false) {
@@ -25,6 +25,7 @@ import baseConf from './webpack.base.conf';
 
 const browserConfig: webpack.Configuration = merge(baseConf, {
   mode: 'production',
+  entry: ['./src/browser/index.tsx'],
   output: {
     path: path.resolve(__dirname, '../dist/browser'),
     filename: '[name].[chunkhash].js',
@@ -33,36 +34,13 @@ const browserConfig: webpack.Configuration = merge(baseConf, {
   },
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-          { loader: 'babel-loader' },
-          {
-            loader: 'ts-loader',
-            options: {
-              configFile: path.resolve(__dirname, './tsconfig.webpack.json')
-            }
-          }
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'typings-for-css-modules-loader',
-            options: {
-              modules: true,
-              localIdentName: '[local]--[hash:base64:5]',
-              namedExport: true,
-              camelCase: true,
-              minimize: true
-            }
-          },
-          'postcss-loader'
-        ]
-      }
+      getScriptRules({
+        loader: 'ts-loader',
+        options: {
+          configFile: path.resolve(__dirname, './tsconfig.browser.json')
+        }
+      }),
+      getStyleRules(MiniCssExtractPlugin.loader)
     ]
   },
   performance: {

@@ -3,7 +3,6 @@ import * as webpack from 'webpack';
 
 const config: webpack.Configuration = {
   context: path.resolve(__dirname, '../'),
-  entry: ['./src/browser/index.tsx'],
 
   resolve: {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
@@ -68,3 +67,32 @@ const config: webpack.Configuration = {
 };
 
 export default config;
+
+export function getStyleRules(styleLoader: string | object) {
+  return {
+    test: /\.css$/,
+    use: [
+      styleLoader,
+      {
+        loader: 'typings-for-css-modules-loader',
+        options: {
+          modules: true,
+          localIdentName: '[local]--[hash:base64:5]',
+          namedExport: true,
+          camelCase: true,
+          minimize: true
+        }
+      },
+      'postcss-loader'
+    ]
+  };
+}
+
+export function getScriptRules(tsLoader: string | object) {
+  return {
+    test: /\.tsx?$/,
+    use: ['babel-loader', tsLoader],
+    exclude: /node_modules/
+  };
+}
+

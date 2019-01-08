@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "es6",
+    "module": "commonjs",
+    "jsx": "react",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./typings",
+      "./node_modules/@types/"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/browser/*"
+      ],
+      "#/*": [
+        "./src/server/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

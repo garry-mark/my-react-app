@@ -1,22 +1,18 @@
 import './utils/handleTsAlias';
 
-import './utils/handleStyleInNode';
-
-import './utils/handleAssetsInNode';
-
 import * as path from 'path';
 
 import * as fs from 'fs';
 
 import * as koaWebpack from 'koa-webpack';
 
-import devConfig from '../../config/webpack.dev.conf';
+import devConfig from '../../config/webpack.browser.dev.conf';
 
 import app from '#/app';
 
 const publicPath = (devConfig.output && devConfig.output.publicPath) || '';
 const pathName = (devConfig.output && devConfig.output.path) || '';
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 4000;
 
 koaWebpack({
   config: devConfig,
