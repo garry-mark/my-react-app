@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import '@/utils/handleTsAlias';
 
 import * as path from 'path';
@@ -23,17 +25,19 @@ koaWebpack({
 }).then((middleware) => {
   app.use(middleware);
 
-  app.use(async () => {
-    const rs = middleware.devMiddleware.fileSystem.createReadStream(
+  app.use(async (ctx, next) => {
+    const rs = await middleware.devMiddleware.fileSystem.createReadStream(
       path.resolve(pathName, 'index.html')
     );
 
-    const ws = fs.createWriteStream(
+    const ws = await fs.createWriteStream(
       path.resolve(__dirname, '../views/index.html')
     );
 
-    rs.pipe(ws);
+    await rs.pipe(ws);
+    await next();
   });
+
 });
 
 app.listen(port, () => {

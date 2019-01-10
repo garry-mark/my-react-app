@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import '@/browser/theme/global.css';
+import * as globalStyle from '@/browser/theme/global.css';
 
 import * as style from './app.css';
 
@@ -18,17 +18,14 @@ import { renderRoutes } from 'react-router-config';
 
 import { connect } from 'react-redux';
 
+import withStyles from '@/browser/components/HOC/withStyles';
+
 class App extends React.Component<any, any> {
   public state: any = {};
 
   constructor(props: any) {
     super(props);
   }
-
-  // public componentWillMount() {
-  //   // console.log(this.props.staticContext);
-  //   console.log(style._getCss());
-  // }
 
   public render() {
     const { route } = this.props;
@@ -57,4 +54,4 @@ function mapStateToProps(state: any) {
   return state;
 }
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, null)(withStyles(globalStyle, style)(App));

@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom';
 import Article from '@/model/Articles';
 import * as style from './article-item.css';
 
+import withStyles from '@/browser/components/HOC/withStyles';
+
+import { withRouter } from 'react-router';
+
 interface ArticleListItemProps {
   article: Article;
   setCurArticle: (article: Article) => void;
@@ -57,4 +61,4 @@ class ArticleListItem extends React.PureComponent<ArticleListItemProps> {
   }
 }
 
-export default ArticleListItem;
+export default withRouter(withStyles(style)(ArticleListItem));

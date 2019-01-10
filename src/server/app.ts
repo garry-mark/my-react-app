@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 import * as path from 'path';
 
 import * as Koa from 'koa';

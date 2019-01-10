@@ -31,6 +31,9 @@
   - Module build failed: TypeError: Cannot read property 'VERSION' of undefined at Object.module.exports (/Users/garry/myworkspace/blog/node_modules/tslint-loader/index.js:135:37)
 - [x] 开发环境：由原定的执行TS到执行JS，即放弃nodemon-tsnode方案改为webpack-nodemon(npm-run-all)方案
     - 由于运行时对css等其他资源处理不友好
+- [] 服务器渲染样式优化问题
+    - 使用装饰器
+    - css定义问题
 
 ### node 相关
 
@@ -48,7 +51,8 @@
 - [] https 处理
 - [x] 服务器分流问题，如何让SSR中间价不处理非前端路由
     - 解决方案：SSR中间件放到最后
-
+- [x] koa-webpack中间件文件流无法运行问题
+    - 中间件编写记得写await next()，如果直接用next()将忽略下一个next中的异步操作返回结果
 ### webpack 相关处理
 
 #### webpack 工程化处理

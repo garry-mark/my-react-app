@@ -2,6 +2,10 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import * as style from './navbar.css';
 
+import { withRouter } from 'react-router';
+
+import withStyles from '@/browser/components/HOC/withStyles';
+
 interface NavBarItem {
   name: string;
   to: string;
@@ -48,4 +52,4 @@ class NavBar extends React.Component<any, State> {
   }
 }
 
-export default NavBar;
+export default withRouter(withStyles(style)(NavBar));

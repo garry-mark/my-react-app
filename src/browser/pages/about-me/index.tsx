@@ -1,9 +1,11 @@
 import * as React from 'react';
 
 import actions from '@/browser/actions/aboutme';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import withStyles from '@/browser/components/HOC/withStyles';
+import * as style from './about-me.css';
 
 import Loading from '@/browser/components/loading/';
 import * as Loadable from 'react-loadable';
@@ -33,4 +35,6 @@ function mapDispatchToProps(dispatch: any) {
   return { actions: bindActionCreators(actions, dispatch) };
 }
 
-export default AboutMe;
+// why withStyles on here?
+// because data and style muse be load before LoadableComponent
+export default withStyles(style)(AboutMe);

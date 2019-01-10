@@ -22,7 +22,6 @@ class ArticleList extends React.Component<any, State> {
   }
 
   public componentDidUpdate(preProps: any) {
-    console.log(this.props)
     const { actions, pageNum } = this.props;
     if (preProps.pageNum !== pageNum) {
       actions.getArticlePaging({ pageNum });

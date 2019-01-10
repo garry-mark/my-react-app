@@ -4,6 +4,10 @@ import * as React from 'react';
 
 import { ORDER_BY_CREATETIME, ORDER_BY_PAGEVIEW } from '@/browser/const';
 
+import withStyles from '@/browser/components/HOC/withStyles';
+
+import { withRouter } from 'react-router';
+
 class ArticleListFilter extends React.PureComponent<any, any> {
 
   public render() {
@@ -27,4 +31,4 @@ class ArticleListFilter extends React.PureComponent<any, any> {
   }
 }
 
-export default ArticleListFilter;
+export default withRouter(withStyles(style)(ArticleListFilter));

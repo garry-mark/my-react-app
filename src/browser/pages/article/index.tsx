@@ -1,12 +1,14 @@
 import * as React from 'react';
-import * as Loadable from 'react-loadable';
 
+import actions from '@/browser/actions/article';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Loading from '@/browser/components/loading/';
+import withStyles from '@/browser/components/HOC/withStyles';
+import * as style from './article.css';
 
-import actions from '@/browser/actions/article';
+import Loading from '@/browser/components/loading/';
+import * as Loadable from 'react-loadable';
 
 const LoadableArticleDetails = Loadable({
   loader: () => import('@/browser/pages/article/article'),
@@ -35,4 +37,4 @@ function mapDispatchToProps(dispatch: any) {
   return { actions: bindActionCreators(actions, dispatch) };
 }
 
-export default ArticleDetails;
+export default withStyles(style)(ArticleDetails);

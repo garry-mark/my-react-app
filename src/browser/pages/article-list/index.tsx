@@ -1,27 +1,29 @@
 import * as React from 'react';
-import * as Loadable from 'react-loadable';
 
+import actions from '@/browser/actions/article';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import withStyles from '@/browser/components/HOC/withStyles';
+import * as style from './article-list.css';
+
 import Loading from '@/browser/components/loading/';
+import * as Loadable from 'react-loadable';
 
-import actions from '@/browser/actions/article';
-
-const LoadableArticleDetails = Loadable({
+const LoadableArticleList = Loadable({
   loader: () => import('@/browser/pages/article-list/article-list'),
   loading: Loading
 });
 
-const ConnectArticleDetails = connect(mapStateToProps, mapDispatchToProps)(LoadableArticleDetails);
+const ConnectArticleList = connect(mapStateToProps, mapDispatchToProps)(LoadableArticleList);
 
-class ArticleDetails extends React.Component {
+class ArticleList extends React.Component {
   public static loadData(store: any, params: any): void {
     return store.dispatch(actions.getArticlePaging(params));
   }
 
   public render() {
-    return <ConnectArticleDetails {...this.props} />;
+    return <ConnectArticleList {...this.props} />;
   }
 }
 
@@ -33,4 +35,4 @@ function mapDispatchToProps(dispatch: any) {
   return { actions: bindActionCreators(actions, dispatch) };
 }
 
-export default ArticleDetails;
+export default withStyles(style)(ArticleList);

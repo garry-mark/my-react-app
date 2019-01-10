@@ -1,5 +1,5 @@
 
-import * as otsConfig from '../../../config/tsconfig.server.json';
+import * as otsConfig from '../../config/tsconfig.server.json';
 
 import * as tsConfigPaths from 'tsconfig-paths';
 

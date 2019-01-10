@@ -8,7 +8,6 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "strictNullChecks": true,
-    "noUnusedParameters": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,

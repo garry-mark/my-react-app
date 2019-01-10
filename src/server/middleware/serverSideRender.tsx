@@ -10,6 +10,10 @@ import RouteConfig from '@/browser/pages/router.config';
 import { getStore } from '@/browser/store';
 import { Provider } from 'react-redux';
 
+interface WithStyleStaticRouterContext extends StaticRouterContext {
+  styles?: string[];
+}
+
 function matchRouteConifg(url: string) {
   const branch = matchRoutes(RouteConfig, url);
   const withParamsDataLoaders = branch
@@ -30,7 +34,7 @@ export default async (ctx: any, next: any) => {
     const promiseifyDataLoaders = withParamsDataLoaders
       .map((dataLoader: any) => dataLoader.loadData(store, dataLoader.params));
 
-    const context: StaticRouterContext = {};
+    const context: WithStyleStaticRouterContext = { styles: [] };
     const template = await Promise.all(promiseifyDataLoaders).then(() => {
       const markup = ReactDOMServer.renderToString(
         <Provider store={store}>
@@ -39,7 +43,11 @@ export default async (ctx: any, next: any) => {
           </StaticRouter>
         </Provider>
       );
-      return { root: markup, state: store.getState() };
+      return {
+        root: markup,
+        state: JSON.stringify(store.getState()) || '',
+        styles: context.styles ? context.styles.join('') : ''
+      };
     });
     switch (context.statusCode) {
       default:
@@ -55,7 +63,6 @@ export default async (ctx: any, next: any) => {
         await ctx.render('index', template);
         break;
     }
-  } else {
-    await next();
   }
+  await next();
 };

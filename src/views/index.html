@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <title>Garry Blog</title>
-  </head>
+    <style> <%- styles %></style>
+</head>
 
-  <body>
-    <div id="root"><%- root %></div>
+<body>
+    <div id="root">
+        <%- root %>
+    </div>
     <script>
-      window.REDUX_STATE = <%- JSON.stringify(state) %>
+
+        window.REDUX_STATE = <%- state %>
+
     </script>
     <script type="text/javascript" src="/assets/vendor.dll.js"></script>
-  <script type="text/javascript" src="/main.js"></script></body>
+<script type="text/javascript" src="/main.js"></script></body>
+
 </html>
