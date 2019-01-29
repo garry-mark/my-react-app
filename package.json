@@ -20,11 +20,14 @@
     "dev": "npm-run-all --parallel dev:**",
     "dev:serve": "nodemon ./dist/server/main.js --watch 'dist/server/**/*.*' ",
     "dev:build": "webpack --watch --config ./config/webpack.node.dev.conf.ts",
-    "serve": "node ./dist/server/main.js",
+    "serve": "pm2 start ./ecosystem.config.js",
     "stop": "pm2 stop ./dist/server/main.js",
-    "pm2": "pm2",
     "build": "webpack --config ./config/webpack.prod.conf.ts",
+    "build:server": "webpack --config ./config/webpack.node.prod.conf.ts",
     "build:dll": "webpack --config ./config/webpack.dll.conf.ts",
+    "build:docker": "docker build -t my-app .",
+    "docker:run": "docker run -dit -p 80:4000 my-app",
+    "docker:debug": "docker exec -it [id] /bin/sh",
     "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'"
   },
   "keywords": [
@@ -129,10 +132,10 @@
     "typings-for-css-modules-loader": "^1.7.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
-    "webpack": "^4.9.1",
-    "webpack-bundle-analyzer": "^3.0.2",
-    "webpack-cli": "^2.1.4",
-    "webpack-merge": "^4.1.2",
-    "webpack-node-externals": "^1.7.2"
+    "webpack": "4.9.1",
+    "webpack-bundle-analyzer": "3.0.2",
+    "webpack-cli": "2.1.4",
+    "webpack-merge": "4.1.2",
+    "webpack-node-externals": "1.7.2"
   }
 }

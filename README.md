@@ -7,7 +7,8 @@
 - node 环境下，实现 generator 方案的差异？
   - TSconfig target:es5 lib:es2015 无需 babel-polyfill 实现 generator
   - TSconfig target:es6 lib:无 需要 babel-polyfill 实现 generator（即 regenerator）
-- [] babel 是否可以考虑移出开发环境？
+- [x] babel 是否可以考虑移出开发环境？
+    - 否，因为需要babel进行polyfill
 
 ### 待续优化
 
@@ -53,6 +54,20 @@
     - 解决方案：SSR中间件放到最后
 - [x] koa-webpack中间件文件流无法运行问题
     - 中间件编写记得写await next()，如果直接用next()将忽略下一个next中的异步操作返回结果
+- node端 是否保留原生 __dirname
+    - webpack.node.__dirname为false（原生功能）
+        - 开发环境：node端运行的是打包结果（由于SSR样式渲染需要webpack的同构loader），所以开发ts时候代码中的__dirname为dist中的serve/main.js
+            - 注意点：由于开发环境需要运行browser端的webpack，webpack配置中__dirname不是配置原意的工程根目录，而是main.js，使得某些原本相对于context的uri失效（失去webpack本意）
+        - 生成环境：__dirname与开发环境相同
+    - webpack.node.__dirname为true（放弃原生功能相对于context的路径）
+        - 开发和生产都指向__dirname相对于context的路径
+    - 方案：不保留，使用webpack.node.__dirname = true配置，使之相对于工程根目录，方便开发生产环境统一
+
+### pm2
+- 由于服务端是使用pm2启动，所以启动工程的工作路径为pm2启动的目录
+    - ecosystem 配置文件中配置cwd
+    - docker启动时必需进入工程内使用pm2-runtime启动
+
 ### webpack 相关处理
 
 #### webpack 工程化处理
@@ -100,10 +115,10 @@
 
 - [] 样式加载使用装饰器处理
 - [] react 热加载
-- [] 服务器端渲染的优点
+- [x] 服务器端渲染的优点
   - SEO
-  - 预加载数据
-  - 错误以及重定向的可控性，如 401，404，302
+  - [x] 预加载数据
+  - [x] 错误以及重定向的可控性，如 401，404，302
 - [] 服务器端渲染的缺点
   - [x] 渲染了两次页面，考虑如何节省首次访问的前端渲染?实际上不会渲染两次，因为 react 有判断
   - [x] 首次渲染无样式？仅限开发环境，生产环境整个导入可以解决（分开导入？）
@@ -168,3 +183,10 @@
 - [x] tslint自动格式化失效
     - 原因：vscode 自动判断制表符设置导致报错tslint失效
     - 解决：引入editorconfig
+
+#### docker
+- 安装依赖是否应该放在打包镜像过程中?
+    - 需要，就相当于一个pull一个项目下来一样
+- 真机器，docker打镜像时候，使用淘宝源反而会导致安装失败？？
+- 构建速度很慢，webpack速度与npm install速度
+-
