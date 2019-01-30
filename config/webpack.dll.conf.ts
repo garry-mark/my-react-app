@@ -1,6 +1,8 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
 
+import * as CompressionPlugin from 'compression-webpack-plugin';
+
 const dllConfig: webpack.Configuration = {
   mode: 'production',
   context: path.resolve(__dirname, '../'),
@@ -26,7 +28,8 @@ const dllConfig: webpack.Configuration = {
     new webpack.DllPlugin({
       path: path.join(__dirname, '../', 'vendor-manifest.json'),
       name: '[name]_[hash:7]'
-    })
+    }),
+    new CompressionPlugin()
   ]
 };
 

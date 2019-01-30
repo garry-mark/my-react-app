@@ -37,6 +37,7 @@ const devConfig: webpack.Configuration = merge(baseConf, {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: path.resolve(__dirname, '../static/favicon.ico'),
       filename: 'index.html',
       template: './src/views/index.tmpl.html'
     })

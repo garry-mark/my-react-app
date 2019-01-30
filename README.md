@@ -11,8 +11,8 @@
 - [x] CleanWebpackPlugin 打包前，目录自动清理 dist 目录下的所有文件
 - [x] 第三方库提取
 - [x] 根据路由实现按需加载
-- [] 缓存处理
-- [] gzip处理
+- [x] 缓存处理
+- [x] gzip处理
 - [x] dll 处理
 - [x] sourceMap:cheap-module-eval-source-map 处理 开发环境下，可以定位报错
 - [x] devServer 搭建（HRM 热替换模块、服务代理）
@@ -25,6 +25,7 @@
 - 开发环境
   - [] output 删除 chunkhash 操作
   - [] 同构环境删除 devServer 处理
+- [x] htmlPubgin处理favicon
 
 #### 问题/解决方案
 - [] DefinePlugin 使用 ENV 变量比使用字符串字面量，打包要多 200k？？
@@ -178,7 +179,7 @@
 - [x] 资源文件缓存处理
 
 ### 其他
-- favicon打包放到dist中？在工程的根？在公共资源下？
+- [x] favicon打包放到dist中？在工程的根？在公共资源下？
 - [] 路径正则规则
 
 ### 微服务
@@ -186,7 +187,7 @@
 
 ### Nginx
 - 动静分离，静态资源为服务镜像构建
-- 目前以dist为静态资源服务，导致server/main都可以直接访问，有安全问题。
+- [x] 目前以dist为静态资源服务，导致server/main都可以直接访问，有安全问题。
     - 使用nginx
     - 新建一个statc目录，存放静态资源
 

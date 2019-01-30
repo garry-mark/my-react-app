@@ -7,6 +7,8 @@ import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
+import * as CompressionPlugin from 'compression-webpack-plugin';
+
 import * as UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 import * as merge from 'webpack-merge';
@@ -56,9 +58,11 @@ const browserConfig: webpack.Configuration = merge(baseConf, {
       chunkFilename: 'css/[name].[contenthash:7].css'
     }),
     new HtmlWebpackPlugin({
+      favicon: path.resolve(__dirname, '../static/favicon.ico'),
       filename: 'index.html',
       template: './src/views/index.tmpl.html'
-    })
+    }),
+    new CompressionPlugin()
   ],
   optimization: {
     minimizer: [
