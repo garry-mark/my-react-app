@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-// import * as globalStyle from '@/browser/theme/global.css';
-import '@/browser/theme/global.css';
-
+import * as globalStyle from '../../theme/global.css';
 import * as style from './app.css';
 
 import Header from '@/browser/components/layout/header/';
@@ -55,5 +53,5 @@ function mapStateToProps(state: any) {
   return state;
 }
 
-// export default connect(mapStateToProps, null)(withStyles(globalStyle, style)(App));
-export default connect(mapStateToProps, null)(withStyles(style)(App));
+export default connect(mapStateToProps, null)(withStyles(globalStyle, style)(App));
+// export default connect(mapStateToProps, null)(withStyles(style)(App));
