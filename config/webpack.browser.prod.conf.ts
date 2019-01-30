@@ -27,10 +27,10 @@ const browserConfig: webpack.Configuration = merge(baseConf, {
   mode: 'production',
   entry: ['./src/browser/index.tsx'],
   output: {
-    path: path.resolve(__dirname, '../dist/browser'),
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
-    publicPath: '/browser/'
+    path: path.resolve(__dirname, '../dist/static'),
+    filename: 'js/[name].[chunkhash:7].js',
+    chunkFilename: 'js/[name].[chunkhash:7].js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -47,13 +47,13 @@ const browserConfig: webpack.Configuration = merge(baseConf, {
     hints: 'error'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
+    new CleanWebpackPlugin(['dist/static'], {
       root: baseConf.context,
-      exclude: ['assets', 'server']
+      exclude: ['vendor']
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[id].css'
+      filename: 'css/[name].[contenthash:7].css',
+      chunkFilename: 'css/[name].[contenthash:7].css'
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -66,7 +66,17 @@ const browserConfig: webpack.Configuration = merge(baseConf, {
         cache: true,
         parallel: true
       })
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
   }
 });
 

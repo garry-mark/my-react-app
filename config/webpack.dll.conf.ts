@@ -18,14 +18,14 @@ const dllConfig: webpack.Configuration = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '../dist/assets'),
+    path: path.resolve(__dirname, '../dist/static/vendor'),
     filename: '[name].dll.js',
-    library: '[name]_[hash]'
+    library: '[name]_[hash:7]'
   },
   plugins: [
     new webpack.DllPlugin({
       path: path.join(__dirname, '../', 'vendor-manifest.json'),
-      name: '[name]_[hash]'
+      name: '[name]_[hash:7]'
     })
   ]
 };

@@ -13,9 +13,9 @@ const devConfig: webpack.Configuration = merge(baseConf, {
   mode: 'development',
   entry: ['./src/browser/index.tsx'],
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js',
-    chunkFilename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, '../dist/static'),
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].js',
     publicPath: '/'
   },
   devtool: 'cheap-module-eval-source-map',
@@ -30,7 +30,7 @@ const devConfig: webpack.Configuration = merge(baseConf, {
       getStyleRules({
         loader: 'style-loader',
         options: {
-          sourceMap: true
+          sourceMap: true,
         }
       })
     ]

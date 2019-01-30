@@ -149,6 +149,10 @@
 - [] typescript样式定义处理
 - [x] 服务器端渲染样式跳动问题，理想效果需要css预加载
     - 通过isomorphic-style-loader解决
+- SSR需要渲染样式和loadable中的样式生产环境下打包结果不一样
+    - SSR的样式在main.css中
+    - loadable的样式在chunk中
+- 开发阶段，公共样式没有SSR到时，样式闪动问题
 
 ### HTML
 
@@ -174,8 +178,17 @@
 - [x] 资源文件缓存处理
 
 ### 其他
-
+- favicon打包放到dist中？在工程的根？在公共资源下？
 - [] 路径正则规则
+
+### 微服务
+- 使用docker-composed进行服务编排（静态资源微服务、SSR微服务、APIgateway、单点登录微服务）
+
+### Nginx
+- 动静分离，静态资源为服务镜像构建
+- 目前以dist为静态资源服务，导致server/main都可以直接访问，有安全问题。
+    - 使用nginx
+    - 新建一个statc目录，存放静态资源
 
 ### Node
 

@@ -83,7 +83,7 @@ export function getStyleRules(styleLoader: string | object) {
         }
       },
       'postcss-loader'
-    ]
+    ],
   };
 }
 
@@ -91,7 +91,7 @@ export function getScriptRules(tsLoader: string | object) {
   return {
     test: /\.tsx?$/,
     use: ['babel-loader', tsLoader],
-    exclude: /node_modules/
+    exclude: /node_modules/,
   };
 }
 

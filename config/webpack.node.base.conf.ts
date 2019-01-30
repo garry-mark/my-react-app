@@ -36,8 +36,7 @@ const nodeConfig: webpack.Configuration = merge(baseConf, {
   externals: [nodeExternals()],
   plugins: [
     new CleanWebpackPlugin(['dist/server'], {
-      root: path.resolve(__dirname, '../'),
-      exclude: ['assets', 'browser']
+      root: path.resolve(__dirname, '../')
     })
   ]
 });
