@@ -60,7 +60,15 @@ const browserConfig: webpack.Configuration = merge(baseConf, {
     new HtmlWebpackPlugin({
       favicon: path.resolve(__dirname, '../static/favicon.ico'),
       filename: 'index.html',
-      template: './src/views/index.tmpl.html'
+      template: './src/views/index.tmpl.html',
+      minify:{
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      }
     }),
     new CompressionPlugin()
   ],

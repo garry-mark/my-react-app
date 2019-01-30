@@ -205,6 +205,8 @@
 - [] https 处理
 
 #### 问题/解决方案
+- [x] koa-static默认index.html，与SSR对/重定向处理冲突
+    - 解决方案：koa-static.options.index设置为false
 - [x] typescript 升级处理
   - webpack 有 node 热修复插件？
   - 解决方案：使用 nodemon 的 runtime 方案，由于 webpackHRM 方案，但是有资源读取问题

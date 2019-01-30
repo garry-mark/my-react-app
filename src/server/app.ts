@@ -16,7 +16,7 @@ const app = new Koa();
 app.use(logger());
 
 const staticPath = '../../dist/static';
-app.use(KoaStatic(path.resolve(__dirname, staticPath)));
+app.use(KoaStatic(path.resolve(__dirname, staticPath), { index: false }));
 
 const viewsPath = isProd ? '../../dist/static' : '../views';
 app.use(views(path.resolve(__dirname, viewsPath), { map: { html: 'ejs' } }));
