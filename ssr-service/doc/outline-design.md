@@ -1,3 +1,24 @@
+## node service层多类型接口框架
+- 可配置，包括端口、serviceURL、db信息等
+- 以model为最小粒度，支持使用mock、databbase、service等多种数据源
+- koa中间件，this.ctx中包含http-client、mockjs、db-client等
+- router、controller、service文件自动识别
+
+## 服务端功能点
+- 程序错误处理
+    - koa中间件：使用 handleErrorMiddleware 对中间件流程抛出的错
+    误进行处理
+        - 原理：集合koa内部koa-compose对递归的处理，如果错误没有被捕获会被抛到最外面（async / await中promise的reject会变成同步抛出的错误）
+    - node：对node进程中抛出的错误进行处理
+- 页面渲染错误处理
+    - SSR 预渲染数据 错误处理
+        - 解决方案：统一返回到service-error页面
+    - BSR 调用接口 错误处理
+        - 解决方案：单一数据源页面直接到service-error页面；否则显示 错误组件（文本显示、重新请求、loading）
+    - 后期SSR于BSR统一使用组件处理，组件判断SSR得出的结果再控制 错误组件
+- 操作日志记录(controller、service操作记录，错误记录)，持久化记录
+-
+
 ## 表设计
 ```
 CREATE TABLE `article` (

@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 
 interface WithStyleStaticRouterContext extends StaticRouterContext {
   styles?: string[];
+  referUrl?: string;
 }
 
 function matchRouteConifg(url: string) {
@@ -30,25 +31,34 @@ export default async (ctx: any, next: any) => {
   const store = getStore();
 
   if (!regexp.test(ctx.url)) {
+    let context: WithStyleStaticRouterContext = { styles: [] };
     // set preload data in store
     const promiseifyDataLoaders = withParamsDataLoaders
       .map((dataLoader: any) => dataLoader.loadData(store, dataLoader.params));
 
-    const context: WithStyleStaticRouterContext = { styles: [] };
-    const template = await Promise.all(promiseifyDataLoaders).then(() => {
-      const markup = ReactDOMServer.renderToString(
-        <Provider store={store}>
-          <StaticRouter location={ctx.url} context={context}>
-            {renderRoutes(RouteConfig)}
-          </StaticRouter>
-        </Provider>
-      );
-      return {
-        root: markup,
-        state: JSON.stringify(store.getState()) || '',
-        styles: context.styles ? context.styles.join('') : ''
-      };
-    });
+    try {
+      await Promise.all(promiseifyDataLoaders);
+    } catch (e) {
+      // handle preload data is no found or error
+      context = { ...context, referUrl: ctx.url };
+      ctx.url = '/service-error';
+      console.error(e);
+    }
+
+    const markup = ReactDOMServer.renderToString(
+      <Provider store={store}>
+        <StaticRouter location={ctx.url} context={context}>
+          {renderRoutes(RouteConfig)}
+        </StaticRouter>
+      </Provider>
+    );
+
+    const template = {
+      root: markup,
+      state: JSON.stringify(store.getState()) || '',
+      styles: context.styles ? context.styles.join('') : ''
+    };
+
     switch (context.statusCode) {
       default:
         await ctx.render('index', template);
@@ -63,6 +73,7 @@ export default async (ctx: any, next: any) => {
         await ctx.render('index', template);
         break;
     }
+
   }
   await next();
 };

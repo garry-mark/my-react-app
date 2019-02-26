@@ -61,7 +61,9 @@ class AboutMe extends React.Component<any, any> {
   }
   private getAboutme = () => {
     const { actions } = this.props;
-    actions.getAboutme();
+    actions.getAboutme().catch(() => {
+      this.props.history.push('/service-error');
+    });
   }
 }
 

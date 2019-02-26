@@ -9,6 +9,7 @@ import ArticleDetails from '@/browser/pages/article';
 import ArticleList from '@/browser/pages/article-list';
 
 import NotFound from '@/browser/components/status/notFound';
+import ServiceError from '@/browser/components/status/serviceError';
 
 export interface DigitizedRouteConfig extends RouteConfig {
   loadData?: (store: any, params: any) => void;
@@ -34,6 +35,10 @@ const RouteConfig: DigitizedRouteConfig[] = [
         component: ArticleDetails,
         path: '/article/:id',
         loadData: ArticleDetails.loadData
+      },
+      {
+        component: ServiceError,
+        path: '/service-error'
       },
       {
         component: NotFound

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { withRouter } from 'react-router';
 
 import actions from '@/browser/actions/aboutme';
 import { connect } from 'react-redux';
@@ -17,13 +18,14 @@ const LoadableAboutMe = Loadable({
 
 const ConnectAboutMe = connect(mapStateToProps, mapDispatchToProps)(LoadableAboutMe);
 
-class AboutMe extends React.Component {
+class AboutMe extends React.Component<any, any> {
   public static loadData(store: any): void {
     return store.dispatch(actions.getAboutme());
   }
 
   public render() {
-    return <ConnectAboutMe />;
+
+    return <ConnectAboutMe {...this.props} />;
   }
 }
 
@@ -37,4 +39,4 @@ function mapDispatchToProps(dispatch: any) {
 
 // why withStyles on here?
 // because data and style muse be load before LoadableComponent
-export default withStyles(style)(AboutMe);
+export default withStyles(style)(withRouter(AboutMe));
