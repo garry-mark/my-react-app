@@ -2,10 +2,17 @@ import 'babel-polyfill';
 
 import app from '@/server/app';
 
-const port = process.env.PORT || 4000;
+import * as log4js from 'log4js';
+
+import * as config from '../../app.config';
+
+const logger = log4js.getLogger();
+
+
+const port = process.env.PORT || config.app[process.env.NODE_ENV].port;
 
 app.listen(port, () => {
-  console.log(
+  logger.trace(
     `\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`
   );
 });

@@ -8,6 +8,8 @@ RUN cd ./app \
     && ls \
     && node -v \
     && npm install -g pm2 --registry=https://registry.npm.taobao.org  \
+    && apk add git \
+    && pm2 install pm2-intercom \
     && npm install \
     && npm run build:dll \
     && npm run build
@@ -17,5 +19,4 @@ RUN cd ./app \
 EXPOSE 4000
 
 CMD cd /app \
-    && ls \
     && pm2-runtime start ./ecosystem.config.js \

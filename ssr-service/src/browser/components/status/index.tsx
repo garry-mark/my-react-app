@@ -27,7 +27,6 @@ const StatusCode = ({
         if (staticContext) {
           staticContext.statusCode = code;
         }
-        console.log(staticContext);
         return isRedirect
           ? <Redirect exact={exact} from={from} to={to} />
           : render ? render({ ...staticContext }) : children;

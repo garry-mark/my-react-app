@@ -4,7 +4,7 @@ import * as Koa from 'koa';
 import * as KoaStatic from 'koa-static';
 import * as views from 'koa-views';
 
-import * as logger from 'koa-logger';
+import log4jMiddleware from './middleware/log4j';
 
 import handleErrorMiddleware from './middleware/handleError';
 import ssrMiddleware from './middleware/serverSideRender';
@@ -17,7 +17,7 @@ const app = new Koa();
 
 app.use(handleErrorMiddleware());
 
-app.use(logger());
+app.use(log4jMiddleware());
 
 const staticPath = '../../dist/static';
 app.use(KoaStatic(path.resolve(__dirname, staticPath), { index: false }));
@@ -30,9 +30,5 @@ app.use(apiRoutes.routes()).use(apiRoutes.allowedMethods());
 
 // SSR middleware must handle res after ApiMiddleware because it dependence on it.
 app.use(ssrMiddleware);
-
-app.use((ctx, next) => {
-  next();
-});
 
 export default app;

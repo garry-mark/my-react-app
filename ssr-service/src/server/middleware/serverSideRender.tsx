@@ -42,7 +42,7 @@ export default async (ctx: any, next: any) => {
       // handle preload data is no found or error
       context = { ...context, referUrl: ctx.url };
       ctx.url = '/service-error';
-      console.error(e);
+      ctx.logger.error(`${e.config.method} ${e.config.url} ${e.response.status}  ${e.response.statusText}`);
     }
 
     const markup = ReactDOMServer.renderToString(

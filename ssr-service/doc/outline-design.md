@@ -5,7 +5,7 @@
 - router、controller、service文件自动识别
 
 ## 服务端功能点
-- 程序错误处理
+- [x] 程序错误处理
     - koa中间件：使用 handleErrorMiddleware 对中间件流程抛出的错
     误进行处理
         - 原理：集合koa内部koa-compose对递归的处理，如果错误没有被捕获会被抛到最外面（async / await中promise的reject会变成同步抛出的错误）
@@ -16,8 +16,17 @@
     - BSR 调用接口 错误处理
         - 解决方案：单一数据源页面直接到service-error页面；否则显示 错误组件（文本显示、重新请求、loading）
     - 后期SSR于BSR统一使用组件处理，组件判断SSR得出的结果再控制 错误组件
-- 操作日志记录(controller、service操作记录，错误记录)，持久化记录
--
+- 日志记录
+    - 日志分级：error、warn、 info
+    - 日志分类：每个操作日志和访问日志
+    - 使用log4js方案：
+        - 生产环境：记录日志，对日志进行维持7天的持久化存储，另外记录错误操作
+        - 开发环境：打印到控制台即可
+        - 实现：使用log4js中间件，注入操作日志记录器到ctx中
+    - 日志生产环境要点
+        - 创建docker卷进行持久化处理
+            - 问题：在本地docker与线上docker，如何统一挂载的卷？
+        - 集成pm2：打镜像时候 pm2 install pm2-intercom
 
 ## 表设计
 ```
