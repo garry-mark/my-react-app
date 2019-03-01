@@ -5,6 +5,43 @@
 - router、controller、service文件自动识别
 
 ## 服务端功能点
+- 三月
+    - [x] node部署方案
+        - [x] 基于pm2
+        - [x] docker镜像
+    - [] node架构实现内容
+        - [] 细节
+            - [] 定义VO、BO、PO、DTO、DAO的关系
+        - [] web层
+            - [x] 页面渲染服务（支持SPA的SSR与MPA的SSR）
+            - [] 类似swagger的文档导出
+        - [] 工具或拦截器等
+            - [x] 程序错误处理与页面渲染错误处理
+            - [] 参数校验
+            - [x] 日志记录
+        - [] 业务层
+            - [] controller针对不同类型service的实现
+        - [] 持久层
+            - mysql-util中间件
+                - mysql数据库连接池方案
+                - DaoBase基本操作封装，支持基本CRUD以、sql、事物操作
+            - http-proxy
+                - 支持tcp连接池，以及普通http代理服务
+            - 集成mockjs
+- 四月
+    - [] mysql服务的联调与开发
+    - [] nginx服务的联调与开发（静态资源服务、代理服务、代理缓存服务、负债均衡等）
+    - [] apigateway的联调与开发（服务注册与服务发现）
+        - [] ZooKeeper客户端 与 docker register服务实现
+        - [] 接入redis实现 用户状态管理 以及 访问权限控制
+    - [] 基于docker-composed部署大前端方案
+- 五月
+    - [] 前端微服务容错方案
+    - [] 集成单元测试、集成测试、性能测试、压力测试
+    - [] https化
+- 六月
+    - [] 微服务监控方案
+
 - [x] 程序错误处理
     - koa中间件：使用 handleErrorMiddleware 对中间件流程抛出的错
     误进行处理

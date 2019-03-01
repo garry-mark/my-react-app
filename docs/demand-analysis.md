@@ -12,10 +12,12 @@
 - 根据文章标题 或 内容 进行模糊查询
 - 文章内容显示支持markdown格式
 - 文章详情页面 前后文章跳转
+    - 下一篇文章：SELECT * FROM article WHERE id> ID LIMIT 1;
+    - 上一篇文章：SELECT * FROM article WHERE id< ID LIMIT 1 ORDER BY id DESC；
 - 文章点赞功能
 - 文章浏览量功能
-- 文章分享功能
-- 文章评论功能
+- 文章分享功能（二期）
+- 文章评论功能（二期）
 
 ### 类别模块功能
 

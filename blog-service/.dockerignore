@@ -1,0 +1,9 @@
+.git
+.DS_Store
+.vscode
+dist
+node_modules
+.gitignore
+Dockerfile
+
+package-lock.json
