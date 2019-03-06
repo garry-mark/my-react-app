@@ -8,7 +8,7 @@ import * as appConfig from '../../app.config.js';
 
 const logger = log4js.getLogger();
 
-export function getPool(config?: PoolConfig) {
+export default function getPool(config?: PoolConfig) {
     const pool = mysql.createPool(config || appConfig.app[process.env.NODE_ENV].dbConfig);
 
     pool.on('connection', (connection: Connection) => {
@@ -27,10 +27,8 @@ export function getPool(config?: PoolConfig) {
         logger.trace('📀  Waiting for available connection slot');
     });
 
-    return pool;
+    return async (ctx: Context, next: Function) => {
+        ctx.mysql = pool.promise();
+        await next();
+    };
 }
-
-export default (pool: any) => async (ctx: Context, next: Function) => {
-    ctx.mysql = pool.promise();
-    await next();
-};

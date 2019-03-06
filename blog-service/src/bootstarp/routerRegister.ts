@@ -1,8 +1,8 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 
-import AboutemeRouter from './aboutme';
-import ArticleRouter from './article';
+import AboutemeRouter from '../router/aboutme';
+import ArticleRouter from '../router/article';
 
 
 
