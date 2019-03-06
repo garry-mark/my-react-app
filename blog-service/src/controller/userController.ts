@@ -1,6 +1,14 @@
+// import UserServeice from '../service/userServeice';
 
-export default class UserController {
-  public async getBloggerInfo() { }
-  public async register() { }
-  public async login() { }
+import Controller from './Controller';
+
+// const uServ = new UserServeice();
+
+export default class UserController extends Controller {
+
+  public getBloggerInfo = async () => {
+    this.ctx!.body = 'abc';
+  }
+  public register = async () => { }
+  public login = async () => { }
 }

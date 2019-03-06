@@ -47,13 +47,15 @@
     误进行处理
         - 原理：集合koa内部koa-compose对递归的处理，如果错误没有被捕获会被抛到最外面（async / await中promise的reject会变成同步抛出的错误）
     - node：对node进程中抛出的错误进行处理
-- 页面渲染错误处理
+- 服务错误处理
+    - 返回统一格式的json，包含错误码、错误信息等
+- [x] 页面渲染错误处理
     - SSR 预渲染数据 错误处理
         - 解决方案：统一返回到service-error页面
     - BSR 调用接口 错误处理
         - 解决方案：单一数据源页面直接到service-error页面；否则显示 错误组件（文本显示、重新请求、loading）
     - 后期SSR于BSR统一使用组件处理，组件判断SSR得出的结果再控制 错误组件
-- 日志记录
+- [x] 日志记录
     - 日志分级：error、warn、 info
     - 日志分类：每个操作日志和访问日志
     - 使用log4js方案：
@@ -64,6 +66,17 @@
         - 创建docker卷进行持久化处理
             - 问题：在本地docker与线上docker，如何统一挂载的卷？
         - 集成pm2：打镜像时候 pm2 install pm2-intercom
+- node连接数据库要点
+    - 基于mysql2（promiseify），类似于ali-rds的template封装
+        - 目前使用mysql2实现功能
+    - 使用连接池
+    - 数据库参数配置，仅支持单数据库连接
+- http-proxy实现
+- MVC三层架构实现
+    - [x] controller，通过this或者被调用具体方法的函数参数，获取ctx]
+        - 控制器生成器: 将所有控制器都注册到app上，并且注册到相关路由中
+    - service装饰器：controller注入不同的数据源
+        - 装饰器内部使用import()动态加载service，以及传递 数据库或http-proxy操作，使其在this内得到
 
 ## 表设计
 ```

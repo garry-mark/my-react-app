@@ -2,28 +2,18 @@ import * as Koa from 'koa';
 
 import * as log4js from 'log4js';
 
-import * as config from '../app.config';
+import * as config from './../app.config';
 
-import log4jMiddleware from './middleware/log4j';
+import controllerRegister from './bootstarp/controllerRegister';
+import middlewareRegister from './bootstarp/middlewareRegister';
 
-import handleErrorMiddleware from './middleware/handleError';
-
-import apiRoutes from './router/';
-
-const logger = log4js.getLogger();
-
-const port = process.env.PORT || config.app[process.env.NODE_ENV].port;
+const logger = log4js.getLogger('app');
 
 const app = new Koa();
+const registerControllerMiddleware = controllerRegister(app);
+middlewareRegister(app, registerControllerMiddleware);
 
-app.use(handleErrorMiddleware());
-app.use(log4jMiddleware());
-
-// ApiMiddleware handle for '/api/*'
-app.use(apiRoutes.routes()).use(apiRoutes.allowedMethods());
-
+const port: number = process.env.PORT || config.app[process.env.NODE_ENV].port;
 app.listen(port, () => {
-    logger.trace(
-        `\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`
-    );
+    logger.trace(`🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
 });
