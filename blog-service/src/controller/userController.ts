@@ -1,14 +1,14 @@
-// import UserServeice from '../service/userServeice';
+import UserServeice from '../service/userServeice';
 
 import Controller from './Controller';
+import Services from '../decorator/Services';
 
-// const uServ = new UserServeice();
-
+@Services({ UserServeice })
 export default class UserController extends Controller {
 
   public getBloggerInfo = async () => {
     this.ctx!.body = 'abc';
-    console.log(await this.ctx!.mysql.query('SELECT * FROM user'));
+    this.services.UserServeice.getBloggerInfo()
   }
   public register = async () => { }
   public login = async () => { }

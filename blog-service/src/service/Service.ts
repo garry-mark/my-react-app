@@ -1,14 +1,11 @@
 import { Context } from 'koa';
 
-import { SubService } from '../service/Service'
-
-interface Services {
-    [name: string]: SubService;
+export interface SubService extends Service {
+    [name: string]: any;
 }
 
-export default class Controller {
+export default class Service {
     protected _ctx?: Context;
-    public services: Services = {};
 
     public get ctx(): Context | undefined {
         return this._ctx;

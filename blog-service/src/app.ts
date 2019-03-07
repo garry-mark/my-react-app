@@ -11,8 +11,6 @@ import controllerRegister from './bootstarp/controllerRegister';
 import middlewareRegister from './bootstarp/middlewareRegister';
 import routerRegister from './bootstarp/routerRegister';
 
-const logger = log4js.getLogger('app');
-
 const app = new Koa();
 
 uncaughtExceptionEventRegister();
@@ -24,14 +22,14 @@ const { routesMiddleware, allowedMethodsMiddleware } = routerRegister(app);
 middlewareRegister(
     app,
     loggerMiddleware,
-    controllerMiddleware,
     mysqlMiddleware,
+    controllerMiddleware,
     routesMiddleware,
     allowedMethodsMiddleware
 );
 
-
 const port: number = process.env.PORT || config.app[process.env.NODE_ENV].port;
+const logger = log4js.getLogger('app');
 app.listen(port, () => {
     logger.trace(`🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
 });
