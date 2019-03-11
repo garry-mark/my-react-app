@@ -12,6 +12,7 @@
     - [] node架构实现内容
         - [] 细节
             - [] 定义VO、BO、PO、DTO、DAO的关系
+                - vo与dto类似，
         - [] web层
             - [x] 页面渲染服务（支持SPA的SSR与MPA的SSR）
             - [] 类似swagger的文档导出
@@ -73,10 +74,14 @@
     - 数据库参数配置，仅支持单数据库连接
 - http-proxy实现
 - MVC三层架构实现
+    - 三层架构：展示层（VO）、web层（router+controller+VO）、service层(DAO\rom + DTO（对外）\BO(对内))
     - [x] controller，通过this或者被调用具体方法的函数参数，获取ctx]
         - 控制器生成器: 将所有控制器都注册到app上，并且注册到相关路由中
     - service装饰器：controller注入不同的数据源
-        - 装饰器内部使用import()动态加载service，以及传递 数据库或http-proxy操作，使其在this内得到
+        - [x] 装饰器内部使用require()动态同步加载service，以及在传递 数据库或http-proxy操作，使其在this内得到
+    - DAO层 或 orm实现
+        - 通过封装类似ali-rds的实现对sql的封装以及统一处理
+- AOP实现：koa自带，即中间件操作
 
 ## 表设计
 ```

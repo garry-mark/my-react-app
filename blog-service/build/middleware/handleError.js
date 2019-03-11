@@ -38,28 +38,21 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var log4js = require("log4js");
 var logger = log4js.getLogger('OPERATION');
-exports.default = (function (options) {
-    // handle node error
-    process.on('uncaughtException', function (err) {
-        logger.error(err);
+exports.default = (function (ctx, next) { return __awaiter(_this, void 0, void 0, function () {
+    var e_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, next()];
+            case 1:
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                e_1 = _a.sent();
+                logger.error(e_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
     });
-    // handle koa Middleware Error
-    return function (ctx, next) { return __awaiter(_this, void 0, void 0, function () {
-        var e_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, next()];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    e_1 = _a.sent();
-                    logger.error(e_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-});
+}); });

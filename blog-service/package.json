@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon --exec ts-node ./src/app.ts -e ts --ignore tests/",
+    "start:prod": "cross-env NODE_ENV=production nodemon ./build/app.js",
     "build": "tsc --build",
     "serve": "pm2 start ./ecosystem.config.js --env production",
     "stop": "pm2 stop ./build/app.js",

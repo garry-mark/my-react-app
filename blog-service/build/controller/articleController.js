@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -35,43 +48,75 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ArticleController = /** @class */ (function () {
+var Controller_1 = require("./Controller");
+var ArticleController = /** @class */ (function (_super) {
+    __extends(ArticleController, _super);
     function ArticleController() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.getArticleById = function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // getPrevArticle
+                // getNextArticle
+                // getgetArticleById
+                this.ctx.body = {
+                    list: [
+                        {
+                            id: 1,
+                            category: { id: 1, name: 'JS' },
+                            title: 'Hello world',
+                            content: 'Hello world',
+                            pageview: 2,
+                            like: 11,
+                            createTime: Date.now(),
+                            updateTime: Date.now()
+                        },
+                        {
+                            id: 2,
+                            category: { id: 1, name: 'JS' },
+                            title: 'Hello world agained',
+                            content: 'Hello world agained',
+                            pageview: 99,
+                            like: 23,
+                            createTime: Date.now(),
+                            updateTime: Date.now()
+                        }
+                    ]
+                };
+                return [2 /*return*/];
+            });
+        }); };
+        _this.getArticlePaging = function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // 默认按照创建时间排序，另外可以对点赞量、访问量进行排序
+                // 可以通过文章类别、名字和内容进行筛选
+                // 分页
+                this.ctx.body = {
+                    id: 1,
+                    category: { id: 1, name: 'JS' },
+                    title: 'Hello world',
+                    content: 'Hello world',
+                    pageview: 2,
+                    like: 11,
+                    createTime: Date.now(),
+                    updateTime: Date.now()
+                };
+                return [2 /*return*/];
+            });
+        }); };
+        _this.getArticleList = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/];
+        }); }); };
+        _this.like = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/];
+        }); }); };
+        _this.countPageView = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/];
+        }); }); };
+        _this.saveArticle = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/];
+        }); }); };
+        return _this;
     }
-    ArticleController.prototype.getArticleById = function (ctx, next) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    ArticleController.prototype.getArticlePaging = function (ctx, next) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    ArticleController.prototype.getArticleList = function (ctx, next) {
-        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/];
-        }); });
-    };
-    ArticleController.prototype.like = function (ctx, next) {
-        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/];
-        }); });
-    };
-    ArticleController.prototype.countPageView = function (ctx, next) {
-        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/];
-        }); });
-    };
-    ArticleController.prototype.saveArticle = function (ctx, next) {
-        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/];
-        }); });
-    };
     return ArticleController;
-}());
+}(Controller_1.default));
 exports.default = ArticleController;

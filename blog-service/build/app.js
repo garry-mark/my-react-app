@@ -2,17 +2,22 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Koa = require("koa");
 var log4js = require("log4js");
-var config = require("../app.config");
-var log4j_1 = require("./middleware/log4j");
-var handleError_1 = require("./middleware/handleError");
-var router_1 = require("./router/");
-var logger = log4js.getLogger();
-var port = process.env.PORT || config.app[process.env.NODE_ENV].port;
+var config = require("./../app.config");
+var uncaughtExceptionEventRegister_1 = require("./bootstarp/uncaughtExceptionEventRegister");
+var loggerRegister_1 = require("./bootstarp/loggerRegister");
+var mysqlRegister_1 = require("./bootstarp/mysqlRegister");
+var controllerRegister_1 = require("./bootstarp/controllerRegister");
+var middlewareRegister_1 = require("./bootstarp/middlewareRegister");
+var routerRegister_1 = require("./bootstarp/routerRegister");
 var app = new Koa();
-app.use(handleError_1.default());
-app.use(log4j_1.default());
-// ApiMiddleware handle for '/api/*'
-app.use(router_1.default.routes()).use(router_1.default.allowedMethods());
+uncaughtExceptionEventRegister_1.default();
+var loggerMiddleware = loggerRegister_1.default();
+var controllerMiddleware = controllerRegister_1.default(app);
+var mysqlMiddleware = mysqlRegister_1.default();
+var _a = routerRegister_1.default(app), routesMiddleware = _a.routesMiddleware, allowedMethodsMiddleware = _a.allowedMethodsMiddleware;
+middlewareRegister_1.default(app, loggerMiddleware, mysqlMiddleware, controllerMiddleware, routesMiddleware, allowedMethodsMiddleware);
+var port = process.env.PORT || config.app[process.env.NODE_ENV].port;
+var logger = log4js.getLogger('app');
 app.listen(port, function () {
-    logger.trace("\n==> \uD83C\uDF0E  Listening on port " + port + ". Open up http://localhost:" + port + "/ in your browser.\n");
+    logger.trace("\uD83C\uDF0E  Listening on port " + port + ". Open up http://localhost:" + port + "/ in your browser.");
 });
