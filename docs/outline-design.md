@@ -58,7 +58,7 @@
     - 后期SSR于BSR统一使用组件处理，组件判断SSR得出的结果再控制 错误组件
 - [x] 日志记录
     - 日志分级：error、warn、 info
-    - 日志分类：每个操作日志和访问日志
+    - 日志分类：每个ctx操作日志、app操作日志、访问日志
     - 使用log4js方案：
         - 生产环境：记录日志，对日志进行维持7天的持久化存储，另外记录错误操作
         - 开发环境：打印到控制台即可
@@ -73,6 +73,8 @@
     - 使用连接池
     - 数据库参数配置，仅支持单数据库连接
 - http-proxy实现
+    - 需求：支持promise、支持keepalive、支持baseUrl、支持DNS缓存
+    - agent理解：使用HttpClient的形式，封装curl等方法用于使用同一agent，baseURL等实现
 - MVC三层架构实现
     - 三层架构：展示层（VO）、web层（router+controller+VO）、service层(DAO\rom + DTO（对外）\BO(对内))
     - [x] controller，通过this或者被调用具体方法的函数参数，获取ctx]

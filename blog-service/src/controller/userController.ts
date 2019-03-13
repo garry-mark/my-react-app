@@ -7,8 +7,7 @@ import Services from '../decorator/Services';
 export default class UserController extends Controller {
 
   public getBloggerInfo = async () => {
-    this.ctx!.body = 'abc';
-    this.services.UserServeice.getBloggerInfo()
+    this.ctx!.body = await this.services.UserServeice.getBloggerInfo();;
   }
   public register = async () => { }
   public login = async () => { }

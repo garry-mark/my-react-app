@@ -7,6 +7,7 @@ import * as config from './../app.config';
 import uncaughtExceptionEventRegister from './bootstarp/uncaughtExceptionEventRegister';
 import loggerRegister from './bootstarp/loggerRegister';
 import mysqlRegister from './bootstarp/mysqlRegister';
+import httpClientRegister from './bootstarp/httpClientRegister';
 import controllerRegister from './bootstarp/controllerRegister';
 import middlewareRegister from './bootstarp/middlewareRegister';
 import routerRegister from './bootstarp/routerRegister';
@@ -17,12 +18,14 @@ uncaughtExceptionEventRegister();
 const loggerMiddleware = loggerRegister();
 const controllerMiddleware = controllerRegister(app);
 const mysqlMiddleware = mysqlRegister();
+const httpClientMiddleware = httpClientRegister();
 const { routesMiddleware, allowedMethodsMiddleware } = routerRegister(app);
 
 middlewareRegister(
     app,
     loggerMiddleware,
     mysqlMiddleware,
+    httpClientMiddleware,
     controllerMiddleware,
     routesMiddleware,
     allowedMethodsMiddleware
