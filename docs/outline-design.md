@@ -44,9 +44,9 @@
     - [] 微服务监控方案
 
 - [x] 程序错误处理
-    - koa中间件：使用 handleErrorMiddleware 对中间件流程抛出的错
-    误进行处理
+    - koa中间件：使用 handleErrorMiddleware 对中间件流程抛出的错误进行处理
         - 原理：集合koa内部koa-compose对递归的处理，如果错误没有被捕获会被抛到最外面（async / await中promise的reject会变成同步抛出的错误）
+        - [] 抛出到前端或调用的服务
     - node：对node进程中抛出的错误进行处理
 - 服务错误处理
     - 返回统一格式的json，包含错误码、错误信息等
@@ -70,11 +70,14 @@
 - node连接数据库要点
     - 基于mysql2（promiseify），类似于ali-rds的template封装
         - 目前使用mysql2实现功能
+        - 打印操作的sql语句
+        - 字段驼峰化
     - 使用连接池
     - 数据库参数配置，仅支持单数据库连接
 - http-proxy实现
     - 需求：支持promise、支持keepalive、支持baseUrl、支持DNS缓存
     - agent理解：使用HttpClient的形式，封装curl等方法用于使用同一agent，baseURL等实现
+    - [] 基于urllib的封装，支持promise、baseUrl、以及RESTful封装
 - MVC三层架构实现
     - 三层架构：展示层（VO）、web层（router+controller+VO）、service层(DAO\rom + DTO（对外）\BO(对内))
     - [x] controller，通过this或者被调用具体方法的函数参数，获取ctx]

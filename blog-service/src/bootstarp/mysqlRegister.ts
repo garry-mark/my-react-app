@@ -2,29 +2,28 @@ import { Context } from 'koa';
 import { PoolConfig, Connection, } from 'mysql';
 
 import * as mysql from 'mysql2';
-import * as log4js from 'log4js';
 
 import * as appConfig from '../../app.config.js';
+import MyKoa from '../typing/MyKoa.js';
 
-const logger = log4js.getLogger();
 
-export default function getPool(config?: PoolConfig) {
+export default (app: MyKoa, config?: PoolConfig) => {
     const pool = mysql.createPool(config || appConfig.app[process.env.NODE_ENV].dbConfig);
 
     pool.on('connection', (connection: Connection) => {
-        logger.trace('📀  Connection %d connected', connection.threadId);
+        app.logger!.trace('📀  Connection %d connected', connection.threadId);
     });
 
     pool.on('acquire', (connection: Connection) => {
-        logger.trace('📀  Connection %d acquired', connection.threadId);
+        app.logger!.trace('📀  Connection %d acquired', connection.threadId);
     });
 
     pool.on('release', function (connection: Connection) {
-        logger.trace('📀  Connection %d released', connection.threadId);
+        app.logger!.trace('📀  Connection %d released', connection.threadId);
     });
 
     pool.on('enqueue', () => {
-        logger.trace('📀  Waiting for available connection slot');
+        app.logger!.trace('📀  Waiting for available connection slot');
     });
 
     return async (ctx: Context, next: Function) => {

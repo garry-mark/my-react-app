@@ -1,10 +1,8 @@
-import * as log4js from 'log4js';
+import MyKoa from '../typing/MyKoa';
 
-const logger = log4js.getLogger('OPERATION');
-
-export default () => {
+export default (app: MyKoa) => {
     // handle node error
     process.on('uncaughtException', (err: Error) => {
-        logger.error(err);
+        app.logger!.error(err);
     });
 }

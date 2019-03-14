@@ -1,9 +1,10 @@
 import * as Koa from 'koa';
 
 import handleErrorMiddleware from '../middleware/handleError';
+import MyKoa from '../typing/MyKoa';
 
 
-export default (app: Koa, ...middlewareArr: any): Koa => {
+export default (app: MyKoa, ...middlewareArr: any): Koa => {
 
     app.use(handleErrorMiddleware);
 

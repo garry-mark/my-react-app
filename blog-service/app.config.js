@@ -69,6 +69,7 @@ module.exports = {
           },
           accessDateFile: createDateFileAppender('log/access/_'),
           operationDateFile: createDateFileAppender('log/operation/_'),
+          appDateFile: createDateFileAppender('log/app/_'),
         },
         categories: {
           default: {
@@ -79,6 +80,9 @@ module.exports = {
           },
           OPERATION: {
             appenders: ['operationDateFile'], level: log4js.levels.ERROR,
+          },
+          APP: {
+            appenders: ['appDateFile'], level: log4js.levels.ERROR,
           }
         }
       }
