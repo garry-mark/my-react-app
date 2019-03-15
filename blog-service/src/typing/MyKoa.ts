@@ -13,4 +13,5 @@ export default interface MyKoa extends Koa {
     logger?: Logger;
     config?: any;
     validator?: any;
+    routerMiddlewares?: any;
 }

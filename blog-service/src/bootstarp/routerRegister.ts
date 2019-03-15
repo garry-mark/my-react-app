@@ -1,18 +1,17 @@
-import * as Koa from 'koa';
+
 import * as Router from 'koa-router';
+import MyKoa from '../typing/MyKoa';
 
-import AboutemeRouter from '../router/aboutme';
-import ArticleRouter from '../router/article';
-
-
-
-export default (app: Koa) => {
+export default (app: MyKoa) => {
     const router = new Router({ prefix: '/api' });
-    const { routesMiddleware: aboutemeroutesMiddleware } = AboutemeRouter(app);
-    const { routesMiddleware: articleroutesMiddleware } = ArticleRouter(app);
 
-    router.use(aboutemeroutesMiddleware);
-    router.use(articleroutesMiddleware);
+    const routerMiddlewares = app.routerMiddlewares || [];
+
+    if (routerMiddlewares.length !== 0) {
+        for (let routerMiddleware of routerMiddlewares) {
+            router.use(routerMiddleware);
+        }
+    }
 
     return {
         routesMiddleware: router.routes(),

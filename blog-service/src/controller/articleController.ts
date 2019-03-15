@@ -2,10 +2,25 @@ import Controller from './Controller';
 
 import Services from '../decorator/Services';
 import ArticleService from '../service/articleService';
+import Router from '../decorator/Router';
+import Route from '../decorator/Route';
 
 @Services({ ArticleService })
+@Router({
+  prefix: '/article',
+})
 class ArticleController extends Controller {
 
+  @Route({
+    path: '/:id',
+    methods: 'get',
+    validatorRules: {
+      id: {
+        type: 'int',
+        convertType: 'int'
+      }
+    }
+  })
   public async getArticleById() {
     // getPrevArticle
     // getNextArticle
@@ -17,6 +32,10 @@ class ArticleController extends Controller {
     return;
   }
 
+  @Route({
+    path: '/paging',
+    methods: 'get',
+  })
   public async getArticlePaging() {
     // 默认按照创建时间排序，另外可以对点赞量、访问量进行排序
     // 可以通过文章类别、名字和内容进行筛选
