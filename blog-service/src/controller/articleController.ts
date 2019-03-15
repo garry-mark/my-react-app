@@ -1,36 +1,23 @@
 import Controller from './Controller';
 
-export default class ArticleController extends Controller {
-  public getArticleById = async () => {
+import Services from '../decorator/Services';
+import ArticleService from '../service/articleService';
+
+@Services({ ArticleService })
+class ArticleController extends Controller {
+
+  public async getArticleById() {
     // getPrevArticle
     // getNextArticle
     // getgetArticleById
-    this.ctx!.body = {
-      list: [
-        {
-          id: 1,
-          category: { id: 1, name: 'JS' },
-          title: 'Hello world',
-          content: 'Hello world',
-          pageview: 2,
-          like: 11,
-          createTime: Date.now(),
-          updateTime: Date.now()
-        },
-        {
-          id: 2,
-          category: { id: 1, name: 'JS' },
-          title: 'Hello world agained',
-          content: 'Hello world agained',
-          pageview: 99,
-          like: 23,
-          createTime: Date.now(),
-          updateTime: Date.now()
-        }
-      ]
-    };
+
+    const { id } = this.ctx!.params;
+    this.ctx!.body = await this.services.ArticleService.getArticleById(id);
+
+    return;
   }
-  public getArticlePaging = async () => {
+
+  public async getArticlePaging() {
     // 默认按照创建时间排序，另外可以对点赞量、访问量进行排序
     // 可以通过文章类别、名字和内容进行筛选
     // 分页
@@ -46,12 +33,14 @@ export default class ArticleController extends Controller {
     };
   }
 
-  public getArticleList = async () => { }
+  public async getArticleList() { }
 
-  public like = async () => { }
+  public async like() { }
 
-  public countPageView = async () => { }
+  public async countPageView() { }
 
-  public saveArticle = async () => { }
+  public async saveArticle() { }
 
 }
+
+export default ArticleController

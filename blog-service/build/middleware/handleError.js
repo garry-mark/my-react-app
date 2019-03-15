@@ -36,10 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var log4js = require("log4js");
-var logger = log4js.getLogger('OPERATION');
 exports.default = (function (ctx, next) { return __awaiter(_this, void 0, void 0, function () {
-    var e_1;
+    var e_1, error;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -50,7 +48,14 @@ exports.default = (function (ctx, next) { return __awaiter(_this, void 0, void 0
                 return [3 /*break*/, 3];
             case 2:
                 e_1 = _a.sent();
-                logger.error(e_1);
+                ctx.logger.error(e_1);
+                error = {
+                    status: e_1.status || 500,
+                    code: e_1.code || '',
+                    message: e_1.message || '',
+                    errors: e_1.errors || undefined,
+                };
+                ctx.body = error;
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

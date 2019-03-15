@@ -70,8 +70,7 @@
 - node连接数据库要点
     - 基于mysql2（promiseify），类似于ali-rds的template封装
         - 目前使用mysql2实现功能
-        - 打印操作的sql语句
-        - 字段驼峰化
+        - template封装：打印操作的sql语句、字段驼峰化、时间时区转化
     - 使用连接池
     - 数据库参数配置，仅支持单数据库连接
 - http-proxy实现

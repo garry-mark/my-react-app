@@ -1,13 +1,14 @@
-import UserServeice from '../service/userServeice';
+import UserService from '../service/userService';
 
 import Controller from './Controller';
 import Services from '../decorator/Services';
+// import Validate from '../decorator/Validate';
 
-@Services({ UserServeice })
+@Services({ UserService })
 export default class UserController extends Controller {
 
-  public getBloggerInfo = async () => {
-    this.ctx!.body = await this.services.UserServeice.getBloggerInfo();;
+  public async getBloggerInfo() {
+    this.ctx!.body = await this.services.UserService.getBloggerInfo();;
   }
   public register = async () => { }
   public login = async () => { }

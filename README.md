@@ -56,6 +56,8 @@
 ### Typescript
 
 #### 问题/解决方案
+- [] ts1241:使用方法装饰器时候报错
+    - 要求装饰器返回的方法签名不可以省略参数
 - [] ts-loader,transpileOnly 的利弊
 - [] typeRoots 与 noImplicitAny 为 false 处理，自定义@types
 - [] 样式dts使用全局定义，而不是目前的按照css文件数目定义

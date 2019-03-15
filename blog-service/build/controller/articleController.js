@@ -12,6 +12,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -49,43 +55,49 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Controller_1 = require("./Controller");
+var Services_1 = require("../decorator/Services");
+var Validate_1 = require("../decorator/Validate");
+var articleService_1 = require("../service/articleService");
 var ArticleController = /** @class */ (function (_super) {
     __extends(ArticleController, _super);
     function ArticleController() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.getArticleById = function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                // getPrevArticle
-                // getNextArticle
-                // getgetArticleById
-                this.ctx.body = {
-                    list: [
-                        {
-                            id: 1,
-                            category: { id: 1, name: 'JS' },
-                            title: 'Hello world',
-                            content: 'Hello world',
-                            pageview: 2,
-                            like: 11,
-                            createTime: Date.now(),
-                            updateTime: Date.now()
-                        },
-                        {
-                            id: 2,
-                            category: { id: 1, name: 'JS' },
-                            title: 'Hello world agained',
-                            content: 'Hello world agained',
-                            pageview: 99,
-                            like: 23,
-                            createTime: Date.now(),
-                            updateTime: Date.now()
-                        }
-                    ]
-                };
-                return [2 /*return*/];
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ArticleController.prototype.getArticleById = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, rule, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        // getPrevArticle
+                        // getNextArticle
+                        // getgetArticleById
+                        console.log('====================================');
+                        console.log(this);
+                        console.log('====================================');
+                        id = this.ctx.params.id;
+                        rule = {
+                            id: {
+                                type: 'int',
+                                convertType: 'int'
+                            },
+                            a: {
+                                type: 'int',
+                                convertType: 'int'
+                            }
+                        };
+                        this.ctx.validate(rule);
+                        _a = this.ctx;
+                        return [4 /*yield*/, this.services.ArticleService.getArticleById(id)];
+                    case 1:
+                        _a.body = _b.sent();
+                        return [2 /*return*/];
+                }
             });
-        }); };
-        _this.getArticlePaging = function () { return __awaiter(_this, void 0, void 0, function () {
+        });
+    };
+    ArticleController.prototype.getArticlePaging = function () {
+        return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 // 默认按照创建时间排序，另外可以对点赞量、访问量进行排序
                 // 可以通过文章类别、名字和内容进行筛选
@@ -102,21 +114,34 @@ var ArticleController = /** @class */ (function (_super) {
                 };
                 return [2 /*return*/];
             });
-        }); };
-        _this.getArticleList = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+        });
+    };
+    ArticleController.prototype.getArticleList = function () {
+        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/];
-        }); }); };
-        _this.like = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+        }); });
+    };
+    ArticleController.prototype.like = function () {
+        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/];
-        }); }); };
-        _this.countPageView = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+        }); });
+    };
+    ArticleController.prototype.countPageView = function () {
+        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/];
-        }); }); };
-        _this.saveArticle = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+        }); });
+    };
+    ArticleController.prototype.saveArticle = function () {
+        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/];
-        }); }); };
-        return _this;
-    }
+        }); });
+    };
+    __decorate([
+        Validate_1.default()
+    ], ArticleController.prototype, "getArticleById", null);
+    ArticleController = __decorate([
+        Services_1.default({ ArticleService: articleService_1.default })
+    ], ArticleController);
     return ArticleController;
 }(Controller_1.default));
 exports.default = ArticleController;

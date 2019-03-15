@@ -1,11 +1,12 @@
 import { Context } from 'koa';
 import * as log4js from 'log4js';
-import * as config from '../../app.config';
+import MyKoa from '../typing/MyKoa';
 
-// set log4js config
-log4js.configure(config.app[process.env.NODE_ENV].log4jsConfig);
 
-export default (options = { level: 'info' }) => {
+export default (app: MyKoa, options = { level: 'info' }) => {
+    // set log4js config
+    log4js.configure(app.config.log4jsConfig);
+
     const accessLogger = log4js.getLogger('ACCESS');
     const operationLogger = log4js.getLogger('OPERATION');
     const fn = log4js.connectLogger(accessLogger, options);

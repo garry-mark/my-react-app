@@ -29,6 +29,11 @@ module.exports = {
         password: '123456',
         database: 'blog'
       },
+      validateConfig: {
+        // validateRoot: true,
+        // convert: true,
+        // widelyUndefined: true,
+      },
       log4jsConfig: {
         appenders: {
           console: {

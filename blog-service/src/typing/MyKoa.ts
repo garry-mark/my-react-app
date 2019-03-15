@@ -11,4 +11,6 @@ interface Controllers<Controller> {
 export default interface MyKoa extends Koa {
     controllers?: Controllers<Controller>;
     logger?: Logger;
+    config?: any;
+    validator?: any;
 }

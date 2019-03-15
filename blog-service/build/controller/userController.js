@@ -54,20 +54,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var userServeice_1 = require("../service/userServeice");
+var userService_1 = require("../service/userService");
 var Controller_1 = require("./Controller");
 var Services_1 = require("../decorator/Services");
+// import Validate from '../decorator/Validate';
 var UserController = /** @class */ (function (_super) {
     __extends(UserController, _super);
     function UserController() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.getBloggerInfo = function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.ctx.body = 'abc';
-                this.services.UserServeice.getBloggerInfo();
-                return [2 /*return*/];
-            });
-        }); };
         _this.register = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/];
         }); }); };
@@ -76,8 +70,24 @@ var UserController = /** @class */ (function (_super) {
         }); }); };
         return _this;
     }
+    UserController.prototype.getBloggerInfo = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this.ctx;
+                        return [4 /*yield*/, this.services.UserService.getBloggerInfo()];
+                    case 1:
+                        _a.body = _b.sent();
+                        ;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     UserController = __decorate([
-        Services_1.default({ UserServeice: userServeice_1.default })
+        Services_1.default({ UserService: userService_1.default })
     ], UserController);
     return UserController;
 }(Controller_1.default));

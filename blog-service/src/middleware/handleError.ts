@@ -5,9 +5,14 @@ export default async (ctx: Context, next: Function) => {
     await next();
   } catch (e) {
     ctx.logger.error(e);
-    ctx.body = {
-      code: 500,
-      content: e,
-    }
+
+    let error = {
+      status: e.status || 500,
+      code: e.code || '',
+      message: e.message || '',
+      errors: e.errors || undefined,
+    };
+
+    ctx.body = error
   }
 };
