@@ -12,12 +12,10 @@ import Route from '../decorator/Route';
 export default class UserController extends Controller {
 
   @Route({
-    beforeMiddleware: [],
-    path: '/',
-    methods: 'get',
+    path: '/blogger',
   })
   public async getBloggerInfo() {
-    this.ctx!.body = await this.services.UserService.getBloggerInfo();;
+    this.ctx!.body = await this.services.UserService.getBloggerInfo();
   }
 
   @Route({

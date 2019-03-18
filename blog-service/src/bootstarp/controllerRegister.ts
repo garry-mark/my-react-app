@@ -7,8 +7,9 @@ import MyKoa from '../typing/MyKoa';
 import validateMiddleware from '../middleware/validate'
 
 export default (app: MyKoa) => {
+    const baseRouter = new KoaRouter({ prefix: app.config.baseURL });
     const controllers = app.controllers = {};
-    const routerMiddlewares: Array<Function> = app.routerMiddlewares = [];
+    const router = app.router = {};
     const ctrlDirPath = path.resolve(__dirname, '../controller')
     const ctrlFileNameArr = fs.readdirSync(ctrlDirPath).filter(filename => /^[A-Z]{1}[\w|\d]*Controller[.test]?.[t|j]s$/.test(filename));
     app.logger!.debug(ctrlDirPath);
@@ -26,7 +27,7 @@ export default (app: MyKoa) => {
             controllers[ctrlName].services = ctrl.services;
             if (ctrl.router) {
                 const routerMiddleware = genRouterMiddleware(ctrl.router, controllers[ctrlName]);
-                routerMiddleware && routerMiddlewares.push(routerMiddleware);
+                routerMiddleware && baseRouter.use(routerMiddleware);
             }
         } catch (e) {
             app.logger!.error(e);
@@ -34,8 +35,18 @@ export default (app: MyKoa) => {
     }
 
     // set ctx to Controller and Service instance
+    return {
+        routesMiddleware: baseRouter.routes(),
+        allowedMethodsMiddleware: baseRouter.allowedMethods(),
+        controllerMiddleware: _controllerMiddleware({ router, controllers })
+    }
+
+}
+
+function _controllerMiddleware({ router, controllers }) {
     return async (ctx: Context, next: Function) => {
-        const controllers = app.controllers
+        // set router to ctx for generate swagger-ui
+        ctx.router = router;
         for (let ckey in controllers) {
             const someCtrl = controllers[ckey];
             // can filter some field before setting. eg. mysql
@@ -49,6 +60,7 @@ export default (app: MyKoa) => {
         await next();
     };
 }
+
 
 function genRouterMiddleware({ prefix, routes }, context: any) {
     const koaRouter = new KoaRouter({ prefix });

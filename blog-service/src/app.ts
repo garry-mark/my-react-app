@@ -11,7 +11,6 @@ import mysqlRegister from './bootstarp/mysqlRegister';
 import httpClientRegister from './bootstarp/httpClientRegister';
 import controllerRegister from './bootstarp/controllerRegister';
 import middlewareRegister from './bootstarp/middlewareRegister';
-import routerRegister from './bootstarp/routerRegister';
 import MyKoa from './typing/MyKoa';
 
 const env = process.env.NODE_ENV;
@@ -23,10 +22,10 @@ app.config = config.app[env];
 uncaughtExceptionEventRegister(app);
 const loggerMiddleware = loggerRegister(app);
 const validateMiddleware = validateRegister(app);
-const controllerMiddleware = controllerRegister(app);
+const { routesMiddleware, allowedMethodsMiddleware, controllerMiddleware } = controllerRegister(app);
 const mysqlMiddleware = mysqlRegister(app);
 const httpClientMiddleware = httpClientRegister();
-const { routesMiddleware, allowedMethodsMiddleware } = routerRegister(app);
+// const  = routerRegister(app);
 
 middlewareRegister(
     app,

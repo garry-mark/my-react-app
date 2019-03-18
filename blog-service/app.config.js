@@ -20,6 +20,7 @@ function createDateFileAppender(filename, options) {
 module.exports = {
   app: {
     development: {
+      baseURL: '/api',
       port: 5000,
       dbConfig: {
         connectionLimit: 10,
@@ -52,6 +53,7 @@ module.exports = {
       },
     },
     production: {
+      baseURL: '/api',
       port: 5000,
       dbConfig: {
         connectionLimit: 10,

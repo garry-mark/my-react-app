@@ -18,7 +18,7 @@
             - [] 类似swagger的文档导出
         - [] 工具或拦截器等
             - [x] 程序错误处理与页面渲染错误处理
-            - [] 参数校验
+            - [x] 参数校验
             - [x] 日志记录
         - [] 业务层
             - [] controller针对不同类型service的实现
@@ -83,6 +83,11 @@
         - 控制器生成器: 将所有控制器都注册到app上，并且注册到相关路由中
     - service装饰器：controller注入不同的数据源
         - [x] 装饰器内部使用require()动态同步加载service，以及在传递 数据库或http-proxy操作，使其在this内得到
+    - router与route装饰器的实现
+        - [x] 基本功能：路由定义
+        - [x] 集成paramaters用于参数校验
+        - [] 用于生成类似swagger的RESTful api文档
+        - [x] 注解与描述
     - DAO层 或 orm实现
         - 通过封装类似ali-rds的实现对sql的封装以及统一处理
 - AOP实现：koa自带，即中间件操作
