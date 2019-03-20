@@ -3,10 +3,12 @@ interface RouteDecoratorOptions {
     beforeMiddleware?: Function[];
     path: string;
     methods?: string;
-    validatorRules?: any;
+    queryRules?: any;
+    bodyRules?: any;
+    paramsRules?: any;
 }
 
-export default function Route({ beforeMiddleware = [], path, methods = 'get', validatorRules }: RouteDecoratorOptions) {
+export default function Route({ beforeMiddleware = [], path, methods = 'get', queryRules, bodyRules, paramsRules }: RouteDecoratorOptions) {
     return function (prototype: any, name: any, descriptor: any): void {
 
         if (!prototype.routes) {
@@ -17,7 +19,7 @@ export default function Route({ beforeMiddleware = [], path, methods = 'get', va
             name,
             path,
             methods,
-            validatorRules,
+            queryRules, bodyRules, paramsRules,
             beforeMiddleware
         })
 

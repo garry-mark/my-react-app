@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import MyKoa from '../typing/MyKoa';
 
-import validateMiddleware from '../middleware/validate'
+import validateMiddleware, { ArgType } from '../middleware/validate'
 
 export default (app: MyKoa) => {
     const baseRouter = new KoaRouter({ prefix: app.config.baseURL });
@@ -66,16 +66,14 @@ function genRouterMiddleware({ prefix, routes }, context: any) {
     const koaRouter = new KoaRouter({ prefix });
     const prototype = Object.getPrototypeOf(context);
     for (let route of routes) {
-        const { name, path, methods, validatorRules, beforeMiddleware } = route;
+        const { name, path, methods, queryRules, bodyRules, paramsRules, beforeMiddleware } = route;
         const action = prototype[name].bind(context);
 
-        if (validatorRules) {
-            beforeMiddleware.push(validateMiddleware(validatorRules));
-            beforeMiddleware.push(action);
-            koaRouter[methods](name, path, ...beforeMiddleware);
-        } else {
-            koaRouter[methods](name, path, action);
-        }
+        queryRules && beforeMiddleware.push(validateMiddleware(queryRules, ArgType.QUERY));
+        bodyRules && beforeMiddleware.push(validateMiddleware(bodyRules, ArgType.BODY));
+        paramsRules && beforeMiddleware.push(validateMiddleware(paramsRules, ArgType.PARAMS));
+
+        koaRouter[methods](name, path, ...beforeMiddleware.concat(action));
     }
 
     return koaRouter.routes();

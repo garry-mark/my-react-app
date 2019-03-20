@@ -1,6 +1,17 @@
 import { Context } from 'Koa';
 
-export default (rules: any) => async (ctx: Context, next: Function) => {
-    ctx!.validate(rules);
+export enum ArgType {
+    BODY = 'body',
+    PARAMS = 'params',
+    QUERY = 'query'
+}
+
+export default (rules: any, argType: ArgType) => async (ctx: Context, next: Function) => {
+
+    if (argType === ArgType.BODY) {
+        ctx!.validate(rules);
+    } else {
+        ctx!.validate(rules, ctx[argType]);
+    }
     await next();
 };

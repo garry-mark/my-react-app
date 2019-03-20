@@ -22,7 +22,7 @@ export default class UserController extends Controller {
     beforeMiddleware: [],
     path: '/register',
     methods: 'post',
-    validatorRules: {
+    queryRules: {
       username: {
         type: 'string',
       }
@@ -34,7 +34,7 @@ export default class UserController extends Controller {
     beforeMiddleware: [],
     path: '/login',
     methods: 'post',
-    validatorRules: {
+    queryRules: {
       username: {
         type: 'string',
       }
