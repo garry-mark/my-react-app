@@ -9,8 +9,6 @@ export default (app: MyKoa) => {
 
     return async (ctx: Context, next: Function) => {
         ctx.validate = (rules: any, data: any) => {
-            const { body, params, query } = ctx;
-            data = data || { ...body, ...params, ...query };
             const errors = app.validator.validate(rules, data);
             if (errors) {
                 ctx.throw(422, 'Validation Failed', {

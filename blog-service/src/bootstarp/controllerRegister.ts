@@ -3,6 +3,7 @@ import * as KoaRouter from 'koa-router';
 import * as fs from 'fs';
 import * as path from 'path';
 import MyKoa from '../typing/MyKoa';
+import * as koaBodyparser from 'koa-bodyparser';
 
 import validateMiddleware, { ArgType } from '../middleware/validate'
 
@@ -26,7 +27,7 @@ export default (app: MyKoa) => {
             controllers[ctrlName] = new ctrl();
             controllers[ctrlName].services = ctrl.services;
             if (ctrl.router) {
-                const routerMiddleware = genRouterMiddleware(ctrl.router, controllers[ctrlName]);
+                const routerMiddleware = genRouterMiddleware(ctrl.router, controllers[ctrlName], app.config.bodyParserOptions);
                 routerMiddleware && baseRouter.use(routerMiddleware);
             }
         } catch (e) {
@@ -62,16 +63,23 @@ function _controllerMiddleware({ router, controllers }) {
 }
 
 
-function genRouterMiddleware({ prefix, routes }, context: any) {
+function genRouterMiddleware({ prefix, routes }, context: any, initBodyParserOptions?: any) {
     const koaRouter = new KoaRouter({ prefix });
     const prototype = Object.getPrototypeOf(context);
     for (let route of routes) {
-        const { name, path, methods, queryRules, bodyRules, paramsRules, beforeMiddleware } = route;
+        const { name, path, methods, queryRules, bodyRules,
+            bodyParserOptions,
+            paramsRules, beforeMiddleware } = route;
         const action = prototype[name].bind(context);
 
-        queryRules && beforeMiddleware.push(validateMiddleware(queryRules, ArgType.QUERY));
         bodyRules && beforeMiddleware.push(validateMiddleware(bodyRules, ArgType.BODY));
+        queryRules && beforeMiddleware.push(validateMiddleware(queryRules, ArgType.QUERY));
         paramsRules && beforeMiddleware.push(validateMiddleware(paramsRules, ArgType.PARAMS));
+
+        if (methods === 'post' || methods === 'put' || methods === 'update') {
+            let magerBodyParserOptions = Object.assign(initBodyParserOptions, bodyParserOptions);
+            beforeMiddleware.unshift(koaBodyparser(magerBodyParserOptions));
+        }
 
         koaRouter[methods](name, path, ...beforeMiddleware.concat(action));
     }

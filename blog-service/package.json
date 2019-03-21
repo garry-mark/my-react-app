@@ -28,7 +28,9 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
+    "@types/koa-bodyparser": "^4.2.2",
     "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "log4js": "^4.0.2",
     "mockjs": "^1.0.1-beta3",

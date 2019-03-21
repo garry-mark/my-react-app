@@ -7,9 +7,8 @@ export enum ArgType {
 }
 
 export default (rules: any, argType: ArgType) => async (ctx: Context, next: Function) => {
-
     if (argType === ArgType.BODY) {
-        ctx!.validate(rules);
+        ctx!.validate(rules, ctx!.request[argType]);
     } else {
         ctx!.validate(rules, ctx[argType]);
     }

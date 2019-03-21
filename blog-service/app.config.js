@@ -22,6 +22,14 @@ module.exports = {
     development: {
       baseURL: '/api',
       port: 5000,
+      bodyParserOptions: {
+        // onerror: function (err, ctx) {
+        //   ctx.throw('body parse error', 422);
+        // },
+        // extendTypes: {
+        //   json: ['application/x-javascript'] // will parse application/x-javascript type body as a JSON string
+        // }
+      },
       dbConfig: {
         connectionLimit: 10,
         host: '127.0.0.1',
@@ -55,6 +63,14 @@ module.exports = {
     production: {
       baseURL: '/api',
       port: 5000,
+      bodyParserOptions: {
+        onerror: function (err, ctx) {
+          ctx.throw('body parse error', 422);
+        },
+        extendTypes: {
+          json: ['application/x-javascript'] // will parse application/x-javascript type body as a JSON string
+        }
+      },
       dbConfig: {
         connectionLimit: 10,
         host: '127.0.0.1',
