@@ -83,18 +83,49 @@ export default class ArticleService extends Service {
         return data;
     }
 
-    public async createArticle(article: ArticleVo) {
-        const { title, banner, content = '', originType, originUrl = '', originName = '' } = article;
+    public async createArticle(article: ArticleVo): Promise<number | null> {
+        const { title, banner, content, originType, originUrl, originName } = article;
         const { mysql } = this.ctx!;
         const sql = mysql.format('INSERT INTO article ( title, banner, content, origin_type, origin_url, origin_name ) VALUES ( ?,?,?,?,?,? );', [title, banner, content, originType, originUrl, originName]);
         this.ctx!.logger.debug(sql);
-        const [[data]] = await mysql.query(sql);
-        this.ctx!.logger.debug(data);
-
-        return data || null;
+        const result = await mysql.query(sql);
+        this.ctx!.logger.debug(result);
+        const [{ insertId }] = result;
+        return insertId;
     }
 
-    public async deleteArticle() { }
+    public async hasArticle(id: number): Promise<boolean | null> {
+        if (id <= 0) {
+            return false;
+        }
+        const { mysql } = this.ctx!;
+        const sql = mysql.format('SELECT id FROM article WHERE id=?', [id]);
+        this.ctx!.logger.debug(sql);
+        const [data] = await mysql.query(sql);
+        this.ctx!.logger.debug(data);
 
-    public async updateArticle() { }
+        return data.length > 0;
+    }
+
+    public async deleteArticle(id: number) {
+        const { mysql } = this.ctx!;
+        const sql = mysql.format('DELETE FROM article WHERE id=? ', [id]);
+        this.ctx!.logger.debug(sql);
+        const result = await mysql.query(sql);
+        this.ctx!.logger.debug(result);
+        const [{ affectedRows }] = result;
+        return affectedRows;
+    }
+
+    public async updateArticle(article: ArticleVo): Promise<number | null> {
+        const { title, banner, content, originType, originUrl, originName, id = -1 } = article;
+
+        const { mysql } = this.ctx!;
+        const sql = mysql.format('UPDATE article SET title=?,banner=?,content=?,origin_type=?,origin_url=?,origin_name=? WHERE id=? ', [title, banner, content, originType, originUrl, originName, id]);
+        this.ctx!.logger.debug(sql);
+        const result = await mysql.query(sql);
+        this.ctx!.logger.debug(result);
+        const [{ changedRows }] = result;
+        return changedRows;
+    }
 }

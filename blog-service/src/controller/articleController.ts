@@ -1,11 +1,11 @@
 import Controller from './Controller';
 
 import Services from '../decorator/Services';
-import ArticleService from '../service/articleService';
+import ArticleService from '../service/ArticleService';
 import Router from '../decorator/Router';
 import Route from '../decorator/Route';
 
-import {ArticleOrderByEnum} from '../enum/articleOrderByEnum'
+import { ArticleOrderByEnum, OriginTypeEnum } from '../enum'
 
 @Services({ ArticleService })
 @Router({
@@ -37,15 +37,15 @@ class ArticleController extends Controller {
         required: false,
         default: ''
       },
-      categoryId:{
+      categoryId: {
         type: 'int',
         min: 1,
         required: false,
         convertType: 'int'
       },
-      orderBy:{
+      orderBy: {
         type: 'enum',
-        values:Object.values(ArticleOrderByEnum),
+        values: Object.values(ArticleOrderByEnum),
         required: false,
       }
     }
@@ -85,15 +85,15 @@ class ArticleController extends Controller {
         required: false,
         default: ''
       },
-      categoryId:{
+      categoryId: {
         type: 'int',
         min: 1,
         required: false,
         convertType: 'int'
       },
-      orderBy:{
+      orderBy: {
         type: 'enum',
-        values:Object.values(ArticleOrderByEnum),
+        values: Object.values(ArticleOrderByEnum),
         required: false,
       }
     }
@@ -104,8 +104,8 @@ class ArticleController extends Controller {
       .getArticlePaging(
         {
           ...this.ctx!.query,
-          pageNum:0,
-          pageSize:0
+          pageNum: 0,
+          pageSize: 0
         }
       );
   }
@@ -121,30 +121,31 @@ class ArticleController extends Controller {
   @Route({
     path: '/',
     methods: 'post',
-    bodyRules:{
-      articleVo:{
-        type:'object',
-        rule:{
-          title:{
-            type:'string',
+    bodyRules: {
+      articleVo: {
+        type: 'object',
+        rule: {
+          title: {
+            type: 'string',
           },
-          banner:{
-            type:'string',
+          banner: {
+            type: 'string',
           },
-          content:{
-            type:'string',
-            required:false,
+          originType: {
+            type: 'enum',
+            values: Object.values(OriginTypeEnum),
           },
-          originType:{
-            type:'int',
+          content: {
+            type: 'string',
+            required: false,
           },
-          originUrl:{
-            type:'string',
-            required:false,
+          originUrl: {
+            type: 'string',
+            required: false,
           },
-          originName:{
-            type:'string',
-            required:false,
+          originName: {
+            type: 'string',
+            required: false,
           },
 
         }
@@ -153,23 +154,71 @@ class ArticleController extends Controller {
   })
   public async createArticle() {
     const { articleVo } = this.ctx!.request!.body;
-    console.log('====================================');
-    console.log(articleVo);
-    console.log('====================================');
-    this.ctx!.body = await this.services.ArticleService.createArticle(articleVo);
+    const insertId = await this.services.ArticleService.createArticle(articleVo);
+    this.ctx!.body = {
+      insertId
+    }
   }
 
   @Route({
     path: '/',
     methods: 'put',
+    bodyRules: {
+      articleVo: {
+        type: 'object',
+        rule: {
+          id: {
+            type: 'int',
+          },
+          title: {
+            type: 'string',
+          },
+          banner: {
+            type: 'string',
+          },
+          originType: {
+            type: 'enum',
+            values: Object.values(OriginTypeEnum),
+          },
+          content: {
+            type: 'string',
+            required: false,
+          },
+          originUrl: {
+            type: 'string',
+            required: false,
+          },
+          originName: {
+            type: 'string',
+            required: false,
+          },
+
+        }
+      }
+    }
   })
-  public async updateArticle() { }
+  public async updateArticle() {
+    const { articleVo } = this.ctx!.request!.body;
+    const result = await this.services.ArticleService.updateArticle(articleVo);
+    this.ctx!.body = {
+      result
+    }
+  }
 
   @Route({
     path: '/:id',
     methods: 'delete',
+    paramsRules: {
+      id: {
+        type: 'int',
+        convertType: 'int',
+      }
+    }
   })
-  public async deleteArticle() { }
+  public async deleteArticle() {
+    const { id } = this.ctx!.params;
+    this.ctx!.body = await this.services.ArticleService.deleteArticle(id);
+  }
 
 }
 

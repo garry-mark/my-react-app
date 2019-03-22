@@ -1,4 +1,4 @@
-import UserService from '../service/userService';
+import UserService from '../service/UserService';
 
 import Controller from './Controller';
 import Services from '../decorator/Services';
