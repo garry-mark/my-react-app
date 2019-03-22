@@ -4,14 +4,14 @@ import * as log4js from 'log4js';
 
 import * as config from './../app.config';
 
-import uncaughtExceptionEventRegister from './bootstarp/uncaughtExceptionEventRegister';
-import loggerRegister from './bootstarp/loggerRegister';
-import validateRegister from './bootstarp/validateRegister';
-import mysqlRegister from './bootstarp/mysqlRegister';
-import httpClientRegister from './bootstarp/httpClientRegister';
-import controllerRegister from './bootstarp/controllerRegister';
-import middlewareRegister from './bootstarp/middlewareRegister';
-import MyKoa from './typing/MyKoa';
+import uncaughtExceptionEventRegister from './core/register/uncaughtExceptionEventRegister';
+import loggerRegister from './core/register/loggerRegister';
+import validateRegister from './core/register/validateRegister';
+import mysqlRegister from './core/register/mysqlRegister';
+import httpClientRegister from './core/register/httpClientRegister';
+import controllerRegister from './core/register/controllerRegister';
+import middlewareRegister from './core/register/middlewareRegister';
+import MyKoa from './core/typing/MyKoa';
 
 const env = process.env.NODE_ENV;
 const app: MyKoa = new Koa();

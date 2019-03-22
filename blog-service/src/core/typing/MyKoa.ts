@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 
-import Controller from '../controller/Controller';
+import Controller from '../model/Controller';
 
 import { Logger } from 'log4js';
 

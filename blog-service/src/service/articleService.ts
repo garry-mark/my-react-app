@@ -1,7 +1,7 @@
-import Service from "./Service";
+import Service from "../core/model/Service";
 
 import ArticleVo from '../model/vo/ArticleVo';
-import camcel2UnderLine from '../utils/camcel2UnderLine';
+import camcel2UnderLine from '../core/utils/camcel2UnderLine';
 
 export default class ArticleService extends Service {
 
@@ -33,11 +33,11 @@ export default class ArticleService extends Service {
         this.ctx!.logger.debug(sql);
         const [[data]] = await mysql.query(sql);
         this.ctx!.logger.debug(data);
-        return {
+        return data ? {
             ...data,
             prev: prevArticle,
             next: nextArticle
-        };
+        } : null;
     }
 
     public async getArticlePaging({ pageNum, pageSize, keyword, categoryId, orderBy }): Promise<Array<ArticleVo> | null> {
@@ -107,7 +107,7 @@ export default class ArticleService extends Service {
         return data.length > 0;
     }
 
-    public async deleteArticle(id: number) {
+    public async deleteArticle(id: number): Promise<number | null> {
         const { mysql } = this.ctx!;
         const sql = mysql.format('DELETE FROM article WHERE id=? ', [id]);
         this.ctx!.logger.debug(sql);

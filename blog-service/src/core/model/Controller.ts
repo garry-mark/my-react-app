@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 
-import { SubService } from '../service/Service'
+import { SubService } from './Service'
 
 interface Services {
     [name: string]: SubService;

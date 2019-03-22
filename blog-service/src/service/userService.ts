@@ -1,4 +1,4 @@
-import Service from "./Service";
+import Service from "../core/model/Service";
 
 
 export default class UserService extends Service {

@@ -1,9 +1,9 @@
-import UserService from '../service/UserService';
+import Controller from '../core/model/Controller';
+import Services from '../core/decorator/Services';
+import Router from '../core/decorator/Router';
+import Route from '../core/decorator/Route';
 
-import Controller from './Controller';
-import Services from '../decorator/Services';
-import Router from '../decorator/Router';
-import Route from '../decorator/Route';
+import UserService from '../service/UserService';
 
 @Services({ UserService })
 @Router({

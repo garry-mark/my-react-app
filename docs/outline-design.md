@@ -20,7 +20,7 @@
             - [x] 程序错误处理与页面渲染错误处理
             - [x] 参数校验
             - [x] 日志记录
-        - [] 业务层
+        - [x] 业务层
             - [] controller针对不同类型service的实现
         - [] 持久层
             - mysql-util中间件
@@ -43,13 +43,19 @@
 - 六月
     - [] 微服务监控方案
 
+
 - [x] 程序错误处理
-    - koa中间件：使用 handleErrorMiddleware 对中间件流程抛出的错误进行处理
-        - 原理：集合koa内部koa-compose对递归的处理，如果错误没有被捕获会被抛到最外面（async / await中promise的reject会变成同步抛出的错误）
-        - [] 抛出到前端或调用的服务
-    - node：对node进程中抛出的错误进行处理
-- 服务错误处理
-    - 返回统一格式的json，包含错误码、错误信息等
+    - [x] koa中间件：使用 handleErrorMiddleware 对中间件流程抛出的错误进行处理
+        - 原理：koa内部koa-compose对递归的处理，如果错误没有被捕获会被抛到最外面（async / await中promise的reject会变成同步抛出的错误）
+    - [x] uncaughtExceptionEventRegister：对node进程中抛出的错误进行处理
+        - [x] 在非中间件环节，所抛出的错误处理
+            ```
+                setTimeout(() => {
+                    throw new Error('123');
+                }, 2000)
+            ```
+    - [x] 服务错误封装处理
+        - 返回统一格式的json，包含错误码、错误信息等
 - [x] 页面渲染错误处理
     - SSR 预渲染数据 错误处理
         - 解决方案：统一返回到service-error页面
@@ -66,20 +72,26 @@
     - 日志生产环境要点
         - 创建docker卷进行持久化处理
             - 问题：在本地docker与线上docker，如何统一挂载的卷？
-        - 集成pm2：打镜像时候 pm2 install pm2-intercom
+        - [x] 集成pm2：打镜像时候 pm2 install pm2-intercom
 - node连接数据库要点
     - 基于mysql2（promiseify），类似于ali-rds的template封装
-        - 目前使用mysql2实现功能
+        - [x] 目前使用mysql2实现功能
         - template封装：打印操作的sql语句、字段驼峰化、时间时区转化
-    - 使用连接池
+    - [x] 使用连接池
     - 数据库参数配置，仅支持单数据库连接
 - http-proxy实现
-    - 需求：支持promise、支持keepalive、支持baseUrl、支持DNS缓存
-    - agent理解：使用HttpClient的形式，封装curl等方法用于使用同一agent，baseURL等实现
+    - 需求：
+        - [x] 支持promise
+        - [x] 支持keepalive
+        - [x] 支持多数据源
+        - 支持baseUrl
+        - 支持DNS缓存
+    - agent理解：使用HttpClient的形式，封装curl等方法用于使用同一agent
+    - baseURL等实现
     - [] 基于urllib的封装，支持promise、baseUrl、以及RESTful封装
 - MVC三层架构实现
-    - 三层架构：展示层（VO）、web层（router+controller+VO）、service层(DAO\rom + DTO（对外）\BO(对内))
-    - [x] controller，通过this或者被调用具体方法的函数参数，获取ctx]
+    - 三层架构：展示层（前端+VO）、web层（router+controller+VO）、service层(DAO\rom + DTO（对外服务）、VO（对外页面）\BO(对内))
+    - [x] controller，通过this或者被调用具体方法的函数参数，获取ctxl
         - 控制器生成器: 将所有控制器都注册到app上，并且注册到相关路由中
     - service装饰器：controller注入不同的数据源
         - [x] 装饰器内部使用require()动态同步加载service，以及在传递 数据库或http-proxy操作，使其在this内得到
@@ -87,9 +99,11 @@
         - [x] 基本功能：路由定义
         - [x] 集成paramaters用于参数校验
         - [] 用于生成类似swagger的RESTful api文档
+        - [] 自动生成前端service层
         - [x] 注解与描述
     - DAO层 或 orm实现
-        - 通过封装类似ali-rds的实现对sql的封装以及统一处理
+        - 通过封装类似ali-rds的实现对sql的封装以及统一处理，替代DAO
+    - [x] 请求返回结果封装
 - AOP实现：koa自带，即中间件操作
 
 ## 表设计

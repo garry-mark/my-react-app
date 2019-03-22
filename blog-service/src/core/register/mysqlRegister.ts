@@ -3,12 +3,11 @@ import { PoolConfig, Connection, } from 'mysql';
 
 import * as mysql from 'mysql2';
 
-import * as appConfig from '../../app.config.js';
 import MyKoa from '../typing/MyKoa.js';
 
 
 export default (app: MyKoa, config?: PoolConfig) => {
-    const pool = mysql.createPool(config || appConfig.app[process.env.NODE_ENV].dbConfig);
+    const pool = mysql.createPool(config || app.config.dbConfig);
 
     pool.on('connection', (connection: Connection) => {
         app.logger!.trace('📀  Connection %d connected', connection.threadId);

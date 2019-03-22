@@ -11,7 +11,7 @@ export default (app: MyKoa) => {
     const baseRouter = new KoaRouter({ prefix: app.config.baseURL });
     const controllers = app.controllers = {};
     const router = app.router = {};
-    const ctrlDirPath = path.resolve(__dirname, '../controller')
+    const ctrlDirPath = path.resolve(__dirname, '../../controller')
     const ctrlFileNameArr = fs.readdirSync(ctrlDirPath).filter(filename => /^[A-Z]{1}[\w|\d]*Controller[.test]?.[t|j]s$/.test(filename));
     app.logger!.debug(ctrlDirPath);
     app.logger!.debug(ctrlFileNameArr);
