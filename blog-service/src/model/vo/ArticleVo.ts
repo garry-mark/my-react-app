@@ -10,6 +10,8 @@ export default interface ArticleVo {
     originName?: string;
     createTime?: string;
     updateTime?: string;
+    categoryId?: number;
+    categoryName?: string;
     next?: number;
     prev?: number;
 }

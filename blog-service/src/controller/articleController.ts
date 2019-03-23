@@ -126,8 +126,6 @@ class ArticleController extends Controller {
   })
   public async like() { }
 
-  public async countPageView() { }
-
   @Route({
     path: '/',
     methods: 'post',
@@ -157,7 +155,10 @@ class ArticleController extends Controller {
             type: 'string',
             required: false,
           },
-
+          categoryId: {
+            type: 'int',
+            required: false,
+          }
         }
       }
     }
@@ -203,7 +204,10 @@ class ArticleController extends Controller {
             type: 'string',
             required: false,
           },
-
+          categoryId: {
+            type: 'int',
+            required: false,
+          }
         }
       }
     }
