@@ -72,9 +72,9 @@ function genRouterMiddleware({ prefix, routes }, context: any, initBodyParserOpt
             paramsRules, beforeMiddleware } = route;
         const action = prototype[name].bind(context);
 
-        bodyRules && beforeMiddleware.push(validateMiddleware(bodyRules, ArgType.BODY));
-        queryRules && beforeMiddleware.push(validateMiddleware(queryRules, ArgType.QUERY));
-        paramsRules && beforeMiddleware.push(validateMiddleware(paramsRules, ArgType.PARAMS));
+        bodyRules && beforeMiddleware.unshift(validateMiddleware(bodyRules, ArgType.BODY));
+        queryRules && beforeMiddleware.unshift(validateMiddleware(queryRules, ArgType.QUERY));
+        paramsRules && beforeMiddleware.unshift(validateMiddleware(paramsRules, ArgType.PARAMS));
 
         if (methods === 'post' || methods === 'put' || methods === 'update') {
             let magerBodyParserOptions = Object.assign(initBodyParserOptions, bodyParserOptions);

@@ -2,6 +2,7 @@ import Controller from '../core/model/Controller';
 import Services from '../core/decorator/Services';
 import Router from '../core/decorator/Router';
 import Route from '../core/decorator/Route';
+import Result from '../core/model/Result';
 
 import ArticleService from '../service/ArticleService';
 
@@ -54,11 +55,14 @@ class ArticleController extends Controller {
     // 默认按照创建时间排序，另外可以对点赞量、访问量进行排序
     // 可以通过文章类别、名字和内容进行筛选
     // 分页
-    this.ctx!.body = await this.services
+    const data = await this.services
       .ArticleService
       .getArticlePaging(
         this.ctx!.query
       );
+    this.ctx!.body = new Result({
+      data,
+    });
   }
 
   @Route({
@@ -73,7 +77,10 @@ class ArticleController extends Controller {
   })
   public async getArticleById() {
     const { id } = this.ctx!.params;
-    this.ctx!.body = await this.services.ArticleService.getArticleById(id);
+    const data = await this.services.ArticleService.getArticleById(id);
+    this.ctx!.body = new Result({
+      data
+    });
   }
 
   @Route({
@@ -99,7 +106,7 @@ class ArticleController extends Controller {
     }
   })
   public async getArticleList() {
-    this.ctx!.body = await this.services
+    const data = await this.services
       .ArticleService
       .getArticlePaging(
         {
@@ -108,6 +115,9 @@ class ArticleController extends Controller {
           pageSize: 0
         }
       );
+    this.ctx!.body = new Result({
+      data,
+    });
   }
 
   @Route({
@@ -156,7 +166,8 @@ class ArticleController extends Controller {
     const { articleVo } = this.ctx!.request!.body;
     const insertId = await this.services.ArticleService.createArticle(articleVo);
     this.ctx!.body = {
-      insertId
+      code: insertId ? 1 : 0,
+      insertId: insertId || undefined
     }
   }
 
@@ -199,9 +210,9 @@ class ArticleController extends Controller {
   })
   public async updateArticle() {
     const { articleVo } = this.ctx!.request!.body;
-    const result = await this.services.ArticleService.updateArticle(articleVo);
+    const changedRows = await this.services.ArticleService.updateArticle(articleVo);
     this.ctx!.body = {
-      result
+      code: changedRows > 0 ? 1 : 0,
     }
   }
 
@@ -217,7 +228,10 @@ class ArticleController extends Controller {
   })
   public async deleteArticle() {
     const { id } = this.ctx!.params;
-    this.ctx!.body = await this.services.ArticleService.deleteArticle(id);
+    const affectedRows = await this.services.ArticleService.deleteArticle(id);
+    this.ctx!.body = {
+      code: affectedRows > 0 ? 1 : 0,
+    }
   }
 
 }

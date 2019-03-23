@@ -76,7 +76,7 @@
 - node连接数据库要点
     - 基于mysql2（promiseify），类似于ali-rds的template封装
         - [x] 目前使用mysql2实现功能
-        - template封装：打印操作的sql语句、字段驼峰化、时间时区转化
+        - template封装：打印操作的sql语句、字段驼峰化、时间时区转化、错误的统一处理
     - [x] 使用连接池
     - 数据库参数配置，仅支持单数据库连接
 - http-proxy实现
@@ -104,6 +104,10 @@
     - DAO层 或 orm实现
         - 通过封装类似ali-rds的实现对sql的封装以及统一处理，替代DAO
     - [x] 请求返回结果封装
+        - http级别：无日志记录，直接设置status
+            - 404处理，401处理
+        - 业务级别：有日志记录，ctx.throw，http状态为200，根据code判断请求是否成功，data获取数据，message获取错误信息
+            - 请求参数错误
 - AOP实现：koa自带，即中间件操作
 
 ## 表设计

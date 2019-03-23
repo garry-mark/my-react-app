@@ -1,3 +1,4 @@
+
 import MyKoa from "../typing/MyKoa";
 import { Context } from "koa";
 import * as Parameter from 'parameter';
@@ -12,7 +13,6 @@ export default (app: MyKoa) => {
             const errors = app.validator.validate(rules, data);
             if (errors) {
                 ctx.throw(422, 'Validation Failed', {
-                    code: 'invalid_param',
                     errors,
                 });
             }

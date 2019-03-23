@@ -1,5 +1,6 @@
 import { Context } from 'Koa';
-import ErrorResult from '../model/ErrorResult';
+import Result from '../model/Result';
+import { ResultCode } from '../enum';
 
 export default async (ctx: Context, next: Function) => {
   try {
@@ -7,6 +8,12 @@ export default async (ctx: Context, next: Function) => {
   } catch (e) {
     ctx.logger.error(e);
 
-    ctx.body = new ErrorResult(e);
+    const error = process.env.NODE_ENV === 'development' ? e : undefined;
+
+    ctx.body = new Result({
+      code: ResultCode.FAIl,
+      message: e.message,
+      error
+    });
   }
 };
