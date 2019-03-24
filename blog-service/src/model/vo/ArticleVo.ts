@@ -1,4 +1,4 @@
-export default interface ArticleVo {
+export default interface ArticleVO {
     id?: number;
     title: string;
     banner: string;

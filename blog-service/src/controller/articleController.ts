@@ -181,6 +181,7 @@ class ArticleController extends Controller {
         rule: {
           id: {
             type: 'int',
+            min: 1,
           },
           title: {
             type: 'string',
@@ -226,6 +227,7 @@ class ArticleController extends Controller {
     paramsRules: {
       id: {
         type: 'int',
+        min: 1,
         convertType: 'int',
       }
     }
