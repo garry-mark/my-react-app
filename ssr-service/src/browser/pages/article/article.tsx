@@ -1,4 +1,6 @@
-import Article from '@/model/Articles';
+import Article from '@/model/Article';
+
+import * as ReactMarkdown from 'react-markdown';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -14,10 +16,10 @@ class ArticleDetails extends React.Component<any, ArticleDetailsState> {
   public state: ArticleDetailsState = {
     article: {
       id: -1,
-      category: { id: -1, name: 'string' },
+      categoryName: 'string',
       title: 'string',
       content: 'string',
-      pageview: 0,
+      pageView: 0,
       like: 0,
       createTime: 0,
       updateTime: 0
@@ -33,10 +35,10 @@ class ArticleDetails extends React.Component<any, ArticleDetailsState> {
   public render() {
     const { article } = this.props;
     const {
-      category,
+      categoryName,
       title,
       content,
-      pageview,
+      pageView,
       like,
       createTime,
       updateTime
@@ -44,7 +46,7 @@ class ArticleDetails extends React.Component<any, ArticleDetailsState> {
     return (
       <article className={style.article}>
         <h2>
-          [{category && category.name}] {title}
+          {categoryName ? `[${categoryName}]` : ''} {title}
         </h2>
         <ul>
           <li>
@@ -57,10 +59,10 @@ class ArticleDetails extends React.Component<any, ArticleDetailsState> {
             <FontAwesomeIcon icon="thumbs-up" /> {like}
           </li>
           <li>
-            <FontAwesomeIcon icon="eye" /> {pageview}
+            <FontAwesomeIcon icon="eye" /> {pageView}
           </li>
         </ul>
-        <div>{content}</div>
+        <div><ReactMarkdown source={content} /></div>
       </article>
     );
   }

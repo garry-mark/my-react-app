@@ -10,19 +10,25 @@ import { withRouter } from 'react-router';
 
 class ArticleListFilter extends React.PureComponent<any, any> {
 
+  public getArticleOrderBy = (orderBy: string) => {
+    const { setActiveOrderBy, getArticleList } = this.props;
+    setActiveOrderBy(orderBy);
+    getArticleList({ orderBy });
+  }
+
   public render() {
-    const { activeOrderBy, setActiveOrderBy } = this.props;
+    const { activeOrderBy } = this.props;
     return (
       <div className={style.articleListFilter}>
         <button
           className={activeOrderBy === ORDER_BY_CREATETIME ? style.active : ''}
-          onClick={() => setActiveOrderBy(ORDER_BY_CREATETIME)}
+          onClick={() => this.getArticleOrderBy(ORDER_BY_CREATETIME)}
         >
           最新
         </button>
         <button
           className={activeOrderBy === ORDER_BY_PAGEVIEW ? style.active : ''}
-          onClick={() => setActiveOrderBy(ORDER_BY_PAGEVIEW)}
+          onClick={() => this.getArticleOrderBy(ORDER_BY_PAGEVIEW)}
         >
           最Top
         </button>

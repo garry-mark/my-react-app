@@ -17,7 +17,7 @@ export default function article(state = initState, action: Action) {
     case types.SET_CURRNET_ARTICLE:
       return { ...state, curArticle: action.curArticle };
     case types.SET_ARTICLE_LIST:
-      return { ...state, articleList: [...state.articleList, ...action.articleList] };
+      return { ...state, articleList: action.articleList };
     case types.NEXT_PAGE:
       const pageNum = state.pageNum + 1;
       return { ...state, pageNum };

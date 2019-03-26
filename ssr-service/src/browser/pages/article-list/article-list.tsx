@@ -6,7 +6,7 @@ import ArticleListItem from './list-item';
 
 import ArticleListFilter from './list-filter';
 
-import Article from '@/model/Articles';
+import Article from '@/model/Article';
 
 interface State {
   pageSize: number;
@@ -33,7 +33,7 @@ class ArticleList extends React.Component<any, State> {
     actions.nextPage();
   }
 
-  public getArticleList(options = {}) {
+  public getArticleList = (options = {}) => {
     const { actions } = this.props;
     actions.getArticlePaging(options);
   }

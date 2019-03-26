@@ -1,6 +1,6 @@
 import types from '@/browser/const/actionTypes';
 
-import Article from '@/model/Articles';
+import Article from '@/model/Article';
 
 import { getAgent } from '../../agent/';
 
@@ -38,7 +38,7 @@ function nextPage() {
 function getArticleById(id: number) {
   return async (dispatch: any) =>
     await agent.get(`/article/${id}`).then((resp: any) => {
-      dispatch(setCurArticle(resp.data));
+      dispatch(setCurArticle(resp.data.data));
       return resp;
     });
 }
@@ -47,7 +47,7 @@ function getArticlePaging(params: any) {
   const { pageNum = PAGE_NUM, pageSize = PAGE_SIZE, orderBy, categoryId } = params;
   return async (dispatch: any) =>
     await agent.get(`/article/paging`, { params: { pageNum, pageSize, orderBy, categoryId } }).then((resp: any) => {
-      dispatch(setArticleList(resp.data.list));
+      dispatch(setArticleList(resp.data.data));
       return resp;
     });
 }

@@ -1,11 +1,11 @@
-import Category from './Category';
+// import Category from './Category';
 
 export default interface Article {
   id: number;
-  category: Category;
+  categoryName: string;
   title: string;
   content: string;
-  pageview: number;
+  pageView: number;
   like: number;
   createTime: number;
   updateTime: number;

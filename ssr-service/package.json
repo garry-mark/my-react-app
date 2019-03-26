@@ -43,9 +43,6 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@fortawesome/react-fontawesome": "^0.1.2",
-    "@types/axios": "^0.14.0",
-    "@types/hoist-non-react-statics": "^3.0.1",
-    "@types/log4js": "^2.3.5",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "cross-fetch": "^2.2.3",
@@ -62,6 +59,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-loadable": "^5.5.0",
+    "react-markdown": "^4.0.6",
     "react-redux": "^5.1.1",
     "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.4.0-beta.6",
@@ -69,6 +67,9 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/hoist-non-react-statics": "^3.0.1",
+    "@types/log4js": "^2.3.5",
     "@types/browser-sync": "0.0.42",
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/compression-webpack-plugin": "^2.0.0",

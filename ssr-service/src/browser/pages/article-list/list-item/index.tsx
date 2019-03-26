@@ -3,7 +3,7 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import Article from '@/model/Articles';
+import Article from '@/model/Article';
 import * as style from './article-item.css';
 
 import withStyles from '@/browser/components/HOC/withStyles';
@@ -20,10 +20,10 @@ class ArticleListItem extends React.PureComponent<ArticleListItemProps> {
     const { article, setCurArticle } = this.props;
     const {
       id,
-      category,
+      categoryName,
       title,
       content,
-      pageview,
+      pageView,
       like,
       createTime
     } = article;
@@ -31,7 +31,7 @@ class ArticleListItem extends React.PureComponent<ArticleListItemProps> {
       <div className={style.articleListItem}>
         <div className={style.articleTop}>
           <span>
-            来自分类 <em>{category.name}</em>
+            来自分类 <em>{categoryName || '未分类'}</em>
           </span>
           <time>{new Date(createTime).toLocaleString()}</time>
         </div>
@@ -48,9 +48,9 @@ class ArticleListItem extends React.PureComponent<ArticleListItemProps> {
               : like})
           </button>
           <button>
-            <FontAwesomeIcon icon="eye" /> 浏览量（{pageview > 999
+            <FontAwesomeIcon icon="eye" /> 浏览量（{pageView > 999
               ? '999+'
-              : pageview}）
+              : pageView}）
           </button>
           <button>
             <FontAwesomeIcon icon="share-square" /> 分享
