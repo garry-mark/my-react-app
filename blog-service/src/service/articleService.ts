@@ -33,7 +33,30 @@ export default class ArticleService extends Service {
         const conn = await mysql.getConnection();
         await conn.beginTransaction();
         try {
-            const qSql = conn.format('SELECT id, title, banner, content, `like`, page_view as pageView, origin_type as originType, origin_url as originUrl, origin_name as originName, create_time as createTime,  update_time as updateTime  FROM article WHERE id=?', [id]);
+            const qSql = conn.format(`
+                SELECT
+                    a.id,
+                    a.title,
+                    a.banner,
+                    a.content,
+                    a.\`like\`,
+                    a.page_view as pageView,
+                    a.origin_type as originType,
+                    a.origin_url as originUrl,
+                    a.origin_name as originName,
+                    a.create_time as createTime,
+                    a.update_time as updateTime,
+                    c.name as categoryName
+                FROM
+                    article a
+                LEFT JOIN
+                    map_article_category m
+                    ON a.id = m.aid
+                LEFT JOIN
+                    category c
+                    ON m.cid = c.id
+                WHERE
+                    a.id=?`, [id]);
             logger.debug(qSql);
             const [[data]] = await conn.query(qSql);
             logger.debug(data);
@@ -78,7 +101,7 @@ export default class ArticleService extends Service {
 
         const sql = mysql.format(`
             SELECT
-                a.id, a.title, a.banner, a.\`like\`,
+                a.id, a.content, a.title, a.banner, a.\`like\`,
                 a.page_view as pageView,
                 a.origin_type as originType,
                 a.create_time as createTime,
