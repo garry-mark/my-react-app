@@ -32,7 +32,7 @@ module.exports = {
       },
       dbConfig: {
         connectionLimit: 10,
-        host: 'db',
+        host: '127.0.0.1',
         port: 3306,
         user: 'root',
         password: '123456',

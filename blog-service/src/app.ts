@@ -11,6 +11,9 @@ import mysqlRegister from './core/register/mysqlRegister';
 import httpClientRegister from './core/register/httpClientRegister';
 import controllerRegister from './core/register/controllerRegister';
 import middlewareRegister from './core/register/middlewareRegister';
+
+import CORSRegister from './core/register/CORSRegister';
+
 import MyKoa from './core/typing/MyKoa';
 
 const env = process.env.NODE_ENV;
@@ -25,6 +28,8 @@ const validateMiddleware = validateRegister(app);
 const { routesMiddleware, allowedMethodsMiddleware, controllerMiddleware } = controllerRegister(app);
 const mysqlMiddleware = mysqlRegister(app);
 const httpClientMiddleware = httpClientRegister();
+const CORSMiddleware = CORSRegister(app);
+
 // const  = routerRegister(app);
 
 middlewareRegister(
@@ -34,6 +39,7 @@ middlewareRegister(
     mysqlMiddleware,
     httpClientMiddleware,
     controllerMiddleware,
+    CORSMiddleware,
     routesMiddleware,
     allowedMethodsMiddleware
 );
