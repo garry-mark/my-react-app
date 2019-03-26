@@ -16,6 +16,7 @@
   "author": "garry",
   "license": "ISC",
   "devDependencies": {
+    "@types/koa-bodyparser": "^4.2.2",
     "@types/koa": "^2.0.48",
     "@types/koa-router": "^7.0.40",
     "@types/log4js": "^2.3.5",
@@ -28,7 +29,6 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "@types/koa-bodyparser": "^4.2.2",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",

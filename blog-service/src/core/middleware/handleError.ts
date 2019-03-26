@@ -1,4 +1,4 @@
-import { Context } from 'Koa';
+import { Context } from 'koa';
 import Result from '../model/Result';
 import { ResultCode } from '../enum';
 

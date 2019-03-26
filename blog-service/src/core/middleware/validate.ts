@@ -1,4 +1,4 @@
-import { Context } from 'Koa';
+import { Context } from 'koa';
 
 export enum ArgType {
     BODY = 'body',

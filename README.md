@@ -249,6 +249,27 @@
 
 ### Docker
 
+#### 目的
+###### 简单版：docker-compoes ssr+business(node\java)+db
+- 开发阶段：
+当ssr端开发：需要依赖business和db服务，启动docker-compose.ssr.dev.yml
+    - 不包含ssr启动，其使用宿主机启动即可
+
+当business端开发时候：需要依赖db服务，启动docker-compose.business.dev.yml
+    - 只启动db，宿主机启动business即可，swagger或postman进行调试
+    - db端开发，因为相关sql与business有关，在business完成开发后，导出.sql文件即可。
+        - 其中.sql有dev和prod两种
+        - dev只包含表结构或小量数据，用于日常开发需要版本管理
+        - 待定：prod包含数据和表结构，生产上线
+
+- 生产阶段
+    ssr、business和db同时部署
+
+###### 进阶版本：docker-swarm或k8s ssr+business(node\java)+db集群+nginx+apigateway+redis集群
+
+###### 进阶版本：docker-swarm或k8s ssr+business(node\java)+db集群+nginx+apigateway+redis集群
+
+
 #### 问题/解决方案
 - [x] 安装依赖是否应该放在打包镜像过程中?
     - 需要，就相当于一个pull一个项目下来一样
