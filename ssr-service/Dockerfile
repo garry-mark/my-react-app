@@ -10,7 +10,6 @@ RUN cd ./app \
     && npm install -g pm2 --registry=https://registry.npm.taobao.org  \
     && apk add git \
     && pm2 install pm2-intercom \
-    && npm install \
     && npm run build:dll \
     && npm run build
 
