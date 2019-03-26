@@ -15,8 +15,8 @@ function setAboutme(aboutme: Me) {
 
 function getAboutme() {
   return (dispatch: any) => {
-    return agent.get('/aboutme/').then((resp: any) => {
-      dispatch(setAboutme(resp.data));
+    return agent.get('/user/blogger').then((resp: any) => {
+      dispatch(setAboutme(resp.data.data));
       return resp;
     });
   };

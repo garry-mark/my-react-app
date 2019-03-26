@@ -12,8 +12,7 @@ class AboutMe extends React.Component<any, any> {
     const initAboutme = {
       avatar: '',
       chineseName: '',
-      firstName: '',
-      lastName: '',
+      username: '',
       birthday: '',
       degree: '',
       company: '',
@@ -22,18 +21,26 @@ class AboutMe extends React.Component<any, any> {
       email: ''
     };
     const {
-      avatar,
-      chineseName,
-      firstName,
-      lastName,
-      birthday,
-      degree,
-      company,
-      jobTitle,
-      hobby,
-      email
+      avatar = 'https://via.placeholder.com/400x400',
+      chineseName = '麦健荣',
+      username = '',
+      birthday = '1994-12-31',
+      degree = 'Computer',
+      company = 'Chinatelecom',
+      jobTitle = 'Front-end engineer',
+      hobby = [
+        'bodybuilding',
+        'swimming',
+        'cooking',
+        'surfing internet',
+        'watching movie'
+      ],
+      email = ''
     } =
       aboutme || initAboutme;
+
+    const [lastName, firstName] = username.split(' ');
+
     return (
       <section className={style.aboutMe}>
         <h2>About Me</h2>
@@ -44,13 +51,13 @@ class AboutMe extends React.Component<any, any> {
             {lastName} {firstName}
           </a>{' '}
           ({chineseName}). You can call me {lastName}. I was born in{' '}
-          {birthday.split('-')[0]}s.
+          {birthday && birthday.split('-')[0]}s.
         </p>
         <p>
           I have an {degree} degree. Now I am employed by {company} as an{' '}
           {jobTitle}.
         </p>
-        <p>In spare time, I like {hobby.join(', ')}.</p>
+        <p>In spare time, I like {hobby && hobby.join(', ')}.</p>
         <h3>Concact Me</h3>
 
         <p>
