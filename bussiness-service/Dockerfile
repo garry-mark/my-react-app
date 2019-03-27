@@ -13,4 +13,4 @@ RUN cd ./app \
 EXPOSE 5000
 
 CMD cd /app \
-    && pm2-runtime start ./ecosystem.config.js \
+    && pm2-runtime start ./ecosystem.config.js --env production \
