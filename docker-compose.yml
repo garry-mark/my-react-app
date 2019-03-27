@@ -11,9 +11,21 @@ services:
      environment:
        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
-   blog-service:
-     build: ./blog-service
+   bussiness-service:
+     build: ./bussiness-service
+     volumes:
+       - ./bussiness-service/log:/app/log
      depends_on:
        - db
      ports:
        - "5000:5000"
+
+    ssr-service:
+     build: ./ssr-service
+     volumes:
+       - ./ssr-service/log:/app/log
+     depends_on:
+       - db
+       - bussiness-service
+     ports:
+       - "80:4000"
