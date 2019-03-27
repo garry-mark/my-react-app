@@ -22,12 +22,12 @@
     "dev:build": "webpack --watch --config ./config/webpack.node.dev.conf.ts",
     "serve": "pm2 start ./ecosystem.config.js",
     "stop": "pm2 stop ./dist/server/main.js",
-    "build": "webpack --config ./config/webpack.prod.conf.ts",
-    "build:server": "webpack --config ./config/webpack.node.prod.conf.ts",
+    "build": "npm-run-all --parallel build:app build:dll",
+    "build:app": "webpack --config ./config/webpack.prod.conf.ts",
     "build:dll": "webpack --config ./config/webpack.dll.conf.ts",
+    "build:server": "webpack --config ./config/webpack.node.prod.conf.ts",
     "build:browser": "webpack --config ./config/webpack.browser.prod.conf.ts",
-    "build:docker": "docker build -t my-app .",
-    "docker:run": "docker run -d -v /Users/garry/myworkspace/blog/ssr-service/log:/app/log -p 80:4000 my-app",
+    "docker:run": "docker run -d -p 80:4000 ssr-service",
     "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'"
   },
   "keywords": [

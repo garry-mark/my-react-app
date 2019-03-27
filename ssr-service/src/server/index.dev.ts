@@ -14,7 +14,7 @@ import * as config from '../../app.config';
 
 import app from '@/server/app';
 
-const logger = log4js.getLogger();
+const logger = log4js.getLogger('APP');
 
 const publicPath = (devConfig.output && devConfig.output.publicPath) || '';
 const pathName = (devConfig.output && devConfig.output.path) || '';

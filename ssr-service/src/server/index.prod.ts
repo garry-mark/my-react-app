@@ -6,8 +6,7 @@ import * as log4js from 'log4js';
 
 import * as config from '../../app.config';
 
-const logger = log4js.getLogger();
-
+const logger = log4js.getLogger('APP');
 
 const port = process.env.PORT || config.app[process.env.NODE_ENV].port;
 
