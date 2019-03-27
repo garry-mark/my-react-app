@@ -7,9 +7,7 @@ COPY ./ app/
 RUN cd ./app \
     && npm install -g pm2 --registry=https://registry.npm.taobao.org  \
     && apk add git \
-    && pm2 install pm2-intercom \
-    && npm run build
-
+    && pm2 install pm2-intercom
 
 # Expose the listening port of your app
 EXPOSE 5000

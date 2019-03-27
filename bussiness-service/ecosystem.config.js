@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   apps: [{
-    name: 'blog-service',
+    name: 'bussiness-service',
     cwd: './',
     script: path.resolve(__dirname, './build/app.js'),
 

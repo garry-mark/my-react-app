@@ -1,5 +1,5 @@
 {
-  "name": "blog-service",
+  "name": "bussiness-service",
   "version": "1.0.0",
   "description": "blog service",
   "main": "index.js",
@@ -9,8 +9,8 @@
     "build": "tsc --build",
     "serve": "pm2 start ./ecosystem.config.js --env production",
     "stop": "pm2 stop ./build/app.js",
-    "build:docker": "docker build -t blog-service .",
-    "docker:run": "docker run -d -v /Users/garry/myworkspace/blog/blog-service/log:/app/log -p 8080:5000 blog-service",
+    "build:docker": "docker build -t bussiness-service .",
+    "docker:run": "docker run -d -v /Users/garry/myworkspace/blog/bussiness-service/log:/app/log -p 8080:5000 bussiness-service",
     "tslint": "tslint --fix -c ./tslint.json 'src/**/*{.ts}'"
   },
   "author": "garry",
