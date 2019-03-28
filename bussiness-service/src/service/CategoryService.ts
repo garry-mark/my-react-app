@@ -1,15 +1,23 @@
 import Service from "../core/model/Service";
-
+// 映入相关的模型
 import CategoryVO from '../model/vo/CategoryVO';
 
+// 主要是考虑整个项目的数据源都是DB，所以只选择实现CategoryService，而没有进一步抽象
+// 在多数据源的项目下可用抽象出CategoryService接口，实现不同的Service,类似下面写法
+// class CategoryDBService extends Service implements CategoryService
 export default class CategoryService extends Service {
 
+    // 相关业务操作
     public async getCategoryList(): Promise<Array<CategoryVO> | null> {
+        // 在上下文（web容器）中获取mysql连接池和日志打印器
         const { mysql, logger } = this.ctx!;
 
+        // 对sql进行转义，防止sql注入等攻击
         const sql = mysql.format(`SELECT id, name FROM category`);
         logger.debug(sql);
+        // 进行sql操作
         const [data] = await mysql.query(sql);
+        // 记录操作日志
         logger.debug(data);
 
         return data;
@@ -44,6 +52,7 @@ export default class CategoryService extends Service {
     public async deleteCategory(id: number): Promise<number | null> {
         const { mysql, logger } = this.ctx!;
 
+        // 在连接池中获取连接以及开启事务
         const conn = await mysql.getConnection();
         await conn.beginTransaction();
         try {
@@ -61,13 +70,16 @@ export default class CategoryService extends Service {
                 const [{ changedRows: mChangedRows }] = mResult;
 
                 if (!mChangedRows) {
+                    // 事务回滚
                     await conn.rollback();
                 }
             }
+            // 事务提交
             await conn.commit();
 
             return aAffectedRows;
         } finally {
+            // 释放链接
             conn.release();
         }
     }
