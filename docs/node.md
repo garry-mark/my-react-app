@@ -63,10 +63,10 @@
 在微服务的趋势下，发挥node的优势，扬长避短，让node成为微服务中间层的选择。
 相对于PHP、Python等其他语言，前端同学使用Node更加有亲和力
 
-## 怎么使用Node提供服务功能
+## MVC框架的相关概念
 
 ### 传统单节点MVC架构
-![javaMVC](）
+![javaMVC](https://github.com/garry-mark/markdownImage/raw/master/nodeMVC/javaMVC.jpg)
 - view层：使用xTemplat、jada、JSP等技术渲染页面等
 - controller层：处理HTTP相关，提供权限控制、路由跳转、业务调用等
 - Model层：建立业务相关的数据模型，进行对象关系型映射，进行数据库操作
@@ -85,7 +85,7 @@
 另外，在微服务的趋势下，服务只提供单一功能，使得传统单节点MVC架构不再满足开发需求，使得后端MVC架构开始有变化。
 
 
-![MVCObject](）
+![MVCObject](https://github.com/garry-mark/markdownImage/raw/master/nodeMVC/MVCObject.jpg)
 
 - 现阶段MVC架构
     - 展示层（纯前端MVC架构 + VO）
@@ -98,9 +98,9 @@
         - API型：其他相应服务的接口封装
     - 数据库层：相应数据库的实现
 
-### 怎么使用Node
+## 怎么使用和设计NodeMVC
 
-#### 启动项目，访问http://localhost:5000/
+### 启动项目，访问http://localhost:5000/
 
 ```
 git clone https://github.com/garry-mark/my-react-app.git @types
@@ -113,7 +113,7 @@ npm install
 npm start
 
 ```
-#### 目录结构
+### 目录结构
 
 ```
 - bussiness-service
@@ -381,7 +381,7 @@ ab -c 24 -t 60 http://localhost:5000/api/category
 - 定时任务处理（定时上报应用状态、从远程接口更新本地缓存、定时进行文件切割、临时文件删除等）
 - https、IPV6
 
-### node如何实现现阶段MVC结构（基于Koa2的MVC架构）
+## node如何实现现阶段MVC结构（基于Koa2的MVC架构）
 
 相关技术：Koa2、Typescript
 
@@ -389,114 +389,11 @@ ab -c 24 -t 60 http://localhost:5000/api/category
 - Typescript：静态类型检测有利于业务安全和严谨，语法类似Java方便。
 - Koa2：主要是以 async/await 异步编程模型为基础的洋葱圈模型，简单轻量类比前端DOM操作的jquery，本质上就是对http封装的类库。
 
-#### 如何实现AOP
-
-由于使用koa2的原因，自身的洋葱圈模型已经实现了AOP的思想
-
-![onionModel.png]()
-
-##### 简单实例
-
-```javascript
-
-const Koa = require('koa');
-const app = new Koa();
-
-// logger
-app.use(async (ctx, next) => {
-  // 执行顺序1
-  await next();
-  // 执行顺序5
-  const rt = ctx.response.get('X-Response-Time');
-  console.log(`${ctx.method} ${ctx.url} - ${rt}`);
-});
-
-// x-response-time
-app.use(async (ctx, next) => {
-  // 执行顺序2
-  const start = Date.now();
-  await next();
-  // 执行顺序4
-  const ms = Date.now() - start;
-  ctx.set('X-Response-Time', `${ms}ms`);
-});
-
-// response
-app.use(async ctx => {
-  // 执行顺序3
-  ctx.body = 'Hello World';
-});
-
-app.listen(3000);
-
-```
-
-#### 如何实现Ioc
-
-使用装饰器decorator实现，核心装饰器为Controller中的@Route、@Router、@Service实现
-
-TS中装饰器的原理：
-- 装饰类 和 装饰函数或字段都可以获取到 原型对象，即prototype
-- 装饰类可用获取到，该类的构造函数，constructor
-- 装饰器的本质是在类实例化前对类的++原型对象++和++构造函数++进行改造
-
-核心代码装饰器说明：
-- @Route：把在控制器中传入的route，原型的routes上
-- @Router：把在控制器中传入的router，构造函数的静态成员router上
-- @Service：把在控制器中传入的service，构造函数的静态成员services上，再赋值到对应Controller实例的services上
-    - 是否可用放在原型对象上？尝试过但是ES6与ES5的原型有差异，最终使用构造函数
-
-#### Controller和Service文件分层
-
-注册的controller和service都是全局单例
-
-通过文件形式分层，并得到ctx上下文，再配合controllerRegister注册Controller
-
-```typescript
-// Controller.ts
-import { Context } from 'koa';
-import { SubService } from './Service'
-interface Services {
-    [name: string]: SubService;
-}
-export default class Controller {
-    protected _ctx?: Context;
-    public services: Services = {};
-
-    public get ctx(): Context | undefined {
-        return this._ctx;
-    }
-
-    public set ctx(ctx: Context | undefined) {
-        this._ctx = ctx;
-    }
-}
-```
-
-```typescript
-// Service.ts
-import { Context } from 'koa';
-export interface SubService extends Service {
-    [name: string]: any;
-}
-export default class Service {
-    protected _ctx?: Context;
-
-    public get ctx(): Context | undefined {
-        return this._ctx;
-    }
-
-    public set ctx(ctx: Context | undefined) {
-        this._ctx = ctx;
-    }
-}
-```
-
-#### 自研MVC框架核心代码
+### 自研MVC框架核心代码
 
 核心代码主要保存在 ==\/core== 目录下
 
-##### 目录结构
+#### 目录结构
 ```
 - core
     - decorator
@@ -526,7 +423,7 @@ export default class Service {
     - utils
 
 ```
-##### 从入口文件看核心代码
+#### 从入口文件看核心代码
 
 ```typescript
 import * as Koa from 'koa';
@@ -592,4 +489,187 @@ app.listen(port, () => {
 
 ```
 
+### 如何实现AOP
+
+由于使用koa2的原因，自身的洋葱圈模型已经实现了AOP的思想
+
+![onionModel.png](https://github.com/garry-mark/markdownImage/raw/master/nodeMVC/onionModel.png)
+
+#### 简单实例
+
+```javascript
+
+const Koa = require('koa');
+const app = new Koa();
+
+// logger
+app.use(async (ctx, next) => {
+  // 执行顺序1
+  await next();
+  // 执行顺序5
+  const rt = ctx.response.get('X-Response-Time');
+  console.log(`${ctx.method} ${ctx.url} - ${rt}`);
+});
+
+// x-response-time
+app.use(async (ctx, next) => {
+  // 执行顺序2
+  const start = Date.now();
+  await next();
+  // 执行顺序4
+  const ms = Date.now() - start;
+  ctx.set('X-Response-Time', `${ms}ms`);
+});
+
+// response
+app.use(async ctx => {
+  // 执行顺序3
+  ctx.body = 'Hello World';
+});
+
+app.listen(3000);
+
+```
+
+### 如何实现Ioc
+
+使用装饰器decorator实现，核心装饰器为Controller中的@Route、@Router、@Service实现
+
+TS中装饰器的原理：
+- 装饰类 和 装饰函数或字段都可以获取到 原型对象，即prototype
+- 装饰类可用获取到，该类的构造函数，constructor
+- 装饰器的本质是在类实例化前对类的++原型对象++和++构造函数++进行改造
+
+核心代码装饰器说明：
+- @Route：把在控制器中传入的route，原型的routes上
+- @Router：把在控制器中传入的router，构造函数的静态成员router上
+- @Service：把在控制器中传入的service，构造函数的静态成员services上，再赋值到对应Controller实例的services上
+    - 是否可用放在原型对象上？尝试过但是ES6与ES5的原型有差异，最终使用构造函数
+
+### 如何处理异常、增强健壮性
+
+在其他后端语言看来，node很脆弱，其实并不然，只是打开方式不正确而已
+
+#### 运行时进程致命错误
+
+在app启动时，端口监听前，如连接数据库、实例化控制器等操作如果报错会被拦截，由于这影响到项目启动，所以无需特别处理
+
+#### 运行时进程致命错误
+
+##### 异常例子
+```typescript
+// some code in app.ts
+...
+setTimeout(()=>{
+    throw new Error('Fatal Error');
+},5000)
+...
+
+```
+##### 异常处理代码
+```typescript
+// /register/uncaughtExceptionEventRegister.ts
+import MyKoa from '../typing/MyKoa';
+export default (app: MyKoa) => {
+    // handle node error
+    process.on('uncaughtException', (err: Error) => {
+        app.logger!.error(err);
+    });
+}
+
+```
+#### 中间件导致的错误
+
+如数据库查询、http请求等中间件链路中的错误都会在此被捕获，并且对其进行Result实例化处理，返回统一格式数据
+
+原理：使用 async/await 异步编程模型可以使用同步try/catch去捕获异步操作，或在next().catch()处理，即Promise.reject中的错误
+
+##### 异常例子
+```typescript
+// some middleware or action
+async async (ctx: Context, next: Function) => {
+    throw new Error('middlewareError');
+}
+
+```
+##### 异常处理代码
+```typescript
+// /middleware/handleError.ts
+import { Context } from 'koa';
+import Result from '../model/Result';
+import { ResultCode } from '../enum';
+
+export default async (ctx: Context, next: Function) => {
+  try {
+    await next();
+  } catch (e) {
+    ctx.logger.error(e);
+
+    const error = process.env.NODE_ENV === 'development' ? e : undefined;
+
+    ctx.body = new Result({
+      code: ResultCode.FAIl,
+      message: e.message,
+      error
+    });
+  }
+};
+```
+
+### 如何实现高可用
+
+生成部署时候配合pm2多进程启动，充分利用CPU资源
+
+### 如何实现Controller和Service文件分层
+
+注册的controller和service都是全局单例
+
+通过文件形式分层，并得到ctx上下文，再配合controllerRegister注册Controller
+
+```typescript
+// Controller.ts
+import { Context } from 'koa';
+import { SubService } from './Service'
+interface Services {
+    [name: string]: SubService;
+}
+export default class Controller {
+    protected _ctx?: Context;
+    public services: Services = {};
+
+    public get ctx(): Context | undefined {
+        return this._ctx;
+    }
+
+    public set ctx(ctx: Context | undefined) {
+        this._ctx = ctx;
+    }
+}
+```
+
+```typescript
+// Service.ts
+import { Context } from 'koa';
+export interface SubService extends Service {
+    [name: string]: any;
+}
+export default class Service {
+    protected _ctx?: Context;
+
+    public get ctx(): Context | undefined {
+        return this._ctx;
+    }
+
+    public set ctx(ctx: Context | undefined) {
+        this._ctx = ctx;
+    }
+}
+```
+
+### 核心代码后续优化
+- 从应用中分离处理，形成独立git版本控制，提取npm包私服管理
+- 加入生命周期
+- 优化多进程，支持多进程见通讯
+- 插件化：提高扩展性
+- 脚本化：提高生产效率，如自动生成相关文件目录、初始化以该项目问基础的初始化工程等
 
